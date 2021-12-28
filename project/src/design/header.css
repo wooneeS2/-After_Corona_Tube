@@ -1,6 +1,31 @@
+@font-face {
+  font-family: "Vitro_core";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Vitro_core.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Cafe24SsurroundAir";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SBAggroM";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   margin: 0;
+  font-family: "Cafe24SsurroundAir";
 }
+
 header {
   width: 100%;
   height: 300px;
@@ -18,6 +43,7 @@ header {
 #service-name {
   font-weight: bold;
   font-size: 1.5rem;
+  font-family: "Vitro_core";
 }
 
 .navigator {
@@ -35,6 +61,7 @@ header {
   outline: 0;
   background-color: transparent;
   position: fixed;
+  right: 15px;
 }
 
 .menu {
