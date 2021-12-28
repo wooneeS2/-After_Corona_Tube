@@ -1,0 +1,59 @@
+* {
+  margin: 0;
+}
+header {
+  width: 100%;
+  height: 300px;
+  position: flex;
+}
+
+#headers {
+  display: flex;
+  margin: 10px;
+  padding: 1.2rem;
+  /* background-color: green; */
+  justify-content: space-between;
+}
+
+#service-name {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.navigator {
+  margin: 5px;
+  margin-right: 10px;
+}
+
+.navigator:hover {
+  box-shadow: 0px 10px 48px -4px rgba(0, 0, 0, 0.75);
+}
+
+#menu-btn {
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+}
+
+.menu {
+  position: inherit;
+  display: block;
+  margin-top: 5px;
+}
+.menu :hover {
+  background-color: black;
+  font-weight: bold;
+  color: bule;
+}
+
+#drop-menu {
+  color: red;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  text-align: center;
+}
+
+#drop-menu a {
+  text-decoration-line: none;
+}
