@@ -1,3 +1,56 @@
+@font-face {
+  font-family: "KOTRALEAP";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRALEAP.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "GongGothicLight";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicLight.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "paybooc-Light";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Light.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "paybooc-Medium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Medium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+#chart1 {
+  margin: 0 auto;
+  margin-bottom: -20px;
+}
+
+.chart1 h2 {
+  font-family: "KOTRALEAP";
+  margin: 0 auto;
+  text-align: center;
+  /* margin-bottom: -10px; */
+}
+
+.chart1 p {
+  font-size: 1.1rem;
+  font-family: "paybooc-Medium";
+  margin: 0 auto;
+  text-align: center;
+  line-height: 170%;
+  /* 반응형으로 제작시 break-all로 바꿔야함 */
+  word-break: keep-all;
+  width: 105%;
+}
+
 #next-btn {
   border: none;
   width: 20rem;

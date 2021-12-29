@@ -3,7 +3,6 @@ import { FaArrowDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Link as ScrollLink, Element } from "react-scroll";
-
 import {
   Animator,
   ScrollContainer,
@@ -16,6 +15,105 @@ import {
   FadeIn,
 } from "react-scroll-motion";
 import "./../design/startPage.css";
+import {
+  VictoryBar,
+  VictoryChart,
+  VictoryAxis,
+  VictoryTheme,
+  VictoryLine,
+  VictoryLabel,
+  VictoryTooltip,
+} from "victory";
+
+function Chart1() {
+  //TODO 차트 스타일은 theme이용해서 나중에 바꿔주기
+  const data = [
+    { quarter: 1, patient: 1000, fill: "red" },
+    { quarter: 2, patient: 3000, fill: "orange" },
+    { quarter: 3, patient: 5000, fill: "green" },
+    { quarter: 4, patient: 7000, fill: "blue" },
+  ];
+  const data2 = [
+    { quarter: 1, viewCount: 10000 },
+    { quarter: 2, viewCount: 20000 },
+    { quarter: 3, viewCount: 30000 },
+    { quarter: 4, viewCount: 40000 },
+  ];
+
+  return (
+    <>
+      <VictoryChart
+        domainPadding={20}
+        theme={VictoryTheme.material}
+        height={250}
+      >
+        <VictoryAxis
+          tickValues={[1, 2, 3, 4]}
+          tickFormat={["1단계", "2단계", "3단계", "4단계"]}
+        />
+        <VictoryLabel
+          x={1}
+          y={35}
+          text={"확진자 수"}
+          style={[{ fontSize: 10, fontFamily: "paybooc-Medium" }]}
+        />
+        <VictoryLabel x={300} y={35} text={"조회수"} />
+        <VictoryLabel x={20} y={200} text={"(명)"} />
+        <VictoryLabel x={310} y={200} text={"(회)"} />
+        {/* //TODO 왼쪽 오른쪽 라벨의 기준을 다르게해야함. */}
+        {/* 확진자 수  */}
+        {/* <VictoryAxis
+          dependentAxis
+          tickValues={[1000, 3000, 5000, 7000]}
+          tickFormat={x => x}
+          orientation="left"
+        /> */}
+        <VictoryAxis
+          dependentAxis
+          offsetX={50}
+          orientation="left"
+          standalone={false}
+        />
+        {/* 조회수 */}
+        {/* <VictoryAxis
+          dependentAxis
+          // tickValues={[40000, 2000, 300, 100000]}
+          tickFormat={x => `${x / 1000}k`}
+          orientation="right"
+        /> */}
+        <VictoryAxis
+          dependentAxis
+          domain={[0, 50]}
+          orientation="right"
+          standalone={false}
+        />
+        {/* 차트 */}
+        <VictoryBar
+          data={data}
+          x="quarter"
+          y="patient"
+          labels={({ datum }) => datum.patient}
+          labelComponent={<VictoryTooltip />}
+          style={{
+            data: {
+              fill: ({ datum }) => datum.fill,
+            },
+          }}
+        />
+        <VictoryLine
+          data={data2}
+          x={"quarter"}
+          y="viewCount"
+          labels={({ datum }) => datum.viewCount}
+          labelComponent={
+            <VictoryLabel renderInPortal dy={-10} style={[{ fontSize: 8 }]} />
+          }
+          style={{ data: { stroke: "purple", strokeWidth: 3 } }}
+        />
+      </VictoryChart>
+    </>
+  );
+}
 
 const NextGuide = styled.p`
   // @keyframes blink-effect {
@@ -91,7 +189,7 @@ export function StartPage() {
             </Animator>
           </ScrollPage>
         </Element>
-        <Element name="page">
+        <Element name="page2">
           <ScrollPage page={2}>
             <div
               style={{
@@ -135,19 +233,25 @@ export function StartPage() {
           </ScrollPage>
         </Element>
         <ScrollPage page={4}>
-          <Animator animation={batch(Fade(), Sticky(), MoveOut(0, -200))}>
-            <span style={{ fontSize: "40px" }}>
+          <Animator animation={batch(Fade(), Sticky(50, 50), MoveOut(0, -200))}>
+            <span className="chart1">
+              <h2>사회적 거리두기 기간별 유튜브 조회수 추이</h2>
+              <div id="chart1">
+                <Chart1 />
+              </div>
               <p>
-                차트 1 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quisquam totam voluptatibus cupiditate deleniti recusandae unde,
-                obcaecati modi magnam error molestias placeat. Veritatis magni
-                impedit fugit id maxime dolores voluptas vitae.
+                실제로 우리는 코로나19 이후 많은 변화를 경험하고 있는데요. 그
+                중에서도 가장 눈에 띄는 것은 언택트, 즉 비대면 사회로의
+                전환입니다. 과학 기술의 힘을 통해 빠르게 퍼져나가고 있는 비대면
+                문화 우리는 이 속에서 얼마나 많은 일상의 변화를 경험하게 될까요?
+                코로나19가 바꿔놓은 우리의 일상을 통해 &nbsp;&nbsp;그 답을
+                찾아보도록 하겠습니다.
               </p>
             </span>
           </Animator>
         </ScrollPage>
         <ScrollPage page={5}>
-          <Animator animation={batch(Fade(), Sticky(), MoveOut(0, -200))}>
+          <Animator animation={batch(Fade(0, 1), Sticky(), MoveOut(0, -200))}>
             <span style={{ fontSize: "40px" }}>
               <p>
                 차트2 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
