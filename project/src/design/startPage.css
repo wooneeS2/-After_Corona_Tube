@@ -58,6 +58,7 @@
   background-color: bisque;
   border-radius: 2rem;
   margin-bottom: 1rem;
+  margin-left: 2rem;
 }
 
 #last-btn {
@@ -69,6 +70,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin-left: 2rem;
 }
 
 .next :hover {

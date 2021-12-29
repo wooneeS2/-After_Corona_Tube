@@ -1,5 +1,6 @@
 import { AiOutlineMenu } from "react-icons/ai";
 import "./../design/header.css";
+import "./../design/footer.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -54,7 +55,12 @@ export function HeaderComponents() {
 export function FooterComponents() {
   return (
     <div>
-      <footer>footer</footer>
+      <footer>
+        <div id="footer-div">
+          <p>©Elice AI Track 3기 16팀 식스틴</p>
+          <p>contact : @sixteen</p>
+        </div>
+      </footer>
     </div>
   );
 }

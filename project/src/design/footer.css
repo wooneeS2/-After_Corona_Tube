@@ -1,0 +1,10 @@
+footer div {
+  margin: 0 auto;
+  text-align: left;
+  padding-top: 10px;
+  background-color: gainsboro;
+}
+footer p {
+  margin-left: 20px;
+  color: rgb(41, 40, 40);
+}
