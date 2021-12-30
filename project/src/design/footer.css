@@ -3,8 +3,13 @@ footer div {
   text-align: left;
   padding-top: 10px;
   background-color: gainsboro;
+  justify-content: space-around;
 }
 footer p {
   margin-left: 20px;
   color: rgb(41, 40, 40);
+}
+
+#contact {
+  justify-content: space-around;
 }

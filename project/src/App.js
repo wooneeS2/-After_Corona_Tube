@@ -3,10 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StartPage from "./pages/startPage";
 import SecondPage from "./pages/secondPage";
 import ThirdPage from "./pages/thirdPage";
-import {
-  HeaderComponents,
-  FooterComponents,
-} from "./components/baseComponents";
+import HeaderComponents from "./components/base/headerComponent";
+import FooterComponents from "./components/base/footerComponents";
 
 function App() {
   return (

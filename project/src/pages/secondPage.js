@@ -12,20 +12,15 @@ import {
 } from "victory";
 import TagCloud from "react-tag-cloud";
 import randomColor from "randomcolor";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+const DEFAULT_TAP = "information";
 
 export function SecondPage() {
-  const [information, setInformation] = useState(true);
-  const [time, setTime] = useState(false);
-  const [category, setCategory] = useState(false);
-  const [word, setWord] = useState(false);
+  const [tap, setTap] = useState(DEFAULT_TAP);
 
-  const chartList = [setInformation, setTime, setCategory, setWord];
-
-  const isTurnOn = chartNo => {
-    chartList[chartNo](true);
-    const newList = chartList.filter(x => x !== chartList[chartNo]);
-    newList.map(x => x(false));
+  const selectTabType = type => {
+    setTap(type);
   };
 
   return (
@@ -47,28 +42,28 @@ export function SecondPage() {
       <button
         className="column-btn"
         id="column-btn1"
-        onClick={() => isTurnOn(0)}
+        onClick={() => selectTabType("information")}
       >
         기본정보
       </button>
       <button
         className="column-btn"
         id="column-btn2"
-        onClick={() => isTurnOn(1)}
+        onClick={() => selectTabType("time")}
       >
         시간
       </button>
       <button
         className="column-btn"
         id="column-btn3"
-        onClick={() => isTurnOn(2)}
+        onClick={() => selectTabType("category")}
       >
         카테고리
       </button>
       <button
         className="column-btn"
         id="column-btn4"
-        onClick={() => isTurnOn(3)}
+        onClick={() => selectTabType("word")}
       >
         단어빈도
       </button>
@@ -78,10 +73,10 @@ export function SecondPage() {
         <p>사회적 거리두기 1단계 구간</p>
         <p>2020년 1,2,3월, 2021년 3,4,5월</p>
 
-        {information && <BasicInformationChart />}
-        {time && <TimeInfomationChart />}
-        {category && <CategoryInfomationChart />}
-        {word && <WordCloud />}
+        {tap === "information" && <BasicInformationChart />}
+        {tap === "time" && <TimeInfomationChart />}
+        {tap === "category" && <CategoryInfomationChart />}
+        {tap === "word" && <WordCloud />}
       </div>
     </div>
   );
@@ -305,11 +300,27 @@ function WordCloud() {
 
     { name: "트럼프", value: 80 },
   ];
-
+  //TODO maxWidth 설정하기
+  //TODO hover시 가중치 툴팁 만들기
   const datas = data.map(item => {
     return <div style={{ fontSize: item.value }}>{item.name}</div>;
   });
   console.log(data.map(i => `${i.value > 100 ? 80 : i.value}px`));
+
+  function useForceUpdate() {
+    const [value, setValue] = useState(0);
+    return () => setValue(value => value + 1);
+  }
+  const forceUpdate = useForceUpdate();
+  useEffect(() => {
+    // setInterval -> 일정한 시간 간격으로 작업을 수행하기 위해 사용하는 함수
+    // clearInterval을 이용해서 멈춤(지정된 작업은 모두 실행되고 멈춤)
+    const interval = setInterval(() => {
+      forceUpdate();
+    }, 2000);
+    //useEffect에서 return은 컴포넌트가 언마운트 될 때 실행되는 명령
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <TagCloud

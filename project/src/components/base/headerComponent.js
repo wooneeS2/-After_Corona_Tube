@@ -1,8 +1,7 @@
 import { AiOutlineMenu } from "react-icons/ai";
-import "./../design/header.css";
-import "./../design/footer.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import "../../design/header.css";
 
 export function MenuBtn() {
   const [visible, setVisible] = useState(false);
@@ -49,19 +48,6 @@ export function HeaderComponents() {
         <MenuBtn />
       </div>
     </header>
-  );
-}
-
-export function FooterComponents() {
-  return (
-    <div>
-      <footer>
-        <div id="footer-div">
-          <p>©Elice AI Track 3기 16팀 식스틴</p>
-          <p>contact : @sixteen</p>
-        </div>
-      </footer>
-    </div>
   );
 }
 
