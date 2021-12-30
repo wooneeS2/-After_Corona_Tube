@@ -15,34 +15,17 @@ import randomColor from "randomcolor";
 import { useState } from "react";
 
 export function SecondPage() {
-  const [infomation, setInfomation] = useState(true);
+  const [information, setInformation] = useState(true);
   const [time, setTime] = useState(false);
   const [category, setCategory] = useState(false);
   const [word, setWord] = useState(false);
 
-  const isTurnOn1 = () => {
-    setInfomation(true);
-    setTime(false);
-    setCategory(false);
-    setWord(false);
-  };
-  const isTurnOn2 = () => {
-    setInfomation(false);
-    setTime(true);
-    setCategory(false);
-    setWord(false);
-  };
-  const isTurnOn3 = () => {
-    setInfomation(false);
-    setTime(false);
-    setCategory(true);
-    setWord(false);
-  };
-  const isTurnOn4 = () => {
-    setInfomation(false);
-    setTime(false);
-    setCategory(false);
-    setWord(true);
+  const chartList = [setInformation, setTime, setCategory, setWord];
+
+  const isTurnOn = chartNo => {
+    chartList[chartNo](true);
+    const newList = chartList.filter(x => x !== chartList[chartNo]);
+    newList.map(x => x(false));
   };
 
   return (
@@ -61,16 +44,32 @@ export function SecondPage() {
         기간4
       </button>
 
-      <button className="column-btn" id="column-btn1" onClick={isTurnOn1}>
+      <button
+        className="column-btn"
+        id="column-btn1"
+        onClick={() => isTurnOn(0)}
+      >
         기본정보
       </button>
-      <button className="column-btn" id="column-btn2" onClick={isTurnOn2}>
+      <button
+        className="column-btn"
+        id="column-btn2"
+        onClick={() => isTurnOn(1)}
+      >
         시간
       </button>
-      <button className="column-btn" id="column-btn3" onClick={isTurnOn3}>
+      <button
+        className="column-btn"
+        id="column-btn3"
+        onClick={() => isTurnOn(2)}
+      >
         카테고리
       </button>
-      <button className="column-btn" id="column-btn4" onClick={isTurnOn4}>
+      <button
+        className="column-btn"
+        id="column-btn4"
+        onClick={() => isTurnOn(3)}
+      >
         단어빈도
       </button>
 
@@ -79,7 +78,7 @@ export function SecondPage() {
         <p>사회적 거리두기 1단계 구간</p>
         <p>2020년 1,2,3월, 2021년 3,4,5월</p>
 
-        {infomation && <BasicInfomationChart />}
+        {information && <BasicInformationChart />}
         {time && <TimeInfomationChart />}
         {category && <CategoryInfomationChart />}
         {word && <WordCloud />}
@@ -88,7 +87,7 @@ export function SecondPage() {
   );
 }
 
-function BasicInfomationChart() {
+function BasicInformationChart() {
   return (
     <VictoryChart domainPadding={50}>
       <VictoryAxis
