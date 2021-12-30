@@ -1,4 +1,4 @@
-import { Chart1, Chart2 } from "../components/chartComponents";
+import { Chart1, Chart2 } from "./startPageChartComponents";
 import {
   Animator,
   ScrollPage,
@@ -99,11 +99,12 @@ export function Page5() {
       <Animator animation={batch(Fade(), Sticky(50, 50), MoveOut(0, -200))}>
         <span id="page5" className="chart1">
           <h2 id="chart-title">
-            사회적 거리두기 기간별
-            <br /> 유튜브 조회수 추이
+            유튜브 인기동영상 조회수 · TV 시청률 · 영화 관람객 수 <br />
+            추이 비교 및 분석
           </h2>
+
           <div id="chart">
-            <Chart1 />
+            <Chart2 />
           </div>
           <p id="chart-description">
             실제로 우리는 코로나19 이후 많은 변화를 경험하고 있는데요. 그
@@ -124,13 +125,9 @@ export function Page6() {
     <ScrollPage page={5}>
       <Animator animation={batch(Fade(0, 1), Sticky(), MoveOut(0, -200))}>
         <span className="chart2">
-          <h2 id="chart-title">
-            유튜브 조회수 · TV 시청률 · 영화 관람객
-            <br />
-            추이 비교 및 분석
-          </h2>
+          <h2 id="chart-title">확진자 수 증가 그래프</h2>
           <div id="chart">
-            <Chart2 />
+            <Chart1 />
           </div>
           <p id="chart-description">
             실제로 우리는 코로나19 이후 많은 변화를 경험하고 있는데요. 그
