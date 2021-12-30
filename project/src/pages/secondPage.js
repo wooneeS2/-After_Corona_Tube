@@ -1,4 +1,10 @@
 import React from "react";
+import {
+  categoryStep1,
+  categoryStep2,
+  categoryStep3,
+  categoryStep4,
+} from "../data/data2-3";
 import "../design/secondPage.css";
 import "../design/wordcloud.css";
 import {
@@ -9,6 +15,7 @@ import {
   VictoryLine,
   VictoryLabel,
   VictoryTooltip,
+  VictoryVoronoiContainer,
 } from "victory";
 import TagCloud from "react-tag-cloud";
 import randomColor from "randomcolor";
@@ -75,7 +82,9 @@ export function SecondPage() {
 
         {tap === "information" && <BasicInformationChart />}
         {tap === "time" && <TimeInfomationChart />}
-        {tap === "category" && <CategoryInfomationChart />}
+        {tap === "category" && (
+          <CategoryInfomationChart datas={categoryStep1} />
+        )}
         {tap === "word" && <WordCloud />}
       </div>
     </div>
@@ -191,91 +200,54 @@ function TimeInfomationChart() {
   );
 }
 
-function CategoryInfomationChart() {
-  const category = [
-    { categoryId: 1, categoryName: "v-log" },
-    { categoryId: 2, categoryName: "cook" },
-    { categoryId: 3, categoryName: "drama" },
-    { categoryId: 4, categoryName: "review" },
-  ];
+function CategoryInfomationChart({ datas }) {
+  const likes = [];
+  const views = [];
+  const comments = [];
+  datas.map(m => {
+    likes.push({ x: m.categoryId, y: m.likes });
+    views.push({ x: m.categoryId, y: m.view_count });
+    comments.push({ x: m.categoryId, y: m.comment_count });
+  });
+
+  const data = [views, likes, comments];
+  // find maxima for normalizing data
+  const maxima = data.map(dataset => Math.max(...dataset.map(d => d.y)));
+
+  const colors = ["black", "red", "blue"];
 
   return (
-    <>
-      <VictoryChart>
-        <VictoryChart domainPadding={30}>
-          <VictoryAxis
-            tickValues={category.map(x => x["categoryId"])}
-            tickFormat={category.map(x => x["categoryId"])}
-          />
-          <VictoryLine
-            style={{
-              data: { stroke: "#c43a31" },
-              parent: { border: "1px solid #ccc" },
-            }}
-            data={[
-              { x: 1, y: 12 },
-              { x: 2, y: 13 },
-              { x: 3, y: 15 },
-              { x: 4, y: 14 },
-              { x: 5, y: 17 },
-              { x: 6, y: 17 },
-              { x: 7, y: 17 },
-              { x: 8, y: 17 },
-              { x: 9, y: 17 },
-              { x: 10, y: 17 },
-              { x: 11, y: 17 },
-              { x: 12, y: 17 },
-              { x: 13, y: 17 },
-              { x: 14, y: 17 },
-            ]}
-          />
-          <VictoryLine
-            style={{
-              data: { stroke: "#5B14BF" },
-              parent: { border: "1px solid #ccc" },
-            }}
-            data={[
-              { x: 1, y: 20 },
-              { x: 2, y: 3 },
-              { x: 3, y: 5 },
-              { x: 4, y: 12 },
-              { x: 5, y: 23 },
-              { x: 6, y: 72 },
-              { x: 7, y: 71 },
-              { x: 8, y: 73 },
-              { x: 9, y: 17 },
-              { x: 10, y: 37 },
-              { x: 11, y: 47 },
-              { x: 12, y: 67 },
-              { x: 13, y: 37 },
-              { x: 14, y: 27 },
-            ]}
-          />
-          <VictoryLine
-            style={{
-              data: { stroke: "#14BF39" },
-              parent: { border: "1px solid #ccc" },
-            }}
-            data={[
-              { x: 1, y: 20 },
-              { x: 2, y: 35 },
-              { x: 3, y: 55 },
-              { x: 4, y: 15 },
-              { x: 5, y: 24 },
-              { x: 6, y: 75 },
-              { x: 7, y: 75 },
-              { x: 8, y: 73 },
-              { x: 9, y: 47 },
-              { x: 10, y: 37 },
-              { x: 11, y: 47 },
-              { x: 12, y: 67 },
-              { x: 13, y: 37 },
-              { x: 14, y: 27 },
-            ]}
-          />
-        </VictoryChart>
+    <div>
+      <VictoryChart theme={VictoryTheme.material} width={350} height={200}>
+        <VictoryAxis
+          tickValues={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]}
+          tickFormat={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]}
+        />
+
+        <VictoryLine
+          data={data[0]}
+          style={{ data: { stroke: colors[0] } }}
+          // normalize data
+          x="qoo"
+          y={datum => datum.y / maxima[0]}
+        />
+
+        <VictoryLine
+          data={data[1]}
+          style={{ data: { stroke: colors[1], strokeWidth: 1 } }}
+          // normalize data
+          x="qoo"
+          y={datum => datum.y / maxima[1] / 1.3}
+        />
+        <VictoryLine
+          data={data[2]}
+          style={{ data: { stroke: colors[2], strokeWidth: 1 } }}
+          // normalize data
+          x="qoo"
+          y={datum => datum.y / maxima[2] / 1.6}
+        />
       </VictoryChart>
-    </>
+    </div>
   );
 }
 
@@ -305,7 +277,6 @@ function WordCloud() {
   const datas = data.map(item => {
     return <div style={{ fontSize: item.value }}>{item.name}</div>;
   });
-  console.log(data.map(i => `${i.value > 100 ? 80 : i.value}px`));
 
   function useForceUpdate() {
     const [value, setValue] = useState(0);
