@@ -1,0 +1,51 @@
+.second-chart {
+  display: grid;
+  margin: 1rem 4rem 1rem 4rem;
+  width: 80%;
+
+  margin-bottom: 1rem;
+
+  grid-template-columns: 90px auto;
+
+  grid-template-rows: 50px auto;
+
+  grid-template-areas:
+    "row-btn0 row-btn1 row-btn2 row-btn3 row-btn4  "
+    "column-btn1  second-main-chart second-main-chart second-main-chart second-main-chart  "
+    "column-btn2  second-main-chart second-main-chart second-main-chart second-main-chart "
+    "column-btn3 second-main-chart second-main-chart second-main-chart second-main-chart"
+    "column-btn4 second-main-chart second-main-chart second-main-chart second-main-chart";
+}
+
+#row-btn1 {
+  grid-area: row-btn1;
+}
+#row-btn2 {
+  grid-area: row-btn2;
+}
+#row-btn3 {
+  grid-area: row-btn3;
+}
+#row-btn4 {
+  grid-area: row-btn4;
+}
+
+#column-btn1 {
+  grid-area: column-btn1;
+}
+#column-btn2 {
+  grid-area: column-btn2;
+}
+#column-btn3 {
+  grid-area: column-btn3;
+}
+#column-btn4 {
+  grid-area: column-btn4;
+}
+
+#second-main-chart {
+  width: 100%;
+  border: solid;
+  height: 500px;
+  grid-area: second-main-chart;
+}

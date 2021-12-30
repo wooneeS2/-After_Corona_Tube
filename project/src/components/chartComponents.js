@@ -47,26 +47,26 @@ export function Chart1() {
         <VictoryLabel x={310} y={200} text={"(회)"} />
         {/* //TODO 왼쪽 오른쪽 라벨의 기준을 다르게해야함. */}
         {/* 확진자 수  */}
-        {/* <VictoryAxis
-            dependentAxis
-            tickValues={[1000, 3000, 5000, 7000]}
-            tickFormat={x => x}
-            orientation="left"
-          /> */}
         <VictoryAxis
+          dependentAxis
+          tickValues={[1000, 3000, 5000, 7000]}
+          tickFormat={x => x}
+          orientation="left"
+        />
+        {/* <VictoryAxis
           dependentAxis
           offsetX={50}
           orientation="left"
           standalone={false}
-        />
+        /> */}
         {/* 조회수 */}
-        {/* <VictoryAxis
-            dependentAxis
-            // tickValues={[40000, 2000, 300, 100000]}
-            tickFormat={x => `${x / 1000}k`}
-            orientation="right"
-          /> */}
-        <VictoryAxis dependentAxis domain={[0, 50]} orientation="right" />
+        <VictoryAxis
+          dependentAxis
+          // tickValues={[10000, 20000, 30000, 40000]}
+          tickFormat={x => `${x / 1000}k`}
+          orientation="right"
+        />
+        {/* <VictoryAxis dependentAxis domain={[0, 50]} orientation="right" /> */}
         {/* 차트 */}
         <VictoryBar
           data={data}

@@ -1,0 +1,9 @@
+.tag-cloud {
+  flex: 1;
+  text-rendering: optimizeLegibility;
+  font-smooth: always;
+}
+
+.tag-cloud > div {
+  transition: all 1s;
+}
