@@ -12,8 +12,39 @@ import {
 } from "victory";
 import TagCloud from "react-tag-cloud";
 import randomColor from "randomcolor";
+import { useState } from "react";
 
 export function SecondPage() {
+  const [infomation, setInfomation] = useState(true);
+  const [time, setTime] = useState(false);
+  const [category, setCategory] = useState(false);
+  const [word, setWord] = useState(false);
+
+  const isTurnOn1 = () => {
+    setInfomation(true);
+    setTime(false);
+    setCategory(false);
+    setWord(false);
+  };
+  const isTurnOn2 = () => {
+    setInfomation(false);
+    setTime(true);
+    setCategory(false);
+    setWord(false);
+  };
+  const isTurnOn3 = () => {
+    setInfomation(false);
+    setTime(false);
+    setCategory(true);
+    setWord(false);
+  };
+  const isTurnOn4 = () => {
+    setInfomation(false);
+    setTime(false);
+    setCategory(false);
+    setWord(true);
+  };
+
   return (
     <div className="second-chart">
       <div className="row-btn" id="row-btn0"></div>
@@ -30,16 +61,16 @@ export function SecondPage() {
         기간4
       </button>
 
-      <button className="column-btn" id="column-btn1">
+      <button className="column-btn" id="column-btn1" onClick={isTurnOn1}>
         기본정보
       </button>
-      <button className="column-btn" id="column-btn2">
+      <button className="column-btn" id="column-btn2" onClick={isTurnOn2}>
         시간
       </button>
-      <button className="column-btn" id="column-btn3">
+      <button className="column-btn" id="column-btn3" onClick={isTurnOn3}>
         카테고리
       </button>
-      <button className="column-btn" id="column-btn4">
+      <button className="column-btn" id="column-btn4" onClick={isTurnOn4}>
         단어빈도
       </button>
 
@@ -47,7 +78,11 @@ export function SecondPage() {
         {/* TODO 기간 선택시 p태그 내용이 바껴야함! */}
         <p>사회적 거리두기 1단계 구간</p>
         <p>2020년 1,2,3월, 2021년 3,4,5월</p>
-        <CategoryInfomationChart />
+
+        {infomation && <BasicInfomationChart />}
+        {time && <TimeInfomationChart />}
+        {category && <CategoryInfomationChart />}
+        {word && <WordCloud />}
       </div>
     </div>
   );
