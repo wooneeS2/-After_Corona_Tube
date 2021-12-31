@@ -1,4 +1,5 @@
 //data 2-3 카테고리 데이터
+
 export const categoryStep1 = [
   {
     categoryId: 1,

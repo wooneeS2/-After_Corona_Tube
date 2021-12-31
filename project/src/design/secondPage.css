@@ -44,8 +44,56 @@
 }
 
 #second-main-chart {
-  width: 100%;
-  border: solid;
+  width: 99.4%;
+  border: solid var(--btn-background-color);
+  border-radius: 0.2rem;
   height: 500px;
   grid-area: second-main-chart;
+}
+
+* {
+  --btn-select-color: #ffecec;
+  --btn-background-color: #f1eded;
+  --chart-background-color: #faf9f9;
+}
+
+.second-chart button {
+  background-color: var(--btn-background-color);
+  border: none;
+}
+
+#column-btn1 {
+  border-top-left-radius: 1rem;
+}
+#column-btn4 {
+  border-bottom-left-radius: 1rem;
+}
+
+#row-btn1 {
+  border-top-left-radius: 1rem;
+}
+#row-btn4 {
+  border-top-right-radius: 1rem;
+}
+
+#second-main-chart {
+  background-color: var(--chart-background-color);
+}
+
+#second-main-chart p {
+  margin: 0 auto;
+  text-align: center;
+}
+
+#second-subtitle-1 {
+  font-weight: bold;
+
+  padding-top: 1rem;
+  font-size: 1rem;
+}
+#second-subtitle-2 {
+  font-style: italic;
+
+  padding-top: 5px;
+  font-size: 0.7rem;
 }
