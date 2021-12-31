@@ -1,4 +1,11 @@
-import { VictoryChart, VictoryAxis, VictoryLine, VictoryLabel } from "victory";
+import {
+  VictoryChart,
+  VictoryScatter,
+  VictoryTooltip,
+  VictoryAxis,
+  VictoryLine,
+  VictoryLabel,
+} from "victory";
 import {
   monthlyAudience,
   monthlyRating,
@@ -40,6 +47,7 @@ export function Chart2() {
           backgroundPadding={[{ left: 5, right: 20, top: 3 }]}
         />
 
+        {/* 차트 */}
         <VictoryLine
           data={monthlyAudience}
           x={monthlyAudience.map(index => index.month)}
@@ -50,6 +58,15 @@ export function Chart2() {
               strokeWidth: 3,
             },
           }}
+        />
+        <VictoryScatter
+          data={monthlyAudience}
+          x="qoo"
+          y={"audience"}
+          size={2.5}
+          style={{ data: { fill: "black" } }}
+          labels={monthlyAudience.map(x => `${Math.floor(x.audience)}명`)}
+          labelComponent={<VictoryTooltip renderInPortal />}
         />
         <VictoryLine
           data={monthlyRating}
@@ -62,6 +79,18 @@ export function Chart2() {
             },
           }}
         />
+
+        <VictoryScatter
+          data={monthlyRating}
+          x="qoo"
+          y={"rating"}
+          size={2.5}
+          style={{ data: { fill: "black" } }}
+          labels={monthlyRating.map(
+            x => (x.rating * 0.000001).toFixed(2) + "%"
+          )}
+          labelComponent={<VictoryTooltip renderInPortal />}
+        />
         <VictoryLine
           data={monthlyYoutube}
           x={monthlyYoutube.map(index => index.Avg_view_count)}
@@ -72,6 +101,15 @@ export function Chart2() {
               strokeWidth: 3,
             },
           }}
+        />
+        <VictoryScatter
+          data={monthlyYoutube}
+          x="qoo"
+          y={"Avg_view_count"}
+          size={2.5}
+          style={{ data: { fill: "black" } }}
+          labels={monthlyYoutube.map(x => `${Math.floor(x.Avg_view_count)}회`)}
+          labelComponent={<VictoryTooltip renderInPortal />}
         />
       </VictoryChart>
     </>
