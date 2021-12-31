@@ -6,6 +6,7 @@ import {
   VictoryLine,
   VictoryLabel,
   VictoryTooltip,
+  VictoryScatter,
 } from "victory";
 
 import {
@@ -17,6 +18,11 @@ import {
 
 export function Chart1() {
   //TODO 차트 스타일은 theme이용해서 나중에 바꿔주기
+
+  const avgs1 = monthlyYoutube.map(x => x.Avg_view_count);
+  const avgs2 = monthlyPatient.map(x => x.patient);
+  const max1 = Math.max(...avgs1);
+  const max2 = Math.max(...avgs2);
 
   return (
     <>
@@ -52,17 +58,12 @@ export function Chart1() {
           backgroundPadding={[{ left: 5, right: 20, top: 3 }]}
         />
 
-        {/* 조회수 */}
-        <VictoryAxis
-          dependentAxis
-          tickFormat={x => `${x / 10000}k`}
-          orientation="left"
-        />
         {/* 확진자 수 차트 */}
+
         <VictoryBar
           data={monthlyPatient}
           x="monthly"
-          y="patient"
+          y={datum => datum.patient * 1.2}
           labels={({ datum }) => datum.patient / 100 + "명"}
           labelComponent={<VictoryTooltip />}
           style={{
@@ -73,6 +74,11 @@ export function Chart1() {
         />
 
         {/* 유튜브 조회수 */}
+        <VictoryAxis
+          dependentAxis
+          tickFormat={x => `${x / 10000}k`}
+          orientation="left"
+        />
         <VictoryLine
           data={monthlyYoutube}
           x="monthy"
@@ -80,6 +86,15 @@ export function Chart1() {
           labels={({ datum }) => Math.floor(datum.Avg_view_count) / 10}
           labelComponent={<VictoryTooltip />}
           style={{ data: { stroke: "pink", strokeWidth: 3 } }}
+        />
+        <VictoryScatter
+          data={monthlyYoutube}
+          x="qoo"
+          y={"Avg_view_count"}
+          size={2.5}
+          style={{ data: { fill: "black" } }}
+          labels={monthlyYoutube.map(x => `${Math.floor(x.Avg_view_count)}회`)}
+          labelComponent={<VictoryTooltip renderInPortal />}
         />
       </VictoryChart>
     </>
@@ -89,7 +104,7 @@ export function Chart1() {
 export function Chart2() {
   //TODO 차트 스타일은 theme이용해서 나중에 바꿔주기
 
-  console.log(monthlyYoutube.map(x => x.Avg_view_count));
+  // console.log(monthlyYoutube.map(x => x.Avg_view_count));
   return (
     <>
       <VictoryChart height={250} domainPadding={30}>
