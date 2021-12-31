@@ -130,7 +130,7 @@ export const categoryStep2 = [
   {
     categoryId: 10,
     categoryName: "Music",
-    view_count: -2147483648,
+    view_count: 2147483648,
     likes: 270986479,
     comment_count: 36195280,
   },
@@ -179,7 +179,7 @@ export const categoryStep2 = [
   {
     categoryId: 24,
     categoryName: "Entertainment",
-    view_count: -2147483648,
+    view_count: 2147483648,
     likes: 77260686,
     comment_count: 7890655,
   },
@@ -344,7 +344,7 @@ export const categoryStep4 = [
   {
     categoryId: 10,
     categoryName: "Music",
-    view_count: -2147483648,
+    view_count: 2147483648,
     likes: 176875645,
     comment_count: 16135551,
   },

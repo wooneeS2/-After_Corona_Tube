@@ -11,6 +11,14 @@ import {
   categoryStep3,
   categoryStep4,
 } from "../data/data2-3";
+
+import {
+  basicInfoData1,
+  basicInfoData2,
+  basicInfoData3,
+  basicInfoData4,
+} from "../data/data2-1";
+
 import { periodStep, titleStep } from "../data/periodStep";
 import "../design/secondPage.css";
 import "../design/wordcloud.css";
@@ -25,6 +33,14 @@ export function SecondPage() {
     categoryStep3,
     categoryStep4,
   ];
+
+  const basicDataByStep = [
+    basicInfoData1,
+    basicInfoData2,
+    basicInfoData3,
+    basicInfoData4,
+  ];
+
   const [tap, setTap] = useState(DEFAULT_TAP);
   const [prevTap, setPrevTap] = useState(null);
   const [step, setStep] = useState(DEFAULT_STEP);
@@ -181,7 +197,9 @@ export function SecondPage() {
         <p id="second-subtitle-1">{selectStepData(titleStep)}</p>
         <p id="second-subtitle-2">{selectStepData(periodStep)}</p>
 
-        {tap === "column-btn1" && <BasicInformationChart />}
+        {tap === "column-btn1" && (
+          <BasicInformationChart datas={selectStepData(basicDataByStep)} />
+        )}
         {tap === "column-btn2" && <TimeInfomationChart />}
         {tap === "column-btn3" && (
           <CategoryInfomationChart datas={selectStepData(categoryDataByStep)} />
