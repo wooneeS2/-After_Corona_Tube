@@ -2,8 +2,10 @@
   flex: 1;
   text-rendering: optimizeLegibility;
   font-smooth: always;
+  max-height: 410px;
+  max-width: 96%;
 }
 
 .tag-cloud > div {
-  transition: all 1s;
+  transition: all 1.5s;
 }

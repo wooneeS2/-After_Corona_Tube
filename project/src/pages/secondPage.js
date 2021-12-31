@@ -218,6 +218,7 @@ export function SecondPage() {
         {tap === "column-btn3" && (
           <CategoryInfomationChart datas={selectStepData(categoryDataByStep)} />
         )}
+
         {tap === "column-btn4" && (
           <WordCloud data={selectStepData(wordcloudDataByStep)} />
         )}

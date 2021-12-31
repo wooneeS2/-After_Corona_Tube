@@ -1,6 +1,6 @@
 export const wordCloudData1 = [
   {
-    word: "브이로",
+    word: "브이로그",
     value: 176,
   },
   {
@@ -36,7 +36,7 @@ export const wordCloudData1 = [
     value: 127,
   },
   {
-    word: "가짜사나",
+    word: "가짜사나이",
     value: 127,
   },
   {
@@ -116,7 +116,7 @@ export const wordCloudData1 = [
     value: 127,
   },
   {
-    word: "스케",
+    word: "스케쥴",
     value: 127,
   },
   {
@@ -255,10 +255,7 @@ export const wordCloudData1 = [
     word: "무시",
     value: 64,
   },
-  {
-    word: 12,
-    value: 64,
-  },
+
   {
     word: "연애",
     value: 64,
@@ -776,7 +773,7 @@ export const wordCloudData1 = [
     value: 32,
   },
   {
-    word: "립제",
+    word: "립제이",
     value: 32,
   },
   {
@@ -1295,131 +1292,14 @@ export const wordCloudData1 = [
     word: "시작",
     value: 10,
   },
-  {
-    word: "꼬리에꼬리",
-    value: 9,
-  },
-  {
-    word: "브람스",
-    value: 8,
-  },
-  {
-    word: "삼성전자주",
-    value: 7,
-  },
-  {
-    word: "야식",
-    value: 7,
-  },
-  {
-    word: "멕시코",
-    value: 7,
-  },
-  {
-    word: "대박",
-    value: 7,
-  },
-  {
-    word: "고향",
-    value: 7,
-  },
-  {
-    word: "고부",
-    value: 7,
-  },
-  {
-    word: "공중",
-    value: 7,
-  },
-  {
-    word: "이하",
-    value: 6,
-  },
-  {
-    word: "이별",
-    value: 6,
-  },
-  {
-    word: "김미경강",
-    value: 5,
-  },
-  {
-    word: "쭈꾸미",
-    value: 5,
-  },
-  {
-    word: "구름",
-    value: 4,
-  },
-  {
-    word: "쇼핑",
-    value: 4,
-  },
-  {
-    word: "구글플레",
-    value: 4,
-  },
-  {
-    word: "여성",
-    value: 4,
-  },
-  {
-    word: "여우",
-    value: 4,
-  },
-  {
-    word: "유아",
-    value: 4,
-  },
-  {
-    word: "출연",
-    value: 4,
-  },
-  {
-    word: "이사",
-    value: 4,
-  },
-  {
-    word: "소개",
-    value: 2,
-  },
-  {
-    word: "무청",
-    value: 2,
-  },
-  {
-    word: "무엇",
-    value: 2,
-  },
-  {
-    word: "이동",
-    value: 2,
-  },
-  {
-    word: "무정",
-    value: 2,
-  },
-  {
-    word: "트둥",
-    value: 1,
-  },
-  {
-    word: "재벌",
-    value: 1,
-  },
-  {
-    word: "자동",
-    value: 1,
-  },
 ];
-
 export const wordCloudData2 = [
   {
     word: "먹방",
     value: 576,
   },
   {
-    word: "브이로",
+    word: "브이로그",
     value: 253,
   },
   {
@@ -3326,10 +3206,7 @@ export const wordCloudData2 = [
     word: "토깽",
     value: 49,
   },
-  {
-    word: "'아",
-    value: 49,
-  },
+
   {
     word: "안타",
     value: 49,
@@ -3350,10 +3227,7 @@ export const wordCloudData2 = [
     word: "일본",
     value: 48,
   },
-  {
-    word: "트위",
-    value: 48,
-  },
+
   {
     word: "인생",
     value: 48,
@@ -3366,10 +3240,7 @@ export const wordCloudData2 = [
     word: "눈물",
     value: 48,
   },
-  {
-    word: "크리",
-    value: 48,
-  },
+
   {
     word: "함께",
     value: 48,
@@ -3387,7 +3258,7 @@ export const wordCloudData2 = [
     value: 47,
   },
   {
-    word: "히어",
+    word: "히어로",
     value: 46,
   },
   {
@@ -3414,10 +3285,7 @@ export const wordCloudData2 = [
     word: "김용",
     value: 46,
   },
-  {
-    word: 100,
-    value: 46,
-  },
+
   {
     word: "베트남",
     value: 46,
@@ -3670,10 +3538,7 @@ export const wordCloudData2 = [
     word: "최대",
     value: 42,
   },
-  {
-    word: 200,
-    value: 42,
-  },
+
   {
     word: "시대",
     value: 42,
@@ -3882,10 +3747,7 @@ export const wordCloudData2 = [
     word: "시장",
     value: 39,
   },
-  {
-    word: 50,
-    value: 39,
-  },
+
   {
     word: "오리",
     value: 39,
@@ -4611,132 +4473,8 @@ export const wordCloudData2 = [
     value: 10,
   },
   {
-    word: "프랑",
+    word: "프랑스",
     value: 10,
-  },
-  {
-    word: "대정부질",
-    value: 8,
-  },
-  {
-    word: "통통컬",
-    value: 6,
-  },
-  {
-    word: "트롯신",
-    value: 6,
-  },
-  {
-    word: "오총사",
-    value: 6,
-  },
-  {
-    word: "데이지",
-    value: 5,
-  },
-  {
-    word: "조개",
-    value: 5,
-  },
-  {
-    word: "열무얼갈",
-    value: 5,
-  },
-  {
-    word: "나상",
-    value: 5,
-  },
-  {
-    word: "간장게장",
-    value: 5,
-  },
-  {
-    word: "암호화폐주",
-    value: 5,
-  },
-  {
-    word: "진성호",
-    value: 5,
-  },
-  {
-    word: "임재",
-    value: 5,
-  },
-  {
-    word: "테슬라주",
-    value: 5,
-  },
-  {
-    word: "골프강",
-    value: 5,
-  },
-  {
-    word: "공부잘",
-    value: 5,
-  },
-  {
-    word: "지배",
-    value: 5,
-  },
-  {
-    word: "상한",
-    value: 5,
-  },
-  {
-    word: "새송이",
-    value: 5,
-  },
-  {
-    word: "워싱턴쌍둥",
-    value: 5,
-  },
-  {
-    word: "한달살",
-    value: 5,
-  },
-  {
-    word: "비트코인주",
-    value: 4,
-  },
-  {
-    word: "염증에좋은",
-    value: 4,
-  },
-  {
-    word: "순간포착세상에이런일",
-    value: 4,
-  },
-  {
-    word: "윤현민",
-    value: 4,
-  },
-  {
-    word: "쪽파김",
-    value: 4,
-  },
-  {
-    word: "오래된",
-    value: 3,
-  },
-  {
-    word: "저울",
-    value: 2,
-  },
-  {
-    word: "여사",
-    value: 2,
-  },
-  {
-    word: "선생",
-    value: 1,
-  },
-  {
-    word: "강호",
-    value: 1,
-  },
-  {
-    word: "넷플",
-    value: 1,
   },
 ];
 export const wordCloudData3 = [
@@ -4773,7 +4511,7 @@ export const wordCloudData3 = [
     value: 157,
   },
   {
-    word: "손흥",
+    word: "손흥민",
     value: 152,
   },
   {
@@ -4844,10 +4582,7 @@ export const wordCloudData3 = [
     word: "정동원",
     value: 116,
   },
-  {
-    word: 22,
-    value: 116,
-  },
+
   {
     word: "최고",
     value: 116,
@@ -4968,10 +4703,7 @@ export const wordCloudData3 = [
     word: "현대차",
     value: 86,
   },
-  {
-    word: "'리",
-    value: 86,
-  },
+
   {
     word: "해외",
     value: 86,
@@ -5180,10 +4912,7 @@ export const wordCloudData3 = [
     word: "국민",
     value: 53,
   },
-  {
-    word: 120,
-    value: 52,
-  },
+
   {
     word: "스위",
     value: 52,
@@ -5481,7 +5210,7 @@ export const wordCloudData3 = [
     value: 36,
   },
   {
-    word: "레트",
+    word: "레트로",
     value: 36,
   },
   {
@@ -5561,7 +5290,7 @@ export const wordCloudData3 = [
     value: 35,
   },
   {
-    word: "고양",
+    word: "고양이",
     value: 34,
   },
   {
@@ -5736,10 +5465,7 @@ export const wordCloudData3 = [
     word: "9개월",
     value: 30,
   },
-  {
-    word: 100,
-    value: 30,
-  },
+
   {
     word: "새우",
     value: 30,
@@ -5865,7 +5591,7 @@ export const wordCloudData3 = [
     value: 29,
   },
   {
-    word: "길냥",
+    word: "길냥이",
     value: 29,
   },
   {
@@ -6265,96 +5991,12 @@ export const wordCloudData3 = [
     value: 11,
   },
   {
-    word: "코로나변",
+    word: "코로나변이",
     value: 10,
   },
   {
     word: "진성호",
     value: 10,
-  },
-  {
-    word: "임재",
-    value: 9,
-  },
-  {
-    word: "아스트",
-    value: 9,
-  },
-  {
-    word: "분홍",
-    value: 9,
-  },
-  {
-    word: "트롯신",
-    value: 8,
-  },
-  {
-    word: "길고양",
-    value: 8,
-  },
-  {
-    word: "고소",
-    value: 8,
-  },
-  {
-    word: "이현",
-    value: 8,
-  },
-  {
-    word: "조승연",
-    value: 7,
-  },
-  {
-    word: "비디오",
-    value: 7,
-  },
-  {
-    word: "이글",
-    value: 7,
-  },
-  {
-    word: "신생아",
-    value: 7,
-  },
-  {
-    word: "새벽",
-    value: 7,
-  },
-  {
-    word: "진솔",
-    value: 7,
-  },
-  {
-    word: "2020가요대",
-    value: 7,
-  },
-  {
-    word: "김미경강",
-    value: 6,
-  },
-  {
-    word: "삼성전자주",
-    value: 6,
-  },
-  {
-    word: "2020SBS가요대",
-    value: 6,
-  },
-  {
-    word: "바이오주",
-    value: 5,
-  },
-  {
-    word: "히어",
-    value: 4,
-  },
-  {
-    word: "1호",
-    value: 4,
-  },
-  {
-    word: "감자",
-    value: 3,
   },
 ];
 export const wordCloudData4 = [
@@ -6363,7 +6005,7 @@ export const wordCloudData4 = [
     value: 192,
   },
   {
-    word: "나영",
+    word: "나영석",
     value: 110,
   },
   {
@@ -6379,7 +6021,7 @@ export const wordCloudData4 = [
     value: 99,
   },
   {
-    word: "스테",
+    word: "스테이지",
     value: 99,
   },
   {
@@ -6571,7 +6213,7 @@ export const wordCloudData4 = [
     value: 90,
   },
   {
-    word: "떡볶",
+    word: "떡볶이",
     value: 90,
   },
   {
@@ -6750,16 +6392,13 @@ export const wordCloudData4 = [
     word: "진돗개",
     value: 56,
   },
+
   {
-    word: 100,
-    value: 56,
-  },
-  {
-    word: "히어",
+    word: "히어로",
     value: 54,
   },
   {
-    word: "김미경강",
+    word: "김미경",
     value: 54,
   },
   {
@@ -6794,10 +6433,7 @@ export const wordCloudData4 = [
     word: "일진",
     value: 44,
   },
-  {
-    word: 10,
-    value: 44,
-  },
+
   {
     word: "시원",
     value: 44,
@@ -6903,7 +6539,7 @@ export const wordCloudData4 = [
     value: 41,
   },
   {
-    word: "삼성전자주",
+    word: "삼성전자",
     value: 41,
   },
   {
@@ -6927,7 +6563,7 @@ export const wordCloudData4 = [
     value: 37,
   },
   {
-    word: "구글플레",
+    word: "구글플레이",
     value: 36,
   },
   {
@@ -7199,11 +6835,11 @@ export const wordCloudData4 = [
     value: 30,
   },
   {
-    word: "골프강",
+    word: "골프강의",
     value: 30,
   },
   {
-    word: "아이",
+    word: "아이린",
     value: 30,
   },
   {
@@ -7491,7 +7127,7 @@ export const wordCloudData4 = [
     value: 16,
   },
   {
-    word: "레트",
+    word: "레트로",
     value: 14,
   },
   {
@@ -7519,7 +7155,7 @@ export const wordCloudData4 = [
     value: 14,
   },
   {
-    word: "배추김",
+    word: "배추김치",
     value: 13,
   },
   {
@@ -7559,7 +7195,7 @@ export const wordCloudData4 = [
     value: 13,
   },
   {
-    word: "브이로",
+    word: "브이로그",
     value: 13,
   },
   {
@@ -7615,7 +7251,7 @@ export const wordCloudData4 = [
     value: 12,
   },
   {
-    word: "뱀파",
+    word: "뱀파이어",
     value: 12,
   },
   {
@@ -7683,7 +7319,7 @@ export const wordCloudData4 = [
     value: 12,
   },
   {
-    word: "립제",
+    word: "립제이",
     value: 12,
   },
   {
@@ -7790,60 +7426,9 @@ export const wordCloudData4 = [
     word: "야식",
     value: 11,
   },
-  {
-    word: "가짜사나",
-    value: 9,
-  },
-  {
-    word: "멕시코",
-    value: 8,
-  },
-  {
-    word: "김다",
-    value: 7,
-  },
-  {
-    word: "핫도",
-    value: 7,
-  },
-  {
-    word: "강호",
-    value: 7,
-  },
+
   {
     word: "말년",
     value: 5,
-  },
-  {
-    word: "대박",
-    value: 5,
-  },
-  {
-    word: "호랑",
-    value: 5,
-  },
-  {
-    word: "브람스",
-    value: 5,
-  },
-  {
-    word: "그것",
-    value: 4,
-  },
-  {
-    word: "강력",
-    value: 2,
-  },
-  {
-    word: "택시",
-    value: 2,
-  },
-  {
-    word: "수제",
-    value: 2,
-  },
-  {
-    word: "애호",
-    value: 1,
   },
 ];

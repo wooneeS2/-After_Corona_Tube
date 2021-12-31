@@ -7,7 +7,15 @@ export function WordCloud({ data }) {
   //TODO maxWidth 설정하기
   //TODO hover시 가중치 툴팁 만들기
   const datas = data.map(item => {
-    return <div style={{ fontSize: item.value / 2 }}>{item.word}</div>;
+    return (
+      <div
+        style={{
+          fontSize: item.value > 200 ? item.value / 4 : item.value / 2,
+        }}
+      >
+        {item.word}
+      </div>
+    );
   });
 
   function useForceUpdate() {
