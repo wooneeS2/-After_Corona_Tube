@@ -5,6 +5,7 @@ import { BasicInformationChart } from "../components/secondPageChartComponents/b
 import { TimeInfomationChart } from "../components/secondPageChartComponents/timeInfomationChart";
 import { CategoryInfomationChart } from "../components/secondPageChartComponents/categoryInfomationChart";
 import { WordCloud } from "../components/secondPageChartComponents/wordCloudChart";
+
 import {
   categoryStep1,
   categoryStep2,
@@ -18,6 +19,12 @@ import {
   basicInfoData3,
   basicInfoData4,
 } from "../data/data2-1";
+import {
+  wordCloudData1,
+  wordCloudData2,
+  wordCloudData3,
+  wordCloudData4,
+} from "../data/data2-4";
 
 import { periodStep, titleStep } from "../data/periodStep";
 import "../design/secondPage.css";
@@ -39,6 +46,13 @@ export function SecondPage() {
     basicInfoData2,
     basicInfoData3,
     basicInfoData4,
+  ];
+
+  const wordcloudDataByStep = [
+    wordCloudData1,
+    wordCloudData2,
+    wordCloudData3,
+    wordCloudData4,
   ];
 
   const [tap, setTap] = useState(DEFAULT_TAP);
@@ -204,7 +218,9 @@ export function SecondPage() {
         {tap === "column-btn3" && (
           <CategoryInfomationChart datas={selectStepData(categoryDataByStep)} />
         )}
-        {tap === "column-btn4" && <WordCloud />}
+        {tap === "column-btn4" && (
+          <WordCloud data={selectStepData(wordcloudDataByStep)} />
+        )}
       </div>
     </div>
   );
