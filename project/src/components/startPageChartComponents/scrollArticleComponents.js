@@ -1,4 +1,5 @@
-import { Chart1, Chart2 } from "./startPageChartComponents";
+import { Chart1 } from "./Chart1";
+import { Chart2 } from "./Chart2";
 import {
   Animator,
   ScrollPage,
@@ -9,7 +10,7 @@ import {
   Sticky,
   FadeIn,
 } from "react-scroll-motion";
-import { ScrollGuideBtn, NextBtn } from "./buttonComponents";
+import { ScrollGuideBtn, NextBtn } from "../buttonComponents";
 
 export function Page1() {
   return (
