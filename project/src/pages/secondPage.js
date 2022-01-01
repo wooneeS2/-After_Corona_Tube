@@ -207,7 +207,6 @@ export function SecondPage() {
       </button>
 
       <div id="second-main-chart">
-        {/* TODO 기간 선택시 p태그 내용이 바껴야함! */}
         <p id="second-subtitle-1">{selectStepData(titleStep)}</p>
         <p id="second-subtitle-2">{selectStepData(periodStep)}</p>
 

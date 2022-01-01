@@ -93,3 +93,7 @@
   text-align: center;
   word-break: keep-all;
 }
+
+body {
+  background-color: #f9f9f9;
+}

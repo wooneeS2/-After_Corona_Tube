@@ -6,6 +6,7 @@ import ThirdPage from "./pages/thirdPage";
 import HeaderComponents from "./components/base/headerComponent";
 import FooterComponents from "./components/base/footerComponents";
 
+
 function App() {
   return (
     <div className="App">
