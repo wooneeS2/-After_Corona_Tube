@@ -131,7 +131,6 @@ export function SecondPage() {
 
   return (
     <div className="second-chart">
-      <div className="row-btn" id="row-btn0"></div>
       <button
         className="row-btn"
         id="row-btn1"

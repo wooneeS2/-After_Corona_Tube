@@ -10,7 +10,7 @@
   grid-template-rows: 50px auto;
 
   grid-template-areas:
-    "row-btn0 row-btn1 row-btn2 row-btn3 row-btn4  "
+    ". row-btn1 row-btn2 row-btn3 row-btn4  "
     "column-btn1  second-main-chart second-main-chart second-main-chart second-main-chart  "
     "column-btn2  second-main-chart second-main-chart second-main-chart second-main-chart "
     "column-btn3 second-main-chart second-main-chart second-main-chart second-main-chart"
