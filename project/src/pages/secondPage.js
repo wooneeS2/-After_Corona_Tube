@@ -33,28 +33,27 @@ import "../design/wordcloud.css";
 const DEFAULT_TAP = "column-btn1";
 const DEFAULT_STEP = "row-btn1";
 
+const categoryDataByStep = [
+  categoryStep1,
+  categoryStep2,
+  categoryStep3,
+  categoryStep4,
+];
+
+const basicDataByStep = [
+  basicInfoData1,
+  basicInfoData2,
+  basicInfoData3,
+  basicInfoData4,
+];
+
+const wordcloudDataByStep = [
+  wordCloudData1,
+  wordCloudData2,
+  wordCloudData3,
+  wordCloudData4,
+];
 export function SecondPage() {
-  const categoryDataByStep = [
-    categoryStep1,
-    categoryStep2,
-    categoryStep3,
-    categoryStep4,
-  ];
-
-  const basicDataByStep = [
-    basicInfoData1,
-    basicInfoData2,
-    basicInfoData3,
-    basicInfoData4,
-  ];
-
-  const wordcloudDataByStep = [
-    wordCloudData1,
-    wordCloudData2,
-    wordCloudData3,
-    wordCloudData4,
-  ];
-
   const [tap, setTap] = useState(DEFAULT_TAP);
   const [prevTap, setPrevTap] = useState(null);
   const [step, setStep] = useState(DEFAULT_STEP);
@@ -68,8 +67,6 @@ export function SecondPage() {
     setStep(btnId);
   };
 
-  //TODO style 함수로 합치기
-
   const selectStepData = data => {
     let dataset =
       (step === "row-btn1" && data[0]) ||
@@ -79,14 +76,16 @@ export function SecondPage() {
     return dataset;
   };
 
+  //TODO style 함수로 합치기
+  //카테고리 버튼 누르기 전/후 스타일
   useEffect(
     e => {
       if (tap !== null) {
         let current = document.getElementById(tap);
 
-        current.style.backgroundColor = "#ffecec";
+        current.style.backgroundColor = "#e0d3d3";
         current.style.fontWeight = "bold";
-        current.style.border = "solid 3px #ccb9b9";
+        current.style.border = "solid 3px #ac8888";
 
         current.style.boxShadow =
           "rgba(204, 185, 185, 0.15) 0px 50px 100px -20px, rgba(204, 185, 185, 0.3) 0px 30px 60px -30px, rgba(204, 185, 185, 0.35) 0px -2px 6px 0px inset";
@@ -104,14 +103,16 @@ export function SecondPage() {
     },
     [tap]
   );
+
+  //기간 버튼 누르기 전/후 스타일
   useEffect(
     e => {
       if (step !== null) {
         let current = document.getElementById(step);
 
-        current.style.backgroundColor = "#ffecec";
+        current.style.backgroundColor = "#e0d3d3";
         current.style.fontWeight = "bold";
-        current.style.border = "solid 3px #ccb9b9";
+        current.style.border = "solid 3px #ac8888";
         current.style.boxShadow =
           "rgba(204, 185, 185, 0.15) 0px 50px 100px -20px, rgba(204, 185, 185, 0.3) 0px 30px 60px -30px, rgba(204, 185, 185, 0.35) 0px -2px 6px 0px inset";
       }
@@ -206,9 +207,11 @@ export function SecondPage() {
       </button>
 
       <div id="second-main-chart">
+        {/* 기간별 타이틀 및 세부 날짜 */}
         <p id="second-subtitle-1">{selectStepData(titleStep)}</p>
         <p id="second-subtitle-2">{selectStepData(periodStep)}</p>
 
+        {/* 클릭된 버튼의 id가 id와 같으면 해당 차트 표시 */}
         {tap === "column-btn1" && (
           <BasicInformationChart datas={selectStepData(basicDataByStep)} />
         )}

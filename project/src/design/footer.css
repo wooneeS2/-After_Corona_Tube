@@ -1,15 +1,13 @@
-footer div {
-  margin: 0 auto;
-  text-align: left;
-  padding-top: 10px;
-  background-color: gainsboro;
-  justify-content: space-around;
-}
 footer p {
   margin-left: 20px;
   color: rgb(41, 40, 40);
 }
 
-#contact {
-  justify-content: space-around;
+.footer-div {
+  background-color: #f2f1f1;
+}
+#footer-contact {
+  display: flex;
+  justify-content: space-between;
+  color: #7d7777;
 }

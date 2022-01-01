@@ -1,17 +1,17 @@
-import { Chart1 } from "./Chart1";
 import { Chart2 } from "./Chart2";
+import { Chart1 } from "./Chart1";
 import {
   Animator,
   ScrollPage,
   batch,
   Fade,
-  MoveIn,
   MoveOut,
   Sticky,
   FadeIn,
 } from "react-scroll-motion";
 import { ScrollGuideBtn, NextBtn } from "../buttonComponents";
 
+//Page1~7순서대로 /home에서 스크롤됨
 export function Page1() {
   return (
     <>
@@ -63,11 +63,11 @@ export function Page3() {
           <Animator animation={MoveOut(-1000, 0)}>
             <p>그렇다면 잘 오셨어요 👋🏻</p>
           </Animator>
-          <Animator animation={MoveOut(1000, 0)}>
+          <Animator animation={MoveOut(1000, 500)}>
             <p>유튜브와 코로나19가 🦠</p>
           </Animator>
 
-          <Animator animation={MoveIn(-1000, 0)}>
+          <Animator animation={MoveOut(-1000, 1000)}>
             <p>어떤 관련이 있을까요 ? ❓</p>
           </Animator>
           <ScrollGuideBtn target="page4" offset={400} />
@@ -105,7 +105,7 @@ export function Page5() {
           </h2>
 
           <div id="chart">
-            <Chart2 />
+            <Chart1 />
           </div>
           <p id="chart-description">
             실제로 우리는 코로나19 이후 많은 변화를 경험하고 있는데요. 그
@@ -128,7 +128,7 @@ export function Page6() {
         <span className="chart2">
           <h2 id="chart-title">확진자 수 증가 그래프</h2>
           <div id="chart">
-            <Chart1 />
+            <Chart2 />
           </div>
           <p id="chart-description">
             실제로 우리는 코로나19 이후 많은 변화를 경험하고 있는데요. 그
@@ -154,14 +154,14 @@ export function Page7() {
               코로나19 이후 유튜브 트렌드가 궁금하다면?
             </p>
             <div id="last-btn">
-              {/* TODO 가운데정렬 ;;; */}
+              {/* TODO 가운데정렬 마진 없이 맞추기 */}
               <NextBtn
                 title={"코로나 이후 기간별 데이터 보러가기 "}
-                path={"/second"}
+                path={"/chart"}
               />
               <NextBtn
                 title={"해시태그별 인기 동영상 검색하기 "}
-                path={"third"}
+                path={"/search"}
               />
             </div>
           </div>

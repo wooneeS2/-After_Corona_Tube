@@ -31,16 +31,17 @@ export function ScrollGuideBtn({ target, offset }) {
 }
 
 const NextGuide = styled.p`
-  // @keyframes blink-effect {
-  //   50% {
-  //     color: pink;
-  //   }
-  // }
+  @keyframes blink-effect {
+    50% {
+      color: #a27979;
+    }
+  }
 
   font-size: 0.75rem;
   text-align: center;
   margin-top: 2rem;
+  color: #e8e0e0;
 
-  // animation: blink-effect 1.5s step-end infinite;
+  animation: blink-effect 1.5s step-end infinite;
 `;
 export default NextBtn;

@@ -4,8 +4,10 @@ import randomColor from "randomcolor";
 import { useState, useEffect } from "react";
 
 export function WordCloud({ data }) {
-  //TODO maxWidth 설정하기
   //TODO hover시 가중치 툴팁 만들기
+
+  //워드클라우드 요소 생성
+  //가중치로 폰트 사이즈 조절
   const datas = data.map(item => {
     return (
       <div
@@ -18,6 +20,7 @@ export function WordCloud({ data }) {
     );
   });
 
+  //애니메이션 실행 함수(컴포넌트 강제 마운트/언마운트)
   function useForceUpdate() {
     const [value, setValue] = useState(0);
     return () => setValue(value => value + 1);

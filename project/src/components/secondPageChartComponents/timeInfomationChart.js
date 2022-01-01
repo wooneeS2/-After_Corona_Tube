@@ -1,6 +1,7 @@
 import React from "react";
 import { VictoryChart, VictoryAxis, VictoryLine } from "victory";
 
+//TODO 시간 데이터 받으면 전체적인 수정 필요
 export function TimeInfomationChart() {
   const times = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
