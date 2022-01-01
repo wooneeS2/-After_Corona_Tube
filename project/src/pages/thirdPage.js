@@ -1,34 +1,40 @@
 import React from "react";
 import "../design/thirdPage.css";
+import { CgArrowsExpandRight } from "react-icons/cg";
+import { BsCaretLeftFill, BsCaretRightFill } from "react-icons/bs";
 
 export function ThirdPage() {
   return (
     <div>
-      <div>Title</div>
+      <div>
+        <h2 id="hashtag-title">#해시태그로 인기 동영상 보기</h2>
+      </div>
 
       <div className="thirdpage-main" style={{}}>
-        <div id="hashtag-box">
-          <button>qwewewq</button>
-          <button>qwewewq</button>
-          <button>qwewewq</button>
-          <button>qwewewq</button>
-          <button>qwewewq</button>
-          <button>qwewewq</button>
-          <button>qwewewq</button>
-          <button>qwewewq</button>
-          <button>qwewewq</button>
-          <button>qwewewq</button>
-          <button>qwewewq</button>
-          <button>qwewewq</button>
-          <button>qwewewq</button>
-          <button>qwewewq</button>
-          <button>qwewewq</button>
-          <button>qwewewq</button>
-          <button>qwewewq</button>
-          <button>qwewewq</button>
-          <button>qwewewq</button>
-          <button>qwewewq</button>
-          <button>qwewewq</button>
+        <div className="hashtag-box">
+          <div className="hastag-box-subtitle">
+            <p>#추천해시태그</p>
+            <button>{<CgArrowsExpandRight />}</button>
+          </div>
+          <button id="hashtag-btn">dfgfd</button>
+          <button id="hashtag-btn">dfgfd</button>
+          <button id="hashtag-btn">dfgfd</button>
+          <button id="hashtag-btn">dfd</button>
+          <button id="hashtag-btn">dfd</button>
+          <button id="hashtag-btn">dfd</button>
+          <button id="hashtag-btn">dfgfd</button>
+          <button id="hashtag-btn">dfd</button>
+          <button id="hashtag-btn">dfgfd</button>
+          <button id="hashtag-btn">dfgfd</button>
+          <button id="hashtag-btn">dfgfd</button>
+          <button id="hashtag-btn">dfgfd</button>
+          <button id="hashtag-btn">dfdasfadsfdas</button>
+          <button id="hashtag-btn">dfdasfadsfdas</button>
+          <button id="hashtag-btn">dfdasfadsfdas</button>
+          <button id="hashtag-btn">dfdasfadsfdas</button>
+          <button id="hashtag-btn">dasfdasf</button>
+          <button id="hashtag-btn">as</button>
+          <button id="hashtag-btn">fddfdf</button>
         </div>
 
         <div id="video1">
@@ -71,12 +77,8 @@ export function ThirdPage() {
           <p>channel</p>
         </div>
 
-        <div id="video-next-btn">
-          <button>다음</button>
-        </div>
-        <div id="video-prev-btn">
-          <button>이전</button>
-        </div>
+        <button id="video-next-btn">{<BsCaretRightFill />}</button>
+        <button id="video-prev-btn">{<BsCaretLeftFill />}</button>
       </div>
     </div>
   );
