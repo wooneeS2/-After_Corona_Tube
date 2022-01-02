@@ -6,7 +6,21 @@ import "../../design/header.css";
 // 헤더의 메뉴버튼
 export function MenuBtn() {
   const [visible, setVisible] = useState(false);
-  const menuList = ["home", "chart", "search"];
+  const menuList = [
+    {
+      label: "home",
+      id: "menu1",
+    },
+    {
+      label: "chart",
+      id: "menu2",
+    },
+    {
+      label: "search",
+      id: "menu3",
+    },
+  ];
+
   // 메뉴버튼 on/off
   const turnMenu = () => {
     setVisible(!visible);
@@ -27,8 +41,8 @@ export function MenuBtn() {
           <div className="menu">
             {menuList.map(x => {
               return (
-                <div id="drop-menu">
-                  <Link to={`/${x}`}>{x}</Link>
+                <div key={x.id} id="drop-menu">
+                  <Link to={`/${x.label}`}>{x.label}</Link>
                 </div>
               );
             })}
