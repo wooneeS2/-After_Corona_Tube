@@ -1,6 +1,6 @@
 import React from "react";
 
-import { VictoryBar, VictoryChart, VictoryAxis } from "victory";
+import { VictoryBar, VictoryChart, VictoryAxis, VictoryLabel } from "victory";
 
 export function BasicInformationChart({ datas }) {
   // 차트에 넣어줄 새로운 차트용 데이터 제작
@@ -44,6 +44,14 @@ export function BasicInformationChart({ datas }) {
       <VictoryAxis
         tickValues={[1, 2, 3, 4]}
         tickFormat={["영상", " 조회", "좋아요", "댓글"]}
+      />
+      <VictoryLabel
+        text={"단위(개)\nM: 백만,K: 천"}
+        x={-50}
+        y={70}
+        textAnchor={"start"}
+        backgroundPadding={{ left: 5, right: 15, top: 3, bottom: 1 }}
+        style={[{ fontSize: 15 }]}
       />
       {/* 막대 그래프  */}
       <VictoryBar

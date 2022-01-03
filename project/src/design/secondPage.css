@@ -1,7 +1,9 @@
 .second-chart {
   display: grid;
-  margin: 1rem 4rem 1rem 4rem;
+
+  margin: 0 auto;
   width: 80%;
+  max-width: 900px;
 
   margin-bottom: 1rem;
 

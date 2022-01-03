@@ -19,8 +19,6 @@ function App() {
           <Route path="/search" element={<ThirdPage />} />
         </Routes>
       </BrowserRouter>
-
-      <FooterComponents />
     </div>
   );
 }

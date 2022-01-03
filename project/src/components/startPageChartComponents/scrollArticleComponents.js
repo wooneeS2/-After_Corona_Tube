@@ -10,6 +10,7 @@ import {
   FadeIn,
 } from "react-scroll-motion";
 import { ScrollGuideBtn, NextBtn } from "../buttonComponents";
+import FooterComponents from "../base/footerComponents";
 
 //Page1~7순서대로 /home에서 스크롤됨
 export function Page1() {
@@ -166,6 +167,7 @@ export function Page7() {
             </div>
           </div>
         </Animator>
+        <FooterComponents />
       </ScrollPage>
     </>
   );

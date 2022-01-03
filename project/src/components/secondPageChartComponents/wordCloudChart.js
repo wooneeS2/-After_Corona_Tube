@@ -12,7 +12,7 @@ export function WordCloud({ data }) {
     return (
       <div
         style={{
-          fontSize: item.value > 200 ? item.value / 4 : item.value / 2,
+          fontSize: item.value > 200 ? item.value / 5 : item.value / 2.5,
         }}
       >
         {item.word}
