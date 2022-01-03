@@ -11,25 +11,28 @@
 .thirdpage-main {
   display: grid;
   width: 100%;
-
+  max-width: 900px;
   margin-bottom: 1rem;
 
-  justify-content: center;
+  justify-items: center;
   margin: 0 auto;
   margin-bottom: 15px;
-  grid-template-columns: 0.2fr 20% 20% 20% 0.2fr;
+  grid-template-columns: 0.3fr 30% 30% 30% 0.3fr;
   grid-auto-rows: 1fr 1.1fr 1.1fr 1.1fr;
 
   grid-template-areas:
     ". hashtag-box hashtag-box hashtag-box ."
-    ". video1 video2 video3 ."
-    "video-prev-btn video4 video5 video6 video-next-btn "
-    ". video7 video8 video9 . ";
+    "video-prev-btn video1 video2 video3 video-next-btn"
+    "video-prev-btn video4 video5 video6 video-next-btn ";
+  /* ". video7 video8 video9 . "; */
 }
 .hashtag-box {
   grid-area: hashtag-box;
-  background-color: pink;
+  background-color: #fbf4f5;
   height: 200px;
+  border: solid #c8c3c4;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
 }
 
 .hastag-box-subtitle {
@@ -43,62 +46,46 @@
   font-weight: bold;
 }
 .hastag-box-subtitle button {
-  margin: 5px 0px 5px 0;
-  border: none;
-  background-color: transparent;
-  font-size: 1.3rem;
 }
 
 #hashtag-btn {
   border: none;
-  background-color: white;
+  background-color: #fffefe;
+  border: solid #d2b3b3;
   border-radius: 0.8rem;
   margin: 5px 2px 2px 10px;
   height: 2rem;
   z-index: 100;
-}
-
-#hashtag-btn :hover {
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  background-color: red;
+  /* margin: 5px 0px 5px 0; */
 }
 
 #video1 {
-  background-color: red;
   grid-area: video1;
 }
 #video2 {
-  background-color: orange;
   grid-area: video2;
 }
 #video3 {
-  background-color: yellow;
   grid-area: video3;
 }
 #video4 {
-  background-color: green;
   grid-area: video4;
 }
 #video5 {
-  background-color: blue;
   grid-area: video5;
 }
 #video6 {
-  background-color: purple;
   grid-area: video6;
 }
-#video7 {
-  background-color: palevioletred;
+/* #video7 {
   grid-area: video7;
 }
 #video8 {
-  background-color: papayawhip;
   grid-area: video8;
 }
 #video9 {
-  background-color: paleturquoise;
   grid-area: video9;
-}
+} */
 
 #video-prev-btn {
   border: none;
@@ -114,5 +101,33 @@
   background-color: transparent;
   font-size: 2rem;
   grid-area: video-next-btn;
-  vertical-align: center;
+  vertical-align: start;
+}
+
+#video-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+#video-channel,
+#video-category {
+  font-size: 1rem;
+}
+
+#video-views-p,
+#video-likes-p {
+  font-size: 0.9rem;
+  display: flex;
+}
+
+.video-views-likes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.video-likes-div {
+  display: flex;
+}
+.video-views-div {
+  display: flex;
 }
