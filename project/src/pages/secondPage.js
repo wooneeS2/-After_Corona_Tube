@@ -1,6 +1,7 @@
 import React from "react";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import FooterComponents from "../components/base/footerComponents";
 import { BasicInformationChart } from "../components/secondPageChartComponents/basicInformationChart";
 import { TimeInfomationChart } from "../components/secondPageChartComponents/timeInfomationChart";
 import { CategoryInfomationChart } from "../components/secondPageChartComponents/categoryInfomationChart";
@@ -26,25 +27,29 @@ import {
   wordCloudData4,
 } from "../data/data2-4";
 
-import { periodStep, titleStep } from "../data/periodStep";
+import { timeStep1, timeStep2, timeStep3, timeStep4 } from "../data/data2-2";
+
+import { periodStep, subtitleStep } from "../data/periodStep";
 import "../design/secondPage.css";
 import "../design/wordcloud.css";
 
 const DEFAULT_TAP = "column-btn1";
 const DEFAULT_STEP = "row-btn1";
 
-const categoryDataByStep = [
-  categoryStep1,
-  categoryStep2,
-  categoryStep3,
-  categoryStep4,
-];
-
 const basicDataByStep = [
   basicInfoData1,
   basicInfoData2,
   basicInfoData3,
   basicInfoData4,
+];
+
+const timeDataByStep = [timeStep1, timeStep2, timeStep3, timeStep4];
+
+const categoryDataByStep = [
+  categoryStep1,
+  categoryStep2,
+  categoryStep3,
+  categoryStep4,
 ];
 
 const wordcloudDataByStep = [
@@ -132,14 +137,16 @@ export function SecondPage() {
 
       <div id="second-main-chart">
         {/* 기간별 타이틀 및 세부 날짜 */}
-        <p id="second-subtitle-1">{selectStepData(titleStep)}</p>
+        <p id="second-subtitle-1">{selectStepData(subtitleStep)}</p>
         <p id="second-subtitle-2">{selectStepData(periodStep)}</p>
 
         {/* 클릭된 버튼의 id가 id와 같으면 해당 차트 표시 */}
         {tap === "column-btn1" && (
           <BasicInformationChart datas={selectStepData(basicDataByStep)} />
         )}
-        {tap === "column-btn2" && <TimeInfomationChart />}
+        {tap === "column-btn2" && (
+          <TimeInfomationChart datas={selectStepData(timeDataByStep)} />
+        )}
         {tap === "column-btn3" && (
           <CategoryInfomationChart datas={selectStepData(categoryDataByStep)} />
         )}
@@ -148,6 +155,7 @@ export function SecondPage() {
           <WordCloud data={selectStepData(wordcloudDataByStep)} />
         )}
       </div>
+      <FooterComponents />
     </div>
   );
 }

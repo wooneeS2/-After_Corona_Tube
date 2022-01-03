@@ -1,90 +1,136 @@
 import React from "react";
-import { VictoryChart, VictoryAxis, VictoryLine } from "victory";
+import {
+  VictoryChart,
+  VictoryAxis,
+  VictoryLine,
+  VictoryGroup,
+  VictoryScatter,
+  VictoryTooltip,
+  VictoryLabel,
+} from "victory";
+import { lineChartColorPalette } from "../../design/colorPalette";
 
-//TODO 시간 데이터 받으면 전체적인 수정 필요
-export function TimeInfomationChart() {
-  const times = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-    22, 23, 24,
+export function TimeInfomationChart({ datas }) {
+  const times = [];
+
+  const viewAvg = [];
+  const likeAvg = [];
+  const commentAvg = [];
+
+  datas.map(m => {
+    viewAvg.push({ x: m.published_time, y: m.avg_view_cnt });
+    likeAvg.push({ x: m.published_time, y: m.avg_likes_cnt });
+    commentAvg.push({ x: m.published_time, y: m.avg_comment_cnt });
+    times.push(m.published_time);
+  });
+
+  const data = [viewAvg, likeAvg, commentAvg];
+
+  const maxima = data.map(dataset => Math.max(...dataset.map(d => d.y)));
+
+  const divide = [0.4, 1, 2];
+  const labels = [
+    { y: 40, label: "평균 조회" },
+    { y: 50, label: "평균 좋아요" },
+    { y: 60, label: "평균 댓글" },
   ];
+
   return (
     <>
-      <VictoryChart
-        domainPadding={80}
-        width={400}
-        padding={{ top: 20, bottom: 80 }}
-      >
+      <VictoryChart width={400} padding={{ top: 40, bottom: 80 }}>
+        {labels.map((x, index) => {
+          return (
+            // y축 라벨
+            <VictoryLabel
+              x={-10}
+              y={x.y}
+              text={x.label}
+              backgroundStyle={[
+                { fill: lineChartColorPalette[index], opacity: 0.8 },
+              ]}
+              textAnchor={"start"}
+              backgroundPadding={{ left: 5, right: 18, top: 1, bottom: 1 }}
+              style={[{ fill: "white", fontSize: 8 }]}
+            />
+          );
+        })}
+        <VictoryLabel
+          text={"단위(개)\nM: 백만\nK: 천"}
+          x={-10}
+          y={80}
+          textAnchor={"start"}
+          backgroundPadding={{ left: 5, right: 15, top: 3, bottom: 1 }}
+          style={[{ fontSize: 8 }]}
+        />
+        {/* x축 라벨 */}
         <VictoryAxis
           tickValues={times}
           tickFormat={times}
-          fixLabelOverlap={true}
-        />
-        <VictoryLine
           style={{
-            data: { stroke: "#c43a31" },
-            parent: { border: "1px solid #ccc" },
+            ticks: { stroke: "#0f0b0b" },
+            axis: { stroke: "#0f0b0b" },
+            tickLabels: {
+              fontSize: 9,
+              fontFamily: "paybooc-Medium",
+            },
           }}
-          data={[
-            { x: 1, y: 12 },
-            { x: 2, y: 13 },
-            { x: 3, y: 15 },
-            { x: 4, y: 14 },
-            { x: 5, y: 17 },
-            { x: 6, y: 17 },
-            { x: 7, y: 17 },
-            { x: 8, y: 17 },
-            { x: 9, y: 17 },
-            { x: 10, y: 17 },
-            { x: 11, y: 17 },
-            { x: 12, y: 17 },
-            { x: 13, y: 17 },
-            { x: 14, y: 17 },
-          ]}
         />
-        <VictoryLine
-          style={{
-            data: { stroke: "#5B14BF" },
-            parent: { border: "1px solid #ccc" },
-          }}
-          data={[
-            { x: 1, y: 20 },
-            { x: 2, y: 3 },
-            { x: 3, y: 5 },
-            { x: 4, y: 12 },
-            { x: 5, y: 23 },
-            { x: 6, y: 72 },
-            { x: 7, y: 71 },
-            { x: 8, y: 73 },
-            { x: 9, y: 17 },
-            { x: 10, y: 37 },
-            { x: 11, y: 47 },
-            { x: 12, y: 67 },
-            { x: 13, y: 37 },
-            { x: 14, y: 27 },
-          ]}
-        />
-        <VictoryLine
-          style={{
-            data: { stroke: "#14BF39" },
-            parent: { border: "1px solid #ccc" },
-          }}
-          data={[
-            { x: 1, y: 20 },
-            { x: 2, y: 35 },
-            { x: 3, y: 55 },
-            { x: 4, y: 15 },
-            { x: 5, y: 24 },
-            { x: 6, y: 75 },
-            { x: 7, y: 75 },
-            { x: 8, y: 73 },
-            { x: 9, y: 47 },
-            { x: 10, y: 37 },
-            { x: 11, y: 47 },
-            { x: 12, y: 67 },
-            { x: 13, y: 37 },
-            { x: 14, y: 27 },
-          ]}
-        />
+
+        {/* 그래프 */}
+        {data.map((x, index) => {
+          return (
+            <VictoryGroup
+              animate={{
+                duration: 1500,
+                onLoad: { duration: 200 },
+              }}
+            >
+              {/* 그래프의 y축을 (최댓값 + 임의의 일정 비율)로 나눠 모든 그래프가 잘 보이도록함 */}
+              <VictoryLine
+                data={x}
+                style={{ data: { stroke: lineChartColorPalette[index] } }}
+                x={datum => datum.x}
+                y={datum => datum.y / maxima[index] / divide[index]}
+              />
+              <VictoryScatter
+                data={x}
+                x={datum => datum.x}
+                y={datum => datum.y / maxima[index] / divide[index]}
+                size={2.5}
+                style={{ data: { fill: lineChartColorPalette[index] } }}
+                labels={data[index].map(
+                  m =>
+                    `${
+                      m.y > 1000000
+                        ? (m.y / 1000000).toFixed(2)
+                        : (m.y / 1000).toFixed(2)
+                    }${m.y > 1000000 ? "M" : "K"}`
+                )}
+                labelComponent={
+                  <VictoryTooltip
+                    renderInPortal={false}
+                    constrainToVisibleArea
+                    style={{
+                      fill: lineChartColorPalette[index],
+                      fontSize: 8,
+                      fontWeight: "bold",
+                      fontFamily: "Cafe24SsurroundAir",
+                    }}
+                    cornerRadius={5}
+                    pointerLength={10}
+                    flyoutWidth={60}
+                    flyoutHeight={20}
+                    flyoutStyle={{
+                      stroke: lineChartColorPalette[index],
+                      strokeWidth: 1.3,
+                      fill: "#ffffff",
+                    }}
+                  />
+                }
+              />
+            </VictoryGroup>
+          );
+        })}
       </VictoryChart>
     </>
   );
