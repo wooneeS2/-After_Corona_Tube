@@ -1,0 +1,13 @@
+.tag-cloud {
+  flex: 1;
+  text-rendering: optimizeLegibility;
+  font-smooth: always;
+  max-height: 360px;
+  max-width: 80%;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+
+.tag-cloud > div {
+  transition: all 1.5s;
+}
