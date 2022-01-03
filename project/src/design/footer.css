@@ -5,9 +5,15 @@ footer p {
 
 .footer-div {
   background-color: #f2f1f1;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding-top: 0.3rem;
+  padding-bottom: 0.5rem;
 }
 #footer-contact {
-  display: flex;
-  justify-content: space-between;
+  display: display;
+  /* justify-content: space-between; */
   color: #7d7777;
 }
