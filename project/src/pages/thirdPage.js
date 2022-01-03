@@ -3,6 +3,7 @@ import "../design/thirdPage.css";
 import { CgArrowsExpandRight } from "react-icons/cg";
 import { BsCaretLeftFill, BsCaretRightFill } from "react-icons/bs";
 
+//thirdpage 브랜치에서 작업중
 export function ThirdPage() {
   return (
     <div>
