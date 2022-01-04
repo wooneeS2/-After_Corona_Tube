@@ -1,7 +1,7 @@
 import React from "react";
 import { ScrollContainer } from "react-scroll-motion";
 import "./../design/startPage.css";
-import * as page from "../components/startPageChartComponents/scrollArticleComponents";
+import * as page from "../components/startPageChartComponents/ScrollArticleComponents";
 
 //TODO 스크롤 페이지별  레이아웃 정리 필요
 //TODO 반응형으로 만들기

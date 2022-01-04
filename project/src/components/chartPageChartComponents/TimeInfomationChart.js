@@ -30,14 +30,14 @@ export function TimeInfomationChart({ datas }) {
 
   const divide = [0.4, 1, 2];
   const labels = [
-    { y: 40, label: "평균 조회" },
-    { y: 50, label: "평균 좋아요" },
-    { y: 60, label: "평균 댓글" },
+    { y: 10, label: "평균 조회수" },
+    { y: 23, label: "평균 좋아요 수" },
+    { y: 36, label: "평균 댓글 수" },
   ];
 
   return (
     <>
-      <VictoryChart width={400} padding={{ top: 40, bottom: 80 }}>
+      <VictoryChart width={400} padding={{ top: 40, bottom: 90 }}>
         {labels.map((x, index) => {
           return (
             // y축 라벨
@@ -49,19 +49,20 @@ export function TimeInfomationChart({ datas }) {
                 { fill: lineChartColorPalette[index], opacity: 0.8 },
               ]}
               textAnchor={"start"}
-              backgroundPadding={{ left: 5, right: 18, top: 1, bottom: 1 }}
-              style={[{ fill: "white", fontSize: 8 }]}
+              backgroundPadding={{ left: 5, right: 25, top: 1, bottom: 1 }}
+              style={[{ fill: "white", fontSize: 11 }]}
             />
           );
         })}
         <VictoryLabel
           text={"단위(개)\nM: 백만\nK: 천"}
           x={-10}
-          y={80}
+          y={65}
           textAnchor={"start"}
           backgroundPadding={{ left: 5, right: 15, top: 3, bottom: 1 }}
-          style={[{ fontSize: 8 }]}
+          style={[{ fontSize: 10 }]}
         />
+
         {/* x축 라벨 */}
         <VictoryAxis
           tickValues={times}
