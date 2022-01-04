@@ -1,9 +1,7 @@
 import React from "react";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import "../design/searchPage.css";
-import { CgArrowsExpandRight } from "react-icons/cg";
 import { GrLike, GrView } from "react-icons/gr";
-import { BsCaretLeftFill, BsCaretRightFill } from "react-icons/bs";
 
 //thirdpage 브랜치에서 작업중
 
@@ -35,24 +33,24 @@ const videosInfo = [
     likes: 400000,
     views: 1000000,
   },
-  // {
-  //   title: "ELEVEN",
-  //   channel: "IVE",
-  //   thumbnail: "https://i.ytimg.com/vi/PtNGUFGkj98/default.jpg",
-  //   videoAddress: "Hjy-LuGGxh0",
-  //   categoryId: 2,
-  //   likes: 4000,
-  //   views: 1000000,
-  // },
-  // {
-  //   title: "죄송합니다.",
-  //   channel: "BJ설빙❤️",
-  //   thumbnail: "https://i.ytimg.com/vi/q4lyRLzFCbE/default.jpg",
-  //   videoAddress: "3zOS3g4lTtQ",
-  //   categoryId: 3,
-  //   likes: 6000,
-  //   views: 1000000,
-  // },
+  {
+    title: "ELEVEN",
+    channel: "IVE",
+    thumbnail: "https://i.ytimg.com/vi/PtNGUFGkj98/default.jpg",
+    videoAddress: "Hjy-LuGGxh0",
+    categoryId: 2,
+    likes: 4000,
+    views: 1000000,
+  },
+  {
+    title: "죄송합니다.",
+    channel: "BJ설빙❤️",
+    thumbnail: "https://i.ytimg.com/vi/q4lyRLzFCbE/default.jpg",
+    videoAddress: "3zOS3g4lTtQ",
+    categoryId: 3,
+    likes: 6000,
+    views: 1000000,
+  },
   {
     title: "오늘은 니뽕내뽕먹고 초코설빙 조지기",
     channel: "오늘도먹지",
@@ -71,15 +69,15 @@ const videosInfo = [
     likes: 100000,
     views: 3000000,
   },
-  // {
-  //   title: "[211230] ISAAC 9시 뉴스입니다.",
-  //   channel: "ISAAC",
-  //   thumbnail: "https://i.ytimg.com/vi/bvfNyLxQNPw/default.jpg",
-  //   videoAddress: "JVqe_O7ifcI",
-  //   categoryId: 7,
-  //   likes: 10000,
-  //   views: 2000000,
-  // },
+  {
+    title: "[211230] ISAAC 9시 뉴스입니다.",
+    channel: "ISAAC",
+    thumbnail: "https://i.ytimg.com/vi/bvfNyLxQNPw/default.jpg",
+    videoAddress: "JVqe_O7ifcI",
+    categoryId: 7,
+    likes: 10000,
+    views: 2000000,
+  },
   {
     title: "토니스타크가 죽자 일어난 일 [스파이더맨 노웨이홈] 리뷰",
     channel: "리얼솔직영화리뷰",
@@ -92,17 +90,17 @@ const videosInfo = [
 ];
 
 const searchTags = [
-  { tagName: "apple" },
-  { tagName: "banana" },
-  { tagName: "amond" },
-  { tagName: "monkey" },
-  { tagName: "butter" },
-  { tagName: "blueberry" },
-  { tagName: "orange" },
-  { tagName: "melon" },
-  { tagName: "potato" },
-  { tagName: "grape" },
-  { tagName: "iphone" },
+  { tagName: "#apple" },
+  { tagName: "#banana" },
+  { tagName: "#amond" },
+  { tagName: "#monkey" },
+  { tagName: "#butter" },
+  { tagName: "#blueberry" },
+  { tagName: "#orange" },
+  { tagName: "#melon" },
+  { tagName: "#potato" },
+  { tagName: "#grape" },
+  { tagName: "#iphone" },
 ];
 const activeStyle = {
   backgroundColor: "#e0d3d3",
@@ -112,8 +110,83 @@ const activeStyle = {
     "rgba(204, 185, 185, 0.15) 0px 50px 100px -20px, rgba(204, 185, 185, 0.3) 0px 30px 60px -30px, rgba(204, 185, 185, 0.35) 0px -2px 6px 0px inset",
 };
 
+const categoryType = [
+  {
+    category_id: 30,
+    category_name: "전체",
+  },
+  {
+    category_id: 1,
+    category_name: "영화&애니메이션",
+  },
+  {
+    category_id: 2,
+    category_name: "자동차",
+  },
+  {
+    category_id: 3,
+    category_name: "음악",
+  },
+  {
+    category_id: 4,
+    category_name: "동물",
+  },
+  {
+    category_id: 5,
+    category_name: "스포츠",
+  },
+  {
+    category_id: 6,
+    category_name: "여행",
+  },
+  {
+    category_id: 7,
+    category_name: "게임",
+  },
+  {
+    category_id: 8,
+    category_name: "일상",
+  },
+  {
+    category_id: 9,
+    category_name: "코미디",
+  },
+  {
+    category_id: 10,
+    category_name: "엔터테인먼트",
+  },
+  {
+    category_id: 11,
+    category_name: "뉴스",
+  },
+  {
+    category_id: 12,
+    category_name: "노하우",
+  },
+  {
+    category_id: 13,
+    category_name: "교육",
+  },
+  {
+    category_id: 14,
+    category_name: "과학&기술",
+  },
+  {
+    category_id: 15,
+    category_name: "사회&이슈",
+  },
+];
+// 전체
+const DEFAULT_CATEGORY = "category-box-button30";
+
 export function SearchPage() {
   const [selectTags, setSelectTags] = useState([]);
+  const [selectCategory, setSelectCategory] = useState(DEFAULT_CATEGORY);
+
+  const handleCategory = categoryId => {
+    setSelectCategory(categoryId);
+    console.log(categoryId);
+  };
 
   const handleTags = tagName => {
     const tagIndex = selectTags.indexOf(tagName);
@@ -135,11 +208,29 @@ export function SearchPage() {
       </div>
 
       <div className="thirdpage-main">
+        <div className="category-box">
+          {categoryType.map(x => {
+            return (
+              <button
+                className="category-box-button"
+                id={`category-box-button${x.category_id}`}
+                onClick={e => {
+                  handleCategory(e.target.id);
+                }}
+                style={
+                  selectCategory === `category-box-button${x.category_id}`
+                    ? activeStyle
+                    : {}
+                }
+              >
+                {x.category_name}
+              </button>
+            );
+          })}
+        </div>
         <div className="hashtag-box">
-          <div className="hastag-box-subtitle">
-            <p>#추천해시태그</p>
-            {/* <button>{<CgArrowsExpandRight />}</button> */}
-          </div>
+          <div className="hastag-box-subtitle"></div>
+
           {searchTags.map(x => {
             return (
               <button
@@ -154,38 +245,52 @@ export function SearchPage() {
             );
           })}
         </div>
+      </div>
 
-        {videosInfo.map((v, index) => {
+      <div className="video-div">
+        {videosInfo.map(v => {
           return (
-            <div id={`video${index + 1}`}>
-              <img src={v.thumbnail} alt={v.videoAddress} />
-              <p id="video-title">{v.title}</p>
-              <div className="video-channel-category">
-                <p id="video-channel">{v.channel}</p>
-                <p id="video-category">{v.categoryId}</p>
-              </div>
-              <div className="video-views-likes">
-                <div className="video-likes-div">
-                  <p id="video-views-p">
-                    <GrLike />
-                    {`${
-                      v.likes > 1000000 ? v.likes / 1000000 : v.likes / 1000
-                    }${v.likes > 1000000 ? "M" : "K"}`}
-                  </p>
+            <a
+              href={`https://www.youtube.com/watch?v=${v.videoAddress}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div id="video-div-div">
+                <div id="video-thumbnail">
+                  <img src={v.thumbnail} alt={v.videoAddress} />
                 </div>
-                <div className="video-views-div">
-                  <GrView />
-                  <p id="video-likes-p">{`${
-                    v.views > 1000000 ? v.views / 1000000 : v.views / 1000
-                  }${v.views > 1000000 ? "M" : "K"}`}</p>
+                <div id="video-title">
+                  <p>{v.title}</p>
+                </div>
+
+                <div id="video-channel">
+                  <p>{v.channel}</p>
+                </div>
+
+                <div id="video-category">
+                  <p>{v.categoryId}</p>
+                </div>
+
+                <div className="video-views-likes">
+                  <div className="video-likes-div">
+                    <p id="video-views-p">
+                      <GrLike />
+                      {`${
+                        v.likes > 1000000 ? v.likes / 1000000 : v.likes / 1000
+                      }${v.likes > 1000000 ? "M" : "K"}`}
+                    </p>
+                  </div>
+                  <div className="video-views-div">
+                    <GrView />
+                    <p id="video-likes-p">{`${
+                      v.views > 1000000 ? v.views / 1000000 : v.views / 1000
+                    }${v.views > 1000000 ? "M" : "K"}`}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
           );
         })}
-
-        <button id="video-next-btn">{<BsCaretRightFill />}</button>
-        <button id="video-prev-btn">{<BsCaretLeftFill />}</button>
       </div>
     </div>
   );

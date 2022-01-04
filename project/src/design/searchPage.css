@@ -1,6 +1,7 @@
 /* TODO 형광펜 효과주기 */
 #hashtag-title {
   text-align: center;
+  margin: 0 auto;
   margin-bottom: 1rem;
   font-family: SBAggroM;
 }
@@ -13,26 +14,45 @@
   width: 100%;
   max-width: 900px;
   margin-bottom: 1rem;
-
+  /* background-color: #fbf4f5; */
   justify-items: center;
-  margin: 0 auto;
   margin-bottom: 15px;
-  grid-template-columns: 0.3fr 30% 30% 30% 0.3fr;
-  grid-auto-rows: 1fr 1.1fr 1.1fr 1.1fr;
+  margin: 0 auto;
 
   grid-template-areas:
-    ". hashtag-box hashtag-box hashtag-box ."
-    "video-prev-btn video1 video2 video3 video-next-btn"
-    "video-prev-btn video4 video5 video6 video-next-btn ";
-  /* ". video7 video8 video9 . "; */
+    " category-box category-box category-box "
+    " hashtag-box hashtag-box hashtag-box ";
 }
+
+.category-box {
+  margin: 0 0.2rem 0.2rem 0.2rem;
+  padding: 0.2rem 0.2rem 0 0.2rem;
+
+  width: 100%;
+  height: 100px;
+  grid-area: category-box;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.category-box-button {
+  background-color: #fffefe;
+  border: solid #c8c3c4 0.5px;
+  font-size: 0.7rem;
+}
+
 .hashtag-box {
   grid-area: hashtag-box;
+  /* margin-left: 2rem; */
   background-color: #fbf4f5;
   height: 200px;
-  border: solid #c8c3c4;
+  /* border: solid #c8c3c4;
   border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
+  border-top-right-radius: 1rem; */
+
+  border-radius: 1rem;
+  margin-bottom: 1rem;
 }
 
 .hastag-box-subtitle {
@@ -44,8 +64,6 @@
   margin: 5px 0 5px 10px;
   font-size: 1.3rem;
   font-weight: bold;
-}
-.hastag-box-subtitle button {
 }
 
 #hashtag-btn {
@@ -59,49 +77,15 @@
   /* margin: 5px 0px 5px 0; */
 }
 
-#video1 {
-  grid-area: video1;
-}
-#video2 {
-  grid-area: video2;
-}
-#video3 {
-  grid-area: video3;
-}
-#video4 {
-  grid-area: video4;
-}
-#video5 {
-  grid-area: video5;
-}
-#video6 {
-  grid-area: video6;
-}
-/* #video7 {
-  grid-area: video7;
-}
-#video8 {
-  grid-area: video8;
-}
-#video9 {
-  grid-area: video9;
-} */
-
-#video-prev-btn {
-  border: none;
-  background-color: transparent;
-  font-size: 2rem;
-  grid-area: video-prev-btn;
-  justify-content: center;
-  align-items: center;
-  vertical-align: center;
-}
-#video-next-btn {
-  border: none;
-  background-color: transparent;
-  font-size: 2rem;
-  grid-area: video-next-btn;
-  vertical-align: start;
+.video-div {
+  grid-area: video-div;
+  margin: 0 auto;
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+  justify-items: center;
 }
 
 #video-title {
@@ -117,12 +101,23 @@
 #video-views-p,
 #video-likes-p {
   font-size: 0.9rem;
-  display: flex;
+}
+
+#video-div-div {
+  margin: 0 auto;
+  justify-content: center;
+  text-align: center;
+}
+
+#video-title {
+  text-align: center;
+  width: 100%;
+  word-break: break-all;
 }
 
 .video-views-likes {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .video-likes-div {
@@ -130,4 +125,6 @@
 }
 .video-views-div {
   display: flex;
+  margin-top: 2px;
+  margin-left: 5px;
 }
