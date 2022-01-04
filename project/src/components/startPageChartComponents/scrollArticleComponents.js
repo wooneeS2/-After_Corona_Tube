@@ -9,7 +9,7 @@ import {
   Sticky,
   FadeIn,
 } from "react-scroll-motion";
-import { ScrollGuideBtn, NextBtn } from "../buttonComponents";
+import { ScrollGuideBtn, NextBtn } from "../etc/buttonComponents";
 import FooterComponents from "../base/Footer";
 
 //Page1~7순서대로 /home에서 스크롤됨

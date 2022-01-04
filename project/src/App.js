@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import StartPage from "./pages/startPage";
+import StartPage from "./pages/StartPage";
 import ChartPage from "./pages/ChartPage";
 import SearchPage from "./pages/SearchPage";
 import HeaderComponents from "./components/base/Header";
