@@ -1,0 +1,133 @@
+/* TODO 형광펜 효과주기 */
+#hashtag-title {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-family: SBAggroM;
+}
+
+/* 그리드 레이아웃 고치기
+1. 창이 줄어들면 자동으로 화면이 줄어들어서 내용이 짤림
+2. 비디오 보이는 부분 크기 고정하고, 창 줄어들면 반응형으로 세로정렬하기 */
+.thirdpage-main {
+  display: grid;
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 1rem;
+
+  justify-items: center;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  grid-template-columns: 0.3fr 30% 30% 30% 0.3fr;
+  grid-auto-rows: 1fr 1.1fr 1.1fr 1.1fr;
+
+  grid-template-areas:
+    ". hashtag-box hashtag-box hashtag-box ."
+    "video-prev-btn video1 video2 video3 video-next-btn"
+    "video-prev-btn video4 video5 video6 video-next-btn ";
+  /* ". video7 video8 video9 . "; */
+}
+.hashtag-box {
+  grid-area: hashtag-box;
+  background-color: #fbf4f5;
+  height: 200px;
+  border: solid #c8c3c4;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.hastag-box-subtitle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hastag-box-subtitle p {
+  margin: 5px 0 5px 10px;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.hastag-box-subtitle button {
+}
+
+#hashtag-btn {
+  border: none;
+  background-color: #fffefe;
+  border: solid #d2b3b3;
+  border-radius: 0.8rem;
+  margin: 5px 2px 2px 10px;
+  height: 2rem;
+  z-index: 100;
+  /* margin: 5px 0px 5px 0; */
+}
+
+#video1 {
+  grid-area: video1;
+}
+#video2 {
+  grid-area: video2;
+}
+#video3 {
+  grid-area: video3;
+}
+#video4 {
+  grid-area: video4;
+}
+#video5 {
+  grid-area: video5;
+}
+#video6 {
+  grid-area: video6;
+}
+/* #video7 {
+  grid-area: video7;
+}
+#video8 {
+  grid-area: video8;
+}
+#video9 {
+  grid-area: video9;
+} */
+
+#video-prev-btn {
+  border: none;
+  background-color: transparent;
+  font-size: 2rem;
+  grid-area: video-prev-btn;
+  justify-content: center;
+  align-items: center;
+  vertical-align: center;
+}
+#video-next-btn {
+  border: none;
+  background-color: transparent;
+  font-size: 2rem;
+  grid-area: video-next-btn;
+  vertical-align: start;
+}
+
+#video-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+#video-channel,
+#video-category {
+  font-size: 1rem;
+}
+
+#video-views-p,
+#video-likes-p {
+  font-size: 0.9rem;
+  display: flex;
+}
+
+.video-views-likes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.video-likes-div {
+  display: flex;
+}
+.video-views-div {
+  display: flex;
+}

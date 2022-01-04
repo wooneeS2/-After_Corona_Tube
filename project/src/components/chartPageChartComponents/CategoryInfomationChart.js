@@ -46,7 +46,7 @@ export function CategoryInfomationChart({ datas }) {
           <VictoryVoronoiContainer labels={datum => datum.y} />
         }
         domainPadding={20}
-        padding={{ left: 60, top: 30, right: 20, bottom: 50 }}
+        padding={{ left: 60, top: 20, right: 20, bottom: 60 }}
       >
         {/* 그래프 제목 라벨 */}
         {labels.map((x, index) => {
