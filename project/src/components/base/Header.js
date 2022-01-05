@@ -30,7 +30,7 @@ export function MenuBtn() {
     <>
       <div className="navigator">
         <div id="login-btn">
-          <Link to={"/log-in"}>LogIn</Link>
+          <Link to={"/sign-in"}>LogIn</Link>
         </div>
         <button
           id="menu-btn"

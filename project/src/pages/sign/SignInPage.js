@@ -1,49 +1,28 @@
-import "../design/logIn.css";
+import "../../design/signIn.css";
+import { Link } from "react-router-dom";
 import { useState } from "react";
+import { isEmail, borderStyle } from "./SignUpPage";
 
-export const isEmail = email => {
-  const emailRegex =
-    /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
-  console.log(email);
-  console.log(emailRegex.test(email));
-  return emailRegex.test(email);
-};
-export const borderStyle = { border: "0.3rem solid #e06666" };
+//TODO post 기능
+//TODO 로그인 성공화면 만들기
 
-export function SignUpPage() {
-  const [userInfo, setUserInfo] = useState({ name: "", email: "", pw: "" });
+export function SignInPage() {
+  const [userInfo, setUserInfo] = useState({ email: "", pw: "" });
   const [emailError, setEmailError] = useState(false);
-
   return (
     <>
       <div className="log-in-box">
-        <p id="log-in-title">회원가입</p>
+        <p id="log-in-title">로그인</p>
 
         <form>
           <div id="user-id-box">
-            <div id="user-pw-box">
-              <div id="log-in-pw-title">이름</div>
-              <input
-                type="text"
-                name="user-pw"
-                id="user-pw-input"
-                placeholder="이름을 입력해주세요."
-                onChange={e => {
-                  setUserInfo({
-                    ...userInfo,
-                    name: e.target.value,
-                  });
-                }}
-                style={userInfo.name !== "" ? borderStyle : {}}
-              />
-            </div>
-            <div id="log-in-id-title">이메일</div>
+            <div id="log-in-subtitle">이메일</div>
 
             <input
               type="text"
               name="user-id"
-              id="user-id-input"
-              placeholder="이메일을 입력해주세요."
+              id="user-input"
+              placeholder="가입한 이메일을 입력해주세요."
               onChange={e => {
                 setUserInfo({
                   ...userInfo,
@@ -58,19 +37,15 @@ export function SignUpPage() {
               </div>
             )}
           </div>
-
           <div id="user-pw-box">
-            <div id="log-in-pw-title">비밀번호</div>
+            <div id="log-in-subtitle">비밀번호</div>
             <input
               type="password"
               name="user-pw"
-              id="user-pw-input"
+              id="user-input"
               placeholder="비밀번호를 입력해주세요."
               onChange={e => {
-                setUserInfo({
-                  ...userInfo,
-                  pw: e.target.value,
-                });
+                setUserInfo({ ...userInfo, pw: e.target.value });
               }}
               style={userInfo.pw !== "" ? borderStyle : {}}
             />
@@ -80,7 +55,6 @@ export function SignUpPage() {
             id="user-log-in-btn"
             onClick={e => {
               e.preventDefault();
-              console.log(userInfo);
               const isValidation = isEmail(userInfo.email);
               if (!isValidation) {
                 setEmailError(true);
@@ -93,8 +67,12 @@ export function SignUpPage() {
             확인
           </button>
         </form>
+        <Link to="/sign-up">
+          <button id="user-log-in-btn">회원가입 하러 가기</button>
+        </Link>
       </div>
     </>
   );
 }
-export default SignUpPage;
+
+export default SignInPage;

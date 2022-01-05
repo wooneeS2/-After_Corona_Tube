@@ -43,8 +43,7 @@ input[type="text"] {
   border: 0.3rem solid #e06666;
 }
 
-#user-id-input,
-#user-pw-input {
+#user-input {
   width: 50%;
   height: 80px;
   border: 0.3rem solid #d0bcbc;
@@ -52,14 +51,12 @@ input[type="text"] {
   font-size: 1.3rem;
 }
 
-#user-id-input:focus,
-#user-pw-input:focus {
+#user-input:focus {
   outline: none;
   border: 0.3rem solid #e06666;
 }
 
-#log-in-id-title,
-#log-in-pw-title {
+#log-in-subtitle {
   font-size: 1.3rem;
   margin-bottom: 2px;
 }
