@@ -49,6 +49,7 @@ input[type="text"] {
   height: 80px;
   border: 0.3rem solid #d0bcbc;
   border-radius: 2rem;
+  font-size: 1.3rem;
 }
 
 #user-id-input:focus,
