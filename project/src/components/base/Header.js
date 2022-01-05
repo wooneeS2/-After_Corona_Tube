@@ -29,6 +29,9 @@ export function MenuBtn() {
   return (
     <>
       <div className="navigator">
+        <div id="login-btn">
+          <Link to={"/log-in"}>LogIn</Link>
+        </div>
         <button
           id="menu-btn"
           onClick={() => {
@@ -61,6 +64,7 @@ export function HeaderComponents() {
         <Link to="/home" id="service-name">
           SERVICE-LOGO
         </Link>
+
         <MenuBtn />
       </div>
     </header>
