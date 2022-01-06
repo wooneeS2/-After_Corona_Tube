@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "../design/searchPage.css";
 import { GrLike, GrView } from "react-icons/gr";
+import axios from "axios";
+import { GrNext, GrPrevious } from "react-icons/gr";
 
 //thirdpage 브랜치에서 작업중
 
@@ -47,7 +49,7 @@ const videosInfo = [
     channel: "BJ설빙❤️",
     thumbnail: "https://i.ytimg.com/vi/q4lyRLzFCbE/default.jpg",
     videoAddress: "3zOS3g4lTtQ",
-    categoryId: 3,
+    categoryId: 15,
     likes: 6000,
     views: 1000000,
   },
@@ -56,7 +58,7 @@ const videosInfo = [
     channel: "오늘도먹지",
     thumbnail: "https://i.ytimg.com/vi/xPxrAHrQcmM/default.jpg",
     videoAddress: "q4lyRLzFCbE",
-    categoryId: 3,
+    categoryId: 22,
     likes: 70000,
     views: 2000000,
   },
@@ -65,7 +67,7 @@ const videosInfo = [
     channel: "이거실화탐사대",
     thumbnail: "https://i.ytimg.com/vi/24uGJMhUzSA/default.jpg",
     videoAddress: "rFwZqtPc-Ss",
-    categoryId: 4,
+    categoryId: 19,
     likes: 100000,
     views: 3000000,
   },
@@ -74,7 +76,7 @@ const videosInfo = [
     channel: "ISAAC",
     thumbnail: "https://i.ytimg.com/vi/bvfNyLxQNPw/default.jpg",
     videoAddress: "JVqe_O7ifcI",
-    categoryId: 7,
+    categoryId: 19,
     likes: 10000,
     views: 2000000,
   },
@@ -89,19 +91,6 @@ const videosInfo = [
   },
 ];
 
-const searchTags = [
-  { tagName: "#apple" },
-  { tagName: "#banana" },
-  { tagName: "#amond" },
-  { tagName: "#monkey" },
-  { tagName: "#butter" },
-  { tagName: "#blueberry" },
-  { tagName: "#orange" },
-  { tagName: "#melon" },
-  { tagName: "#potato" },
-  { tagName: "#grape" },
-  { tagName: "#iphone" },
-];
 const activeStyle = {
   backgroundColor: "#e0d3d3",
   fontWeight: "bold",
@@ -112,7 +101,7 @@ const activeStyle = {
 
 const categoryType = [
   {
-    category_id: 30,
+    category_id: 0,
     category_name: "전체",
   },
   {
@@ -124,67 +113,80 @@ const categoryType = [
     category_name: "자동차",
   },
   {
-    category_id: 3,
+    category_id: 10,
     category_name: "음악",
   },
   {
-    category_id: 4,
+    category_id: 15,
     category_name: "동물",
   },
   {
-    category_id: 5,
+    category_id: 17,
     category_name: "스포츠",
   },
   {
-    category_id: 6,
+    category_id: 19,
     category_name: "여행",
   },
   {
-    category_id: 7,
+    category_id: 20,
     category_name: "게임",
   },
   {
-    category_id: 8,
+    category_id: 22,
     category_name: "일상",
   },
   {
-    category_id: 9,
+    category_id: 23,
     category_name: "코미디",
   },
   {
-    category_id: 10,
+    category_id: 24,
     category_name: "엔터테인먼트",
   },
   {
-    category_id: 11,
+    category_id: 25,
     category_name: "뉴스",
   },
   {
-    category_id: 12,
+    category_id: 26,
     category_name: "노하우",
   },
   {
-    category_id: 13,
+    category_id: 27,
     category_name: "교육",
   },
   {
-    category_id: 14,
+    category_id: 28,
     category_name: "과학&기술",
   },
   {
-    category_id: 15,
+    category_id: 29,
     category_name: "사회&이슈",
   },
 ];
 // 전체
-const DEFAULT_CATEGORY = "category-box-button30";
+const DEFAULT_CATEGORY = "category-box-button0";
 
 export function SearchPage() {
   const [selectTags, setSelectTags] = useState([]);
   const [selectCategory, setSelectCategory] = useState(DEFAULT_CATEGORY);
+  const [maxPage, setMaxPage] = useState(10);
+  const [pageArr, setPageArr] = useState([]);
 
+  const [searchTags, setSearchTags] = useState([]);
   const handleCategory = categoryId => {
     setSelectCategory(categoryId);
+  };
+  const fetchTags = async categoryId => {
+    const url = `http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/search/?category=${categoryId}`;
+    const response = await axios.get(url);
+    setSearchTags(response.data);
+  };
+
+  const handlePage = pageNum => {
+    //클릭방지
+    //fetchVideo 불러서 페이지 넘버 바꿔주기
   };
 
   const handleTags = tagName => {
@@ -195,7 +197,8 @@ export function SearchPage() {
   };
 
   useEffect(() => {
-    console.log("");
+    fetchTags(0);
+    setPageArr([...new Array(maxPage)]);
   }, [selectTags]);
 
   return (
@@ -213,6 +216,7 @@ export function SearchPage() {
                 id={`category-box-button${x.category_id}`}
                 onClick={e => {
                   handleCategory(e.target.id);
+                  fetchTags(x.category_id);
                 }}
                 style={
                   selectCategory === `category-box-button${x.category_id}`
@@ -226,18 +230,16 @@ export function SearchPage() {
           })}
         </div>
         <div className="hashtag-box">
-          <div className="hastag-box-subtitle"></div>
-
           {searchTags.map(x => {
             return (
               <button
                 id="hashtag-btn"
-                style={selectTags.indexOf(x.tagName) !== -1 ? activeStyle : {}}
+                style={selectTags.indexOf(x) !== -1 ? activeStyle : {}}
                 onClick={() => {
-                  handleTags(x.tagName);
+                  handleTags(x);
                 }}
               >
-                {x.tagName}
+                {x}
               </button>
             );
           })}
@@ -265,7 +267,15 @@ export function SearchPage() {
                 </div>
 
                 <div id="video-category">
-                  <p>{v.categoryId}</p>
+                  <p>
+                    {
+                      categoryType[
+                        Object.keys(categoryType).findIndex(
+                          key => categoryType[key].category_id === v.categoryId
+                        )
+                      ].category_name
+                    }
+                  </p>
                 </div>
 
                 <div className="video-views-likes">
@@ -288,6 +298,36 @@ export function SearchPage() {
             </a>
           );
         })}
+      </div>
+      <div className="bootstrap-pagination-bar">
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">
+                  <GrPrevious />
+                </span>
+              </a>
+            </li>
+            {pageArr.map((x, index) => {
+              return (
+                <li class="page-item">
+                  <a class="page-link" href="#">
+                    {index + 1}
+                  </a>
+                </li>
+              );
+            })}
+
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">
+                  <GrNext />
+                </span>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   );
