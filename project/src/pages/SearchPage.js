@@ -173,6 +173,7 @@ export function SearchPage() {
   const [selectCategory, setSelectCategory] = useState(DEFAULT_CATEGORY);
   const [maxPage, setMaxPage] = useState(10);
   const [pageArr, setPageArr] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const [searchTags, setSearchTags] = useState([]);
   const handleCategory = categoryId => {
@@ -253,6 +254,7 @@ export function SearchPage() {
               href={`https://www.youtube.com/watch?v=${v.videoAddress}`}
               target="_blank"
               rel="noopener noreferrer"
+              className="video-wrapped-btn"
             >
               <div id="video-div-div">
                 <div id="video-thumbnail">
@@ -311,8 +313,19 @@ export function SearchPage() {
             </li>
             {pageArr.map((x, index) => {
               return (
-                <li class="page-item">
-                  <a class="page-link" href="#">
+                <li
+                  class={`${
+                    currentPage === index + 1 ? "page-item active" : "page-item"
+                  }`}
+                >
+                  <a
+                    class="page-link"
+                    href="#"
+                    onClick={e => {
+                      e.preventDefault();
+                      setCurrentPage(index + 1);
+                    }}
+                  >
                     {index + 1}
                   </a>
                 </li>
