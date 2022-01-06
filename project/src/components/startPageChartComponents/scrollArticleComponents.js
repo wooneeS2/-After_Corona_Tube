@@ -23,7 +23,8 @@ export function Page1() {
               인기 동영상에는 어떤 영상들이 올라가는지
               <br /> 궁금하신적 있으신가요?
             </p>
-            {/* FIXME 두개를 연속해서쓰면 두번째 타겟만 적용됨 ㅠㅠ */}
+            {/* FIXME 두개를 연속해서쓰면 두번째 타겟만 적용됨 ㅠㅠ
+          .... */}
             <ScrollGuideBtn target="page2" offset={450} />
           </span>
         </Animator>
