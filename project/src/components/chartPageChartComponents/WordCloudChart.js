@@ -3,6 +3,13 @@ import TagCloud from "react-tag-cloud";
 import randomColor from "randomcolor";
 import { useState, useEffect } from "react";
 
+{
+  /* <div className="tag-item-wrapper">
+              <div>Hover Me Please!</div>
+              <div className="tag-item-tooltip">HOVERED!</div>
+            </div> */
+}
+
 export function WordCloud({ data }) {
   //TODO hover시 가중치 툴팁 만들기
 
