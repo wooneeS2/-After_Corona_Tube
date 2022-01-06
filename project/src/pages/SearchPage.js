@@ -185,7 +185,6 @@ export function SearchPage() {
 
   const handleCategory = categoryId => {
     setSelectCategory(categoryId);
-    console.log(categoryId);
   };
 
   const handleTags = tagName => {
@@ -193,12 +192,10 @@ export function SearchPage() {
     tagIndex === -1
       ? setSelectTags([...selectTags, tagName])
       : setSelectTags(selectTags.filter(item => item !== tagName));
-
-    console.log("tagName", tagName, "selecttags", selectTags);
   };
 
   useEffect(() => {
-    console.log(selectTags);
+    console.log("");
   }, [selectTags]);
 
   return (

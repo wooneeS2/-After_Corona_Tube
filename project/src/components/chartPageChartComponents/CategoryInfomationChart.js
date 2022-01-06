@@ -35,7 +35,6 @@ export function CategoryInfomationChart({ datas }) {
     { y: 40, label: "댓글" },
   ];
 
-  //TODO 툴팁 디자인 및 위치 수정
   return (
     <div>
       <VictoryChart
