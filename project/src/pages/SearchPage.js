@@ -5,92 +5,6 @@ import { GrLike, GrView } from "react-icons/gr";
 import axios from "axios";
 import { GrNext, GrPrevious } from "react-icons/gr";
 
-//thirdpage 브랜치에서 작업중
-
-const videosInfo = [
-  {
-    title: "SO BAD",
-    channel: "STAYC",
-    thumbnail: "https://i.ytimg.com/vi/rFwZqtPc-Ss/default.jpg",
-    videoAddress: "5TipHbcZofo",
-    categoryId: 2,
-    likes: 100000,
-    views: 1000000,
-  },
-  {
-    title: "ASAP",
-    channel: "STAYC",
-    thumbnail: "https://i.ytimg.com/vi/JVqe_O7ifcI/default.jpg",
-    videoAddress: "cnnmBXORPxE",
-    categoryId: 2,
-    likes: 500000,
-    views: 1000000,
-  },
-  {
-    title: "STEREO TYPE",
-    channel: "STAYC",
-    thumbnail: "https://i.ytimg.com/vi/geZXCYNRvy4/default.jpg",
-    videoAddress: "WemIClZUHWQ",
-    categoryId: 2,
-    likes: 400000,
-    views: 1000000,
-  },
-  {
-    title: "ELEVEN",
-    channel: "IVE",
-    thumbnail: "https://i.ytimg.com/vi/PtNGUFGkj98/default.jpg",
-    videoAddress: "Hjy-LuGGxh0",
-    categoryId: 2,
-    likes: 4000,
-    views: 1000000,
-  },
-  {
-    title: "죄송합니다.",
-    channel: "BJ설빙❤️",
-    thumbnail: "https://i.ytimg.com/vi/q4lyRLzFCbE/default.jpg",
-    videoAddress: "3zOS3g4lTtQ",
-    categoryId: 15,
-    likes: 6000,
-    views: 1000000,
-  },
-  {
-    title: "오늘은 니뽕내뽕먹고 초코설빙 조지기",
-    channel: "오늘도먹지",
-    thumbnail: "https://i.ytimg.com/vi/xPxrAHrQcmM/default.jpg",
-    videoAddress: "q4lyRLzFCbE",
-    categoryId: 22,
-    likes: 70000,
-    views: 2000000,
-  },
-  {
-    title: "와 이거 실화냐 ㄷㄷ; 새벽에 케이크 먹으면 살찌는 이유",
-    channel: "이거실화탐사대",
-    thumbnail: "https://i.ytimg.com/vi/24uGJMhUzSA/default.jpg",
-    videoAddress: "rFwZqtPc-Ss",
-    categoryId: 19,
-    likes: 100000,
-    views: 3000000,
-  },
-  {
-    title: "[211230] ISAAC 9시 뉴스입니다.",
-    channel: "ISAAC",
-    thumbnail: "https://i.ytimg.com/vi/bvfNyLxQNPw/default.jpg",
-    videoAddress: "JVqe_O7ifcI",
-    categoryId: 19,
-    likes: 10000,
-    views: 2000000,
-  },
-  {
-    title: "토니스타크가 죽자 일어난 일 [스파이더맨 노웨이홈] 리뷰",
-    channel: "리얼솔직영화리뷰",
-    thumbnail: "https://i.ytimg.com/vi/bbMRX7iPmBE/default.jpg",
-    videoAddress: "oDE21Dg7kV4",
-    categoryId: 10,
-    likes: 100000,
-    views: 3000000,
-  },
-];
-
 const activeStyle = {
   backgroundColor: "#e0d3d3",
   fontWeight: "bold",
@@ -166,7 +80,7 @@ const categoryType = [
   },
 ];
 // 전체
-const DEFAULT_CATEGORY = "category-box-button0";
+const DEFAULT_CATEGORY = 2;
 
 export function SearchPage() {
   const [selectTags, setSelectTags] = useState([]);
@@ -174,20 +88,17 @@ export function SearchPage() {
   const [maxPage, setMaxPage] = useState(10);
   const [pageArr, setPageArr] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [videos, setVideos] = useState(null);
+  const url = `http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/`;
 
   const [searchTags, setSearchTags] = useState([]);
   const handleCategory = categoryId => {
     setSelectCategory(categoryId);
   };
   const fetchTags = async categoryId => {
-    const url = `http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/search/?category=${categoryId}`;
-    const response = await axios.get(url);
+    const params = `search/?category=${categoryId}`;
+    const response = await axios.get(url + params);
     setSearchTags(response.data);
-  };
-
-  const handlePage = pageNum => {
-    //클릭방지
-    //fetchVideo 불러서 페이지 넘버 바꿔주기
   };
 
   const handleTags = tagName => {
@@ -197,10 +108,48 @@ export function SearchPage() {
       : setSelectTags(selectTags.filter(item => item !== tagName));
   };
 
+  const handlePageByCategory = async () => {
+    const params = `/search/category?data= {'categoryId':${selectCategory},'page':${currentPage}}`;
+    const response = await axios.get(url + params);
+    setVideos(response.data);
+  };
+
+  //태그가 선택되면 호출
+  const handlePageByTags = async () => {
+    const params = `http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/search/tags?data={'tags':[${selectTags
+      .map(x => `'${x}'`)
+      .join(",")}],'categoryId':${selectCategory},'page':${currentPage}}`;
+
+    //params까지는 문제없이 돌아감
+
+    try {
+      if (selectTags.length !== 0) {
+        const response = await axios.get(params);
+        setVideos(response.data.videos);
+      } else {
+        handlePageByCategory();
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
-    fetchTags(0);
+    console.log("mount");
     setPageArr([...new Array(maxPage)]);
+    handlePageByCategory();
+    fetchTags(selectCategory);
+  }, []);
+
+  useEffect(() => {
+    handlePageByTags();
   }, [selectTags]);
+
+  useEffect(() => {
+    fetchTags(selectCategory);
+
+    handlePageByCategory();
+  }, [currentPage, selectCategory]);
 
   return (
     <div>
@@ -216,11 +165,12 @@ export function SearchPage() {
                 className="category-box-button"
                 id={`category-box-button${x.category_id}`}
                 onClick={e => {
-                  handleCategory(e.target.id);
+                  handleCategory(x.category_id);
                   fetchTags(x.category_id);
                 }}
                 style={
-                  selectCategory === `category-box-button${x.category_id}`
+                  `category-box-button${selectCategory}` ===
+                  `category-box-button${x.category_id}`
                     ? activeStyle
                     : {}
                 }
@@ -248,58 +198,69 @@ export function SearchPage() {
       </div>
 
       <div className="video-div">
-        {videosInfo.map(v => {
-          return (
-            <a
-              href={`https://www.youtube.com/watch?v=${v.videoAddress}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="video-wrapped-btn"
-            >
-              <div id="video-div-div">
-                <div id="video-thumbnail">
-                  <img src={v.thumbnail} alt={v.videoAddress} />
-                </div>
-                <div id="video-title">
-                  <p>{v.title}</p>
-                </div>
+        {videos === null ? (
+          <div class="spinner-border text-danger" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        ) : (
+          videos.map(v => {
+            return (
+              <a
+                href={`https://www.youtube.com/watch?v=${v.videoAddress}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="video-wrapped-btn"
+              >
+                <div id="video-div-div">
+                  <div id="video-thumbnail">
+                    <img src={v.thumbnail} alt={v.videoAddress} />
+                  </div>
+                  <div id="video-title">
+                    <p>{v.title}</p>
+                  </div>
 
-                <div id="video-channel">
-                  <p>{v.channel}</p>
-                </div>
+                  <div id="video-channel">
+                    <p>{v.channel}</p>
+                  </div>
 
-                <div id="video-category">
-                  <p>
-                    {
-                      categoryType[
-                        Object.keys(categoryType).findIndex(
-                          key => categoryType[key].category_id === v.categoryId
-                        )
-                      ].category_name
-                    }
-                  </p>
-                </div>
-
-                <div className="video-views-likes">
-                  <div className="video-likes-div">
-                    <p id="video-views-p">
-                      <GrLike />
-                      {`${
-                        v.likes > 1000000 ? v.likes / 1000000 : v.likes / 1000
-                      }${v.likes > 1000000 ? "M" : "K"}`}
+                  <div id="video-category">
+                    <p>
+                      {
+                        categoryType[
+                          Object.keys(categoryType).findIndex(
+                            key =>
+                              categoryType[key].category_id === v.categoryId
+                          )
+                        ].category_name
+                      }
                     </p>
                   </div>
-                  <div className="video-views-div">
-                    <GrView />
-                    <p id="video-likes-p">{`${
-                      v.views > 1000000 ? v.views / 1000000 : v.views / 1000
-                    }${v.views > 1000000 ? "M" : "K"}`}</p>
+
+                  <div className="video-views-likes">
+                    <div className="video-likes-div">
+                      <p id="video-views-p">
+                        <GrLike />
+                        {`${
+                          v.likes > 1000000
+                            ? (v.likes / 1000000).toFixed(1)
+                            : (v.likes / 1000).toFixed(1)
+                        }${v.likes > 1000000 ? "M" : "K"}`}
+                      </p>
+                    </div>
+                    <div className="video-views-div">
+                      <GrView />
+                      <p id="video-likes-p">{`${
+                        v.views > 1000000
+                          ? (v.likes / 1000000).toFixed(1)
+                          : (v.likes / 1000).toFixed(1)
+                      }${v.views > 1000000 ? "M" : "K"}`}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </a>
-          );
-        })}
+              </a>
+            );
+          })
+        )}
       </div>
       <div className="bootstrap-pagination-bar">
         <nav aria-label="Page navigation">
