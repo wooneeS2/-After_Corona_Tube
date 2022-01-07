@@ -26,7 +26,7 @@ export function MenuBtn() {
     },
     {
       label: "LogOut",
-      path: "/",
+      path: "home",
     },
   ];
 
@@ -65,6 +65,7 @@ export function MenuBtn() {
     sessionStorage.removeItem("userToken");
     setIsLogin(false);
     setUserName("");
+    console.log("logout");
   };
 
   //FIXME 로그인 했을 때 바로 로그인이 안됨. 새로고침해야지 로그인이됨.
@@ -103,10 +104,16 @@ export function MenuBtn() {
               return (
                 <div key={x.id} id="drop-menu">
                   <Link
-                    to={`/${x.label}`}
-                    onClick={() => {
-                      window.scrollTo(0, 0);
-                    }}
+                    to={`/${x.path}`}
+                    onClick={
+                      x.label === "LogOut"
+                        ? () => {
+                            LogOut();
+                          }
+                        : () => {
+                            window.scrollTo(0, 0);
+                          }
+                    }
                   >
                     {x.label}
                   </Link>
