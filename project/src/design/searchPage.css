@@ -79,7 +79,7 @@
   max-width: 900px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 325px);
+  /* grid-template-rows: repeat(3, 325px); */
   grid-column-gap: 2rem;
   grid-row-gap: 2rem;
 }
