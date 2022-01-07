@@ -113,7 +113,7 @@ export function SearchPage() {
     const params = `/search/category?data= {'categoryId':${selectCategory},'page':${currentPage}}`;
     const response = await axios.get(url + params);
     setVideos(response.data.videos);
-    console.log(response.data);
+
     setMaxPage(response.data.max_page);
   };
 
@@ -127,7 +127,7 @@ export function SearchPage() {
       if (selectTags.length !== 0) {
         const response = await axios.get(params);
         setVideos(response.data.videos);
-        console.log(response.data.videos);
+
         setMaxPage(response.data.max_page);
       } else {
         handlePageByCategory();
@@ -147,8 +147,6 @@ export function SearchPage() {
   };
 
   useEffect(() => {
-    console.log("mount");
-
     handlePageByCategory();
     fetchTags(selectCategory);
   }, []);
@@ -162,7 +160,13 @@ export function SearchPage() {
     handlePageByCategory();
     setSearchTags([]);
     setCurrentPage(1);
-  }, [currentPage, selectCategory]);
+  }, [selectCategory]);
+
+  useEffect(() => {
+    fetchTags(selectCategory);
+    handlePageByCategory();
+    setSearchTags([]);
+  }, [currentPage]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -230,7 +234,7 @@ export function SearchPage() {
 
       <div className="video-div">
         {videos === null ? (
-          <div class="spinner-border text-danger" role="status">
+          <div className="spinner-border text-danger" role="status">
             <span class="sr-only">Loading...</span>
           </div>
         ) : (
@@ -295,7 +299,7 @@ export function SearchPage() {
       </div>
       <div className="bootstrap-pagination-bar">
         <nav aria-label="Page navigation">
-          <ul class="pagination">
+          <ul className="pagination">
             <li class="page-item">
               <a
                 class="page-link"
@@ -303,7 +307,7 @@ export function SearchPage() {
                 aria-label="Previous"
                 onClick={e => {
                   e.preventDefault();
-                  console.log(pageArray);
+
                   const temp =
                     pageArray[0] === 1
                       ? pageArray.map(v => v)
