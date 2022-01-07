@@ -1,132 +1,101 @@
 import React from "react";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import "../design/searchPage.css";
-import { CgArrowsExpandRight } from "react-icons/cg";
 import { GrLike, GrView } from "react-icons/gr";
-import { BsCaretLeftFill, BsCaretRightFill } from "react-icons/bs";
+import axios from "axios";
+import { GrNext, GrPrevious, GrRefresh } from "react-icons/gr";
+import { categoryType } from "../data/categoryType";
+import { LoadingCircle } from "../components/etc/loadingCircle";
+import { activeSearchBtnStyle } from "../design/innerStyle";
+import { divisionNumbers } from "../components/etc/divisionLargeNumbers";
+// 전체
 
-//thirdpage 브랜치에서 작업중
-
-const videosInfo = [
-  {
-    title: "SO BAD",
-    channel: "STAYC",
-    thumbnail: "https://i.ytimg.com/vi/rFwZqtPc-Ss/default.jpg",
-    videoAddress: "5TipHbcZofo",
-    categoryId: 2,
-    likes: 100000,
-    views: 1000000,
-  },
-  {
-    title: "ASAP",
-    channel: "STAYC",
-    thumbnail: "https://i.ytimg.com/vi/JVqe_O7ifcI/default.jpg",
-    videoAddress: "cnnmBXORPxE",
-    categoryId: 2,
-    likes: 500000,
-    views: 1000000,
-  },
-  {
-    title: "STEREO TYPE",
-    channel: "STAYC",
-    thumbnail: "https://i.ytimg.com/vi/geZXCYNRvy4/default.jpg",
-    videoAddress: "WemIClZUHWQ",
-    categoryId: 2,
-    likes: 400000,
-    views: 1000000,
-  },
-  // {
-  //   title: "ELEVEN",
-  //   channel: "IVE",
-  //   thumbnail: "https://i.ytimg.com/vi/PtNGUFGkj98/default.jpg",
-  //   videoAddress: "Hjy-LuGGxh0",
-  //   categoryId: 2,
-  //   likes: 4000,
-  //   views: 1000000,
-  // },
-  // {
-  //   title: "죄송합니다.",
-  //   channel: "BJ설빙❤️",
-  //   thumbnail: "https://i.ytimg.com/vi/q4lyRLzFCbE/default.jpg",
-  //   videoAddress: "3zOS3g4lTtQ",
-  //   categoryId: 3,
-  //   likes: 6000,
-  //   views: 1000000,
-  // },
-  {
-    title: "오늘은 니뽕내뽕먹고 초코설빙 조지기",
-    channel: "오늘도먹지",
-    thumbnail: "https://i.ytimg.com/vi/xPxrAHrQcmM/default.jpg",
-    videoAddress: "q4lyRLzFCbE",
-    categoryId: 3,
-    likes: 70000,
-    views: 2000000,
-  },
-  {
-    title: "와 이거 실화냐 ㄷㄷ; 새벽에 케이크 먹으면 살찌는 이유",
-    channel: "이거실화탐사대",
-    thumbnail: "https://i.ytimg.com/vi/24uGJMhUzSA/default.jpg",
-    videoAddress: "rFwZqtPc-Ss",
-    categoryId: 4,
-    likes: 100000,
-    views: 3000000,
-  },
-  // {
-  //   title: "[211230] ISAAC 9시 뉴스입니다.",
-  //   channel: "ISAAC",
-  //   thumbnail: "https://i.ytimg.com/vi/bvfNyLxQNPw/default.jpg",
-  //   videoAddress: "JVqe_O7ifcI",
-  //   categoryId: 7,
-  //   likes: 10000,
-  //   views: 2000000,
-  // },
-  {
-    title: "토니스타크가 죽자 일어난 일 [스파이더맨 노웨이홈] 리뷰",
-    channel: "리얼솔직영화리뷰",
-    thumbnail: "https://i.ytimg.com/vi/bbMRX7iPmBE/default.jpg",
-    videoAddress: "oDE21Dg7kV4",
-    categoryId: 10,
-    likes: 100000,
-    views: 3000000,
-  },
-];
-
-const searchTags = [
-  { tagName: "apple" },
-  { tagName: "banana" },
-  { tagName: "amond" },
-  { tagName: "monkey" },
-  { tagName: "butter" },
-  { tagName: "blueberry" },
-  { tagName: "orange" },
-  { tagName: "melon" },
-  { tagName: "potato" },
-  { tagName: "grape" },
-  { tagName: "iphone" },
-];
-const activeStyle = {
-  backgroundColor: "#e0d3d3",
-  fontWeight: "bold",
-  border: "solid 3px #ac8888",
-  boxShadow:
-    "rgba(204, 185, 185, 0.15) 0px 50px 100px -20px, rgba(204, 185, 185, 0.3) 0px 30px 60px -30px, rgba(204, 185, 185, 0.35) 0px -2px 6px 0px inset",
-};
+const DEFAULT_CATEGORY = 0;
+const url = `http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/`;
 
 export function SearchPage() {
   const [selectTags, setSelectTags] = useState([]);
+  const [selectCategory, setSelectCategory] = useState(DEFAULT_CATEGORY);
+  const [maxPage, setMaxPage] = useState(0);
+  const [pageArray, setPageArray] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [videos, setVideos] = useState(null);
+  const [searchTags, setSearchTags] = useState([]);
 
+  const handleCategory = categoryId => {
+    setSelectCategory(categoryId);
+  };
+  const fetchTags = async categoryId => {
+    const params = `search/?category=${categoryId}`;
+    const response = await axios.get(url + params);
+    setSearchTags(response.data);
+  };
   const handleTags = tagName => {
     const tagIndex = selectTags.indexOf(tagName);
     tagIndex === -1
-      ? setSelectTags([...selectTags, tagName])
+      ? setSelectTags([tagName, ...selectTags])
       : setSelectTags(selectTags.filter(item => item !== tagName));
+  };
+  const handlePageByCategory = async () => {
+    const params = `/search/category?data= {'categoryId':${selectCategory},'page':${currentPage}}`;
+    const response = await axios.get(url + params);
+    setVideos(response.data.videos);
+    setMaxPage(response.data.max_page);
+  };
+  //태그가 선택되면 호출
+  const handlePageByTags = async () => {
+    const params = `http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/search/tags?data={'tags':'${selectTags.join(
+      ","
+    )}','categoryId':${selectCategory},'page':${currentPage}}`;
 
-    console.log("tagName", tagName, "selecttags", selectTags);
+    try {
+      if (selectTags.length !== 0) {
+        const response = await axios.get(params);
+        setVideos(response.data.videos);
+
+        setMaxPage(response.data.max_page);
+      } else {
+        handlePageByCategory();
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handlePagination = () => {
+    const temp =
+      maxPage < 10
+        ? Array.from({ length: maxPage }, (v, i) => i + 1)
+        : Array.from({ length: 10 }, (v, i) => i + 1);
+    setPageArray(temp);
   };
 
   useEffect(() => {
-    console.log(selectTags);
+    handlePageByCategory();
+    fetchTags(selectCategory);
+  }, []);
+
+  useEffect(() => {
+    handlePageByTags();
   }, [selectTags]);
+
+  useEffect(() => {
+    fetchTags(selectCategory);
+    handlePageByCategory();
+    setSearchTags([]);
+    setCurrentPage(1);
+  }, [selectCategory]);
+
+  useEffect(() => {
+    fetchTags(selectCategory);
+    handlePageByCategory();
+    setSearchTags([]);
+  }, [currentPage]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+    handlePagination();
+  }, [maxPage]);
 
   return (
     <div>
@@ -135,57 +104,183 @@ export function SearchPage() {
       </div>
 
       <div className="thirdpage-main">
-        <div className="hashtag-box">
-          <div className="hastag-box-subtitle">
-            <p>#추천해시태그</p>
-            {/* <button>{<CgArrowsExpandRight />}</button> */}
-          </div>
-          {searchTags.map(x => {
+        <div className="category-box">
+          {categoryType.map(x => {
             return (
               <button
-                id="hashtag-btn"
-                style={selectTags.indexOf(x.tagName) !== -1 ? activeStyle : {}}
-                onClick={() => {
-                  handleTags(x.tagName);
+                className="category-box-button"
+                id={`category-box-button${x.category_id}`}
+                onClick={e => {
+                  e.preventDefault();
+                  handleCategory(x.category_id);
+                  fetchTags(x.category_id);
                 }}
+                style={
+                  `category-box-button${selectCategory}` ===
+                  `category-box-button${x.category_id}`
+                    ? activeSearchBtnStyle
+                    : {}
+                }
               >
-                {x.tagName}
+                {x.category_name}
               </button>
             );
           })}
         </div>
+        <div className="hashtag-box">
+          {searchTags.length === 0 ? (
+            <LoadingCircle />
+          ) : (
+            searchTags.map(x => {
+              return (
+                <button
+                  id="hashtag-btn"
+                  style={
+                    selectTags.indexOf(x) !== -1 ? activeSearchBtnStyle : {}
+                  }
+                  onClick={e => {
+                    e.preventDefault();
+                    handleTags(x);
+                  }}
+                >
+                  {x}
+                </button>
+              );
+            })
+          )}
+          <span id="hastag-refresh-btn">
+            <GrRefresh
+              onClick={e => {
+                e.preventDefault();
+                setSelectTags([]);
+              }}
+            />
+          </span>
+        </div>
+      </div>
 
-        {videosInfo.map((v, index) => {
-          return (
-            <div id={`video${index + 1}`}>
-              <img src={v.thumbnail} alt={v.videoAddress} />
-              <p id="video-title">{v.title}</p>
-              <div className="video-channel-category">
-                <p id="video-channel">{v.channel}</p>
-                <p id="video-category">{v.categoryId}</p>
-              </div>
-              <div className="video-views-likes">
-                <div className="video-likes-div">
-                  <p id="video-views-p">
-                    <GrLike />
-                    {`${
-                      v.likes > 1000000 ? v.likes / 1000000 : v.likes / 1000
-                    }${v.likes > 1000000 ? "M" : "K"}`}
-                  </p>
-                </div>
-                <div className="video-views-div">
-                  <GrView />
-                  <p id="video-likes-p">{`${
-                    v.views > 1000000 ? v.views / 1000000 : v.views / 1000
-                  }${v.views > 1000000 ? "M" : "K"}`}</p>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+      <div className="video-div">
+        {videos === null ? (
+          <LoadingCircle />
+        ) : (
+          videos.map(v => {
+            return (
+              <a
+                href={`https://www.youtube.com/watch?v=${v.videoAddress}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="video-wrapped-btn"
+              >
+                <div id="video-div-div">
+                  <div id="video-thumbnail">
+                    <img src={v.thumbnail} alt={v.videoAddress} />
+                  </div>
+                  <div id="video-title">
+                    <p>{v.title}</p>
+                  </div>
 
-        <button id="video-next-btn">{<BsCaretRightFill />}</button>
-        <button id="video-prev-btn">{<BsCaretLeftFill />}</button>
+                  <div id="video-channel">
+                    <p>{v.channel}</p>
+                  </div>
+
+                  <div id="video-category">
+                    <p>
+                      {
+                        categoryType[
+                          Object.keys(categoryType).findIndex(
+                            key =>
+                              categoryType[key].category_id === v.categoryId
+                          )
+                        ].category_name
+                      }
+                    </p>
+                  </div>
+
+                  <div className="video-views-likes">
+                    <div className="video-likes-div">
+                      <p id="video-views-p">
+                        <GrLike />
+                        {divisionNumbers(v.likes, 1)}
+                      </p>
+                    </div>
+                    <div className="video-views-div">
+                      <GrView />
+                      <p id="video-likes-p">{divisionNumbers(v.views, 1)}</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            );
+          })
+        )}
+      </div>
+      <div className="bootstrap-pagination-bar">
+        <nav aria-label="Page navigation">
+          <ul className="pagination">
+            <li class="page-item">
+              <a
+                class="page-link"
+                href="#"
+                aria-label="Previous"
+                onClick={e => {
+                  e.preventDefault();
+
+                  const temp =
+                    pageArray[0] === 1
+                      ? pageArray.map(v => v)
+                      : pageArray.map(v => v - 10);
+                  setPageArray(temp);
+                }}
+              >
+                <span aria-hidden="true">
+                  <GrPrevious />
+                </span>
+              </a>
+            </li>
+            {pageArray.map(x => {
+              return (
+                <li
+                  class={`${
+                    currentPage === x ? "page-item active" : "page-item"
+                  }`}
+                >
+                  <a
+                    class="page-link"
+                    href="#"
+                    onClick={e => {
+                      e.preventDefault();
+
+                      setCurrentPage(x);
+                    }}
+                  >
+                    {x}
+                  </a>
+                </li>
+              );
+            })}
+
+            <li class="page-item">
+              <a
+                class="page-link"
+                href="#"
+                aria-label="Next"
+                onClick={e => {
+                  e.preventDefault();
+
+                  const temp =
+                    pageArray[pageArray.length - 1] === maxPage
+                      ? pageArray.map(v => v)
+                      : pageArray.map(v => v + 10);
+                  setPageArray(temp);
+                }}
+              >
+                <span aria-hidden="true">
+                  <GrNext />
+                </span>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   );

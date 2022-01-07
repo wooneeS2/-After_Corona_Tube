@@ -3,6 +3,13 @@ import TagCloud from "react-tag-cloud";
 import randomColor from "randomcolor";
 import { useState, useEffect } from "react";
 
+{
+  /* <div className="tag-item-wrapper">
+              <div>Hover Me Please!</div>
+              <div className="tag-item-tooltip">HOVERED!</div>
+            </div> */
+}
+
 export function WordCloud({ data }) {
   //워드클라우드 요소 생성
   //가중치로 폰트 사이즈 조절
