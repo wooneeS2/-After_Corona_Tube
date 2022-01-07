@@ -4,10 +4,22 @@ import { useState } from "react";
 import { isEmail, errorStyle, returnBorderStyle } from "./SignUpPage";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { doLogin } from "./login";
+import { useSelector, useDispatch } from "react-redux";
 
 const url =
   "http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/auth/login";
 export function SignInPage() {
+  ////
+  const dispatch = useDispatch();
+
+  const { login } = useSelector(state => state);
+
+  const setTrue = () => {
+    dispatch(doLogin());
+  };
+
+  /////
   const [userInfo, setUserInfo] = useState({ email: "", pw: "" });
   const [emailError, setEmailError] = useState(false);
   const [loginError, setLoginError] = useState(false);
@@ -26,8 +38,9 @@ export function SignInPage() {
         data: signinFormData,
         headers: { "Content-Type": "multipart/form-data" },
       });
-      // 리턴으로 받은 토큰 값 로컬에 저장
-      localStorage.setItem("userToken", response.data.token);
+      // 리턴으로 받은 토큰 값 세션에 저장
+      sessionStorage.setItem("userToken", response.data.token);
+      setTrue();
 
       navigate("/");
     } catch (e) {
