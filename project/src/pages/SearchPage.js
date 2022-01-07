@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "../design/searchPage.css";
 import { GrLike, GrView } from "react-icons/gr";
 import axios from "axios";
-import { GrNext, GrPrevious } from "react-icons/gr";
+import { GrNext, GrPrevious, GrRefresh } from "react-icons/gr";
 
 const activeStyle = {
   backgroundColor: "#e0d3d3",
@@ -80,13 +80,14 @@ const categoryType = [
   },
 ];
 // 전체
-const DEFAULT_CATEGORY = 2;
+
+const DEFAULT_CATEGORY = 0;
 
 export function SearchPage() {
   const [selectTags, setSelectTags] = useState([]);
   const [selectCategory, setSelectCategory] = useState(DEFAULT_CATEGORY);
-  const [maxPage, setMaxPage] = useState(10);
-  const [pageArr, setPageArr] = useState([]);
+  const [maxPage, setMaxPage] = useState(0);
+  const [pageArray, setPageArray] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [videos, setVideos] = useState(null);
   const url = `http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/`;
@@ -111,21 +112,23 @@ export function SearchPage() {
   const handlePageByCategory = async () => {
     const params = `/search/category?data= {'categoryId':${selectCategory},'page':${currentPage}}`;
     const response = await axios.get(url + params);
-    setVideos(response.data);
+    setVideos(response.data.videos);
+    console.log(response.data);
+    setMaxPage(response.data.max_page);
   };
 
   //태그가 선택되면 호출
   const handlePageByTags = async () => {
-    const params = `http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/search/tags?data={'tags':[${selectTags
-      .map(x => `'${x}'`)
-      .join(",")}],'categoryId':${selectCategory},'page':${currentPage}}`;
-
-    //params까지는 문제없이 돌아감
+    const params = `http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/search/tags?data={'tags':'${selectTags.join(
+      ","
+    )}','categoryId':${selectCategory},'page':${currentPage}}`;
 
     try {
       if (selectTags.length !== 0) {
         const response = await axios.get(params);
         setVideos(response.data.videos);
+        console.log(response.data.videos);
+        setMaxPage(response.data.max_page);
       } else {
         handlePageByCategory();
       }
@@ -134,9 +137,18 @@ export function SearchPage() {
     }
   };
 
+  const handlePagination = () => {
+    const temp =
+      maxPage < 10
+        ? Array.from({ length: maxPage }, (v, i) => i + 1)
+        : Array.from({ length: 10 }, (v, i) => i + 1);
+
+    setPageArray(temp);
+  };
+
   useEffect(() => {
     console.log("mount");
-    setPageArr([...new Array(maxPage)]);
+
     handlePageByCategory();
     fetchTags(selectCategory);
   }, []);
@@ -147,9 +159,15 @@ export function SearchPage() {
 
   useEffect(() => {
     fetchTags(selectCategory);
-
     handlePageByCategory();
+    setSearchTags([]);
+    setCurrentPage(1);
   }, [currentPage, selectCategory]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+    handlePagination();
+  }, [maxPage]);
 
   return (
     <div>
@@ -181,19 +199,32 @@ export function SearchPage() {
           })}
         </div>
         <div className="hashtag-box">
-          {searchTags.map(x => {
-            return (
-              <button
-                id="hashtag-btn"
-                style={selectTags.indexOf(x) !== -1 ? activeStyle : {}}
-                onClick={() => {
-                  handleTags(x);
-                }}
-              >
-                {x}
-              </button>
-            );
-          })}
+          {searchTags.length === 0 ? (
+            <div class="spinner-border text-danger" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          ) : (
+            searchTags.map(x => {
+              return (
+                <button
+                  id="hashtag-btn"
+                  style={selectTags.indexOf(x) !== -1 ? activeStyle : {}}
+                  onClick={() => {
+                    handleTags(x);
+                  }}
+                >
+                  {x}
+                </button>
+              );
+            })
+          )}
+          <span id="hastag-refresh-btn">
+            <GrRefresh
+              onClick={() => {
+                setSelectTags([]);
+              }}
+            />
+          </span>
         </div>
       </div>
 
@@ -251,8 +282,8 @@ export function SearchPage() {
                       <GrView />
                       <p id="video-likes-p">{`${
                         v.views > 1000000
-                          ? (v.likes / 1000000).toFixed(1)
-                          : (v.likes / 1000).toFixed(1)
+                          ? (v.views / 1000000).toFixed(1)
+                          : (v.views / 1000).toFixed(1)
                       }${v.views > 1000000 ? "M" : "K"}`}</p>
                     </div>
                   </div>
@@ -266,17 +297,30 @@ export function SearchPage() {
         <nav aria-label="Page navigation">
           <ul class="pagination">
             <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
+              <a
+                class="page-link"
+                href="#"
+                aria-label="Previous"
+                onClick={e => {
+                  e.preventDefault();
+                  console.log(pageArray);
+                  const temp =
+                    pageArray[0] === 1
+                      ? pageArray.map(v => v)
+                      : pageArray.map(v => v - 10);
+                  setPageArray(temp);
+                }}
+              >
                 <span aria-hidden="true">
                   <GrPrevious />
                 </span>
               </a>
             </li>
-            {pageArr.map((x, index) => {
+            {pageArray.map((x, index) => {
               return (
                 <li
                   class={`${
-                    currentPage === index + 1 ? "page-item active" : "page-item"
+                    currentPage === x ? "page-item active" : "page-item"
                   }`}
                 >
                   <a
@@ -284,17 +328,31 @@ export function SearchPage() {
                     href="#"
                     onClick={e => {
                       e.preventDefault();
-                      setCurrentPage(index + 1);
+
+                      setCurrentPage(x);
                     }}
                   >
-                    {index + 1}
+                    {x}
                   </a>
                 </li>
               );
             })}
 
             <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
+              <a
+                class="page-link"
+                href="#"
+                aria-label="Next"
+                onClick={e => {
+                  e.preventDefault();
+
+                  const temp =
+                    pageArray[pageArray.length - 1] === maxPage
+                      ? pageArray.map(v => v)
+                      : pageArray.map(v => v + 10);
+                  setPageArray(temp);
+                }}
+              >
                 <span aria-hidden="true">
                   <GrNext />
                 </span>
