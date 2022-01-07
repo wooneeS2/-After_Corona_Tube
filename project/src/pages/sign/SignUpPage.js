@@ -3,31 +3,43 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+//이메일 정규식 판단
 export const isEmail = email => {
   const emailRegex =
     /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
 
   return emailRegex.test(email);
 };
+
 export const borderStyle = { border: "0.3rem solid #e06666" };
+export const errorStyle = { color: "red", fontSize: "1rem" };
+export const returnBorderStyle = data => {
+  return data !== "" ? borderStyle : {};
+};
+//GET요청 url
+const url =
+  "http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/auth/register";
 
 export function SignUpPage() {
+  //input에 입력되는 유저 정보
   const [userInfo, setUserInfo] = useState({
     email: "",
     name: "",
     password: "",
   });
   const [emailError, setEmailError] = useState(false);
-  const url =
-    "http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/auth/register";
+  const [loginError, setLoginError] = useState(false);
 
   const navigate = useNavigate();
   const postUserData = async () => {
+    // post에 필요한 formData형식 만들기
+    const { email, name, password } = userInfo;
     const signupFormData = new FormData();
-    signupFormData.append("email", userInfo.email);
-    signupFormData.append("name", userInfo.name);
-    signupFormData.append("password", userInfo.password);
+    signupFormData.append("email", email);
+    signupFormData.append("name", name);
+    signupFormData.append("password", password);
 
+    //회원가입 요청
     try {
       const response = await axios({
         method: "post",
@@ -35,11 +47,9 @@ export function SignUpPage() {
         data: signupFormData,
         headers: { "Content-Type": "multipart/form-data" },
       });
-      console.log(signupFormData);
-      console.log(response);
       navigate("/sign-up/complete");
     } catch (e) {
-      console.log(e);
+      setLoginError(true);
     }
   };
 
@@ -63,7 +73,7 @@ export function SignUpPage() {
                     name: e.target.value,
                   });
                 }}
-                style={userInfo.name !== "" ? borderStyle : {}}
+                style={returnBorderStyle(userInfo.name)}
               />
             </div>
             <div id="log-in-subtitle">이메일</div>
@@ -79,12 +89,10 @@ export function SignUpPage() {
                   email: e.target.value,
                 });
               }}
-              style={userInfo.email !== "" ? borderStyle : {}}
+              style={returnBorderStyle(userInfo.email)}
             />
             {emailError && (
-              <div style={{ color: "red", fontSize: "1rem" }}>
-                올바른 이메일을 입력해주세요.
-              </div>
+              <div style={errorStyle}>올바른 이메일을 입력해주세요.</div>
             )}
           </div>
 
@@ -101,19 +109,20 @@ export function SignUpPage() {
                   password: e.target.value,
                 });
               }}
-              style={userInfo.password !== "" ? borderStyle : {}}
+              style={returnBorderStyle(userInfo.password)}
             />
           </div>
+          {/* 회원가입 실패시 안내 문구 */}
+          {loginError && <div style={errorStyle}>이미 가입된 회원입니다.</div>}
           <button
             type="submit"
             id="user-log-in-btn"
             onClick={e => {
               e.preventDefault();
-              console.log(userInfo);
+
               const isValidation = isEmail(userInfo.email);
               if (!isValidation) {
                 setEmailError(true);
-                console.log("error", emailError);
               } else {
                 setEmailError(false);
                 postUserData();

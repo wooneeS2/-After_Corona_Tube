@@ -99,3 +99,7 @@ a:-webkit-any-link {
   text-decoration-line: none;
   color: #e06666;
 }
+
+.user-login-info {
+  margin-right: 2rem;
+}

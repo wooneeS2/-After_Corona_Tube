@@ -1,23 +1,24 @@
 import "../../design/signIn.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { isEmail, borderStyle } from "./SignUpPage";
+import { isEmail, errorStyle, returnBorderStyle } from "./SignUpPage";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-//TODO 로그인 성공하면 로그인 버튼 사용자 이름으로 바꾸기
-
+const url =
+  "http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/auth/login";
 export function SignInPage() {
   const [userInfo, setUserInfo] = useState({ email: "", pw: "" });
   const [emailError, setEmailError] = useState(false);
-  const url =
-    "http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/auth/login";
+  const [loginError, setLoginError] = useState(false);
   const navigate = useNavigate();
   const postUserData = async () => {
+    const { email, pw } = userInfo;
     const signinFormData = new FormData();
-    signinFormData.append("email", userInfo.email);
-    signinFormData.append("password", userInfo.pw);
+    signinFormData.append("email", email);
+    signinFormData.append("password", pw);
 
+    //로그인 요청
     try {
       const response = await axios({
         method: "post",
@@ -25,10 +26,13 @@ export function SignInPage() {
         data: signinFormData,
         headers: { "Content-Type": "multipart/form-data" },
       });
+      // 리턴으로 받은 토큰 값 로컬에 저장
+      localStorage.setItem("userToken", response.data.token);
 
       navigate("/");
     } catch (e) {
       console.log(e);
+      setLoginError(true);
     }
   };
 
@@ -52,12 +56,10 @@ export function SignInPage() {
                   email: e.target.value,
                 });
               }}
-              style={userInfo.email !== "" ? borderStyle : {}}
+              style={returnBorderStyle(userInfo.email)}
             />
             {emailError && (
-              <div style={{ color: "red", fontSize: "1rem" }}>
-                올바른 이메일을 입력해주세요.
-              </div>
+              <div style={errorStyle}>올바른 이메일을 입력해주세요.</div>
             )}
           </div>
           <div id="user-pw-box">
@@ -70,9 +72,13 @@ export function SignInPage() {
               onChange={e => {
                 setUserInfo({ ...userInfo, pw: e.target.value });
               }}
-              style={userInfo.pw !== "" ? borderStyle : {}}
+              style={returnBorderStyle(userInfo.pw)}
             />
           </div>
+          {/* 로그인 실패시 안내 문구 */}
+          {loginError && (
+            <div style={errorStyle}>회원정보를 찾을 수 없습니다.</div>
+          )}
           <button
             type="submit"
             id="user-log-in-btn"
