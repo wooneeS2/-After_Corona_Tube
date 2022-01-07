@@ -42,7 +42,14 @@ export function MenuBtn() {
             {menuList.map(x => {
               return (
                 <div key={x.id} id="drop-menu">
-                  <Link to={`/${x.label}`}>{x.label}</Link>
+                  <Link
+                    to={`/${x.label}`}
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                    }}
+                  >
+                    {x.label}
+                  </Link>
                 </div>
               );
             })}
@@ -59,7 +66,7 @@ export function HeaderComponents() {
     <header>
       <div id="headers" fixed="top">
         <Link to="/home" id="service-name">
-          SERVICE-LOGO
+          애코튜브
         </Link>
         <MenuBtn />
       </div>

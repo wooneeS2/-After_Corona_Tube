@@ -2,81 +2,109 @@ import React from "react";
 import {
   VictoryChart,
   VictoryAxis,
+  VictoryTheme,
   VictoryLine,
-  VictoryGroup,
-  VictoryScatter,
   VictoryTooltip,
+  VictoryVoronoiContainer,
+  VictoryScatter,
+  VictoryGroup,
   VictoryLabel,
 } from "victory";
+
 import { lineChartColorPalette } from "../../design/colorPalette";
 
-export function TimeInfomationChart({ datas }) {
-  const times = [];
-
-  const viewAvg = [];
-  const likeAvg = [];
-  const commentAvg = [];
-
+export function CategoryInfomationChart({ datas }) {
+  //차트에 사용할 새로운 데이터 양식
+  const likes = [];
+  const views = [];
+  const comments = [];
   datas.map(m => {
-    viewAvg.push({ x: m.published_time, y: m.avg_view_cnt });
-    likeAvg.push({ x: m.published_time, y: m.avg_likes_cnt });
-    commentAvg.push({ x: m.published_time, y: m.avg_comment_cnt });
-    times.push(m.published_time);
+    likes.push({ x: m.categoryId, y: m.likes });
+    views.push({ x: m.categoryId, y: m.view_count });
+    comments.push({ x: m.categoryId, y: m.comment_count });
   });
+  const data = [views, likes, comments];
 
-  const data = [viewAvg, likeAvg, commentAvg];
-
+  //각 데이터별 최댓값 추출
   const maxima = data.map(dataset => Math.max(...dataset.map(d => d.y)));
 
-  const divide = [0.4, 1, 2];
+  const divide = [1, 1.3, 1.6];
   const labels = [
-    { y: 40, label: "평균 조회" },
-    { y: 50, label: "평균 좋아요" },
-    { y: 60, label: "평균 댓글" },
+    { y: 20, label: "조회수" },
+    { y: 30, label: "좋아요" },
+    { y: 40, label: "댓글" },
   ];
 
   return (
-    <>
-      <VictoryChart width={400} padding={{ top: 40, bottom: 80 }}>
+    <div>
+      <VictoryChart
+        theme={VictoryTheme.material}
+        width={350}
+        height={200}
+        containerComponent={
+          <VictoryVoronoiContainer labels={datum => datum.y} />
+        }
+        domainPadding={20}
+        padding={{ left: 60, top: 20, right: 20, bottom: 60 }}
+      >
+        {/* 그래프 제목 라벨 */}
         {labels.map((x, index) => {
           return (
-            // y축 라벨
             <VictoryLabel
-              x={-10}
+              x={20}
               y={x.y}
               text={x.label}
               backgroundStyle={[
                 { fill: lineChartColorPalette[index], opacity: 0.8 },
               ]}
               textAnchor={"start"}
-              backgroundPadding={{ left: 5, right: 18, top: 1, bottom: 1 }}
+              backgroundPadding={{ left: 5, right: 15, top: 1, bottom: 1 }}
               style={[{ fill: "white", fontSize: 8 }]}
             />
           );
         })}
         <VictoryLabel
           text={"단위(개)\nM: 백만\nK: 천"}
-          x={-10}
-          y={80}
+          x={15}
+          y={60}
           textAnchor={"start"}
           backgroundPadding={{ left: 5, right: 15, top: 3, bottom: 1 }}
           style={[{ fontSize: 8 }]}
         />
         {/* x축 라벨 */}
         <VictoryAxis
-          tickValues={times}
-          tickFormat={times}
+          tickValues={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]}
+          tickFormat={[
+            "영화&애니메이션",
+            "자동차",
+            "음악",
+            "동물",
+            "스포츠",
+            "여행",
+            "게임",
+            "일상",
+            "코미디",
+            "엔터테인먼트",
+            "뉴스",
+            "노하우",
+            "교육",
+            "과학&기술",
+            "사회&이슈",
+          ]}
           style={{
             ticks: { stroke: "#0f0b0b" },
             axis: { stroke: "#0f0b0b" },
             tickLabels: {
-              fontSize: 9,
+              fontSize: 6,
               fontFamily: "paybooc-Medium",
+              angle: 35,
+              padding: 9,
             },
           }}
         />
-
         {/* 그래프 */}
+        {/* TODO 처음 카테고리 버튼을 눌렀을 때 scatter만 먼저 다 떠있는 문제 고치기 */}
+        {/* -> line 그래프와 scatter 그래프가 한번에 그려지도록 하고싶음 */}
         {data.map((x, index) => {
           return (
             <VictoryGroup
@@ -89,12 +117,12 @@ export function TimeInfomationChart({ datas }) {
               <VictoryLine
                 data={x}
                 style={{ data: { stroke: lineChartColorPalette[index] } }}
-                x={datum => datum.x}
+                x="foo"
                 y={datum => datum.y / maxima[index] / divide[index]}
               />
               <VictoryScatter
                 data={x}
-                x={datum => datum.x}
+                x="foo"
                 y={datum => datum.y / maxima[index] / divide[index]}
                 size={2.5}
                 style={{ data: { fill: lineChartColorPalette[index] } }}
@@ -104,7 +132,7 @@ export function TimeInfomationChart({ datas }) {
                       m.y > 1000000
                         ? (m.y / 1000000).toFixed(2)
                         : (m.y / 1000).toFixed(2)
-                    }${m.y > 1000000 ? "M" : "K"}`
+                    }${m.y > 1000000 ? "M" : "K"}  `
                 )}
                 labelComponent={
                   <VictoryTooltip
@@ -132,6 +160,6 @@ export function TimeInfomationChart({ datas }) {
           );
         })}
       </VictoryChart>
-    </>
+    </div>
   );
 }

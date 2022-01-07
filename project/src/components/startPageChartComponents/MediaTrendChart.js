@@ -12,7 +12,7 @@ import {
   monthlyYoutube,
 } from "../../data/data1";
 
-export function Chart1() {
+export function MediaTrendChart() {
   return (
     <>
       <VictoryChart height={250} domainPadding={30}>

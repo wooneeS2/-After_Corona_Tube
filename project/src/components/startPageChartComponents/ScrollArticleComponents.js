@@ -1,5 +1,5 @@
-import { Chart2 } from "./Chart2";
-import { Chart1 } from "./Chart1";
+import { MediaTrendChart } from "./MediaTrendChart";
+import { PatientAndViewsChart } from "./PatientAndViewsChart";
 import {
   Animator,
   ScrollPage,
@@ -10,7 +10,7 @@ import {
   FadeIn,
 } from "react-scroll-motion";
 import { ScrollGuideBtn, NextBtn } from "../buttonComponents";
-import FooterComponents from "../base/footerComponents";
+import FooterComponents from "../base/Footer";
 
 //Page1~7순서대로 /home에서 스크롤됨
 export function Page1() {
@@ -23,7 +23,8 @@ export function Page1() {
               인기 동영상에는 어떤 영상들이 올라가는지
               <br /> 궁금하신적 있으신가요?
             </p>
-            {/* FIXME 두개를 연속해서쓰면 두번째 타겟만 적용됨 ㅠㅠ */}
+            {/* FIXME 두개를 연속해서쓰면 두번째 타겟만 적용됨 ㅠㅠ
+          .... */}
             <ScrollGuideBtn target="page2" offset={450} />
           </span>
         </Animator>
@@ -106,7 +107,7 @@ export function Page5() {
           </h2>
 
           <div id="chart">
-            <Chart1 />
+            <MediaTrendChart />
           </div>
           <p id="chart-description">
             실제로 우리는 코로나19 이후 많은 변화를 경험하고 있는데요. 그
@@ -129,7 +130,7 @@ export function Page6() {
         <span className="chart2">
           <h2 id="chart-title">확진자 수 증가 그래프</h2>
           <div id="chart">
-            <Chart2 />
+            <PatientAndViewsChart />
           </div>
           <p id="chart-description">
             실제로 우리는 코로나19 이후 많은 변화를 경험하고 있는데요. 그

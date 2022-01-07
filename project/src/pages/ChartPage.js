@@ -1,11 +1,11 @@
 import React from "react";
 
 import { useState } from "react";
-import FooterComponents from "../components/base/footerComponents";
-import { BasicInformationChart } from "../components/secondPageChartComponents/basicInformationChart";
-import { TimeInfomationChart } from "../components/secondPageChartComponents/timeInfomationChart";
-import { CategoryInfomationChart } from "../components/secondPageChartComponents/categoryInfomationChart";
-import { WordCloud } from "../components/secondPageChartComponents/wordCloudChart";
+import FooterComponents from "../components/base/Footer";
+import { BasicInformationChart } from "../components/chartPageChartComponents/BasicInformationChart";
+import { TimeInfomationChart } from "../components/chartPageChartComponents/TimeInfomationChart";
+import { CategoryInfomationChart } from "../components/chartPageChartComponents/CategoryInfomationChart";
+import { WordCloud } from "../components/chartPageChartComponents/WordCloudChart";
 
 import {
   categoryStep1,
@@ -30,7 +30,7 @@ import {
 import { timeStep1, timeStep2, timeStep3, timeStep4 } from "../data/data2-2";
 
 import { periodStep, subtitleStep } from "../data/periodStep";
-import "../design/secondPage.css";
+import "../design/chartPage.css";
 import "../design/wordcloud.css";
 
 const DEFAULT_TAP = "column-btn1";
@@ -67,7 +67,7 @@ const activeStyle = {
     "rgba(204, 185, 185, 0.15) 0px 50px 100px -20px, rgba(204, 185, 185, 0.3) 0px 30px 60px -30px, rgba(204, 185, 185, 0.35) 0px -2px 6px 0px inset",
 };
 
-export function SecondPage() {
+export function ChartPage() {
   const [tap, setTap] = useState(DEFAULT_TAP);
   const [step, setStep] = useState(DEFAULT_STEP);
 
@@ -160,4 +160,4 @@ export function SecondPage() {
   );
 }
 
-export default SecondPage;
+export default ChartPage;
