@@ -1,18 +1,47 @@
 import "../../design/signIn.css";
 import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const isEmail = email => {
   const emailRegex =
     /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
-  console.log(email);
-  console.log(emailRegex.test(email));
+
   return emailRegex.test(email);
 };
 export const borderStyle = { border: "0.3rem solid #e06666" };
 
 export function SignUpPage() {
-  const [userInfo, setUserInfo] = useState({ name: "", email: "", pw: "" });
+  const [userInfo, setUserInfo] = useState({
+    email: "",
+    name: "",
+    password: "",
+  });
   const [emailError, setEmailError] = useState(false);
+  const url =
+    "http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/auth/register";
+
+  const navigate = useNavigate();
+  const postUserData = async () => {
+    const signupFormData = new FormData();
+    signupFormData.append("email", userInfo.email);
+    signupFormData.append("name", userInfo.name);
+    signupFormData.append("password", userInfo.password);
+
+    try {
+      const response = await axios({
+        method: "post",
+        url: url,
+        data: signupFormData,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      console.log(signupFormData);
+      console.log(response);
+      navigate("/sign-up/complete");
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <>
@@ -69,10 +98,10 @@ export function SignUpPage() {
               onChange={e => {
                 setUserInfo({
                   ...userInfo,
-                  pw: e.target.value,
+                  password: e.target.value,
                 });
               }}
-              style={userInfo.pw !== "" ? borderStyle : {}}
+              style={userInfo.password !== "" ? borderStyle : {}}
             />
           </div>
           <button
@@ -87,6 +116,7 @@ export function SignUpPage() {
                 console.log("error", emailError);
               } else {
                 setEmailError(false);
+                postUserData();
               }
             }}
           >

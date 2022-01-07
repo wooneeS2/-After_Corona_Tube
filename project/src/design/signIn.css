@@ -60,3 +60,16 @@ input[type="text"] {
   font-size: 1.3rem;
   margin-bottom: 2px;
 }
+
+.sign-up-complete {
+  margin: 0 auto;
+  text-align: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.sign-up-complete p {
+  margin-bottom: 2rem;
+  margin-left: 3rem;
+  font-size: 2rem;
+}

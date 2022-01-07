@@ -2,13 +2,36 @@ import "../../design/signIn.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { isEmail, borderStyle } from "./SignUpPage";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-//TODO post 기능
-//TODO 로그인 성공화면 만들기
+//TODO 로그인 성공하면 로그인 버튼 사용자 이름으로 바꾸기
 
 export function SignInPage() {
   const [userInfo, setUserInfo] = useState({ email: "", pw: "" });
   const [emailError, setEmailError] = useState(false);
+  const url =
+    "http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/auth/login";
+  const navigate = useNavigate();
+  const postUserData = async () => {
+    const signinFormData = new FormData();
+    signinFormData.append("email", userInfo.email);
+    signinFormData.append("password", userInfo.pw);
+
+    try {
+      const response = await axios({
+        method: "post",
+        url: url,
+        data: signinFormData,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      navigate("/");
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <>
       <div className="log-in-box">
@@ -61,6 +84,7 @@ export function SignInPage() {
                 console.log("error", emailError);
               } else {
                 setEmailError(false);
+                postUserData();
               }
             }}
           >
