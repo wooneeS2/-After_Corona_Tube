@@ -10,7 +10,7 @@ import {
 } from "victory";
 import { monthlyPatient, monthlyYoutube } from "../../data/data1";
 
-export function PatientAndViewsChart() {
+export function Chart2() {
   return (
     <>
       <VictoryChart

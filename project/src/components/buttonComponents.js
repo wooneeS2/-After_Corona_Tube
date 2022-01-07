@@ -6,14 +6,7 @@ export function NextBtn({ title, path }) {
   return (
     <div>
       <Link to={path} className="next">
-        <button
-          id="next-btn"
-          onClick={() => {
-            window.scrollTo(0, 0);
-          }}
-        >
-          {title}
-        </button>
+        <button id="next-btn">{title}</button>
       </Link>
     </div>
   );
