@@ -33,7 +33,7 @@ export function SearchPage() {
   const handleTags = tagName => {
     const tagIndex = selectTags.indexOf(tagName);
     tagIndex === -1
-      ? setSelectTags([tagName, ...selectTags])
+      ? setSelectTags([...selectTags, tagName])
       : setSelectTags(selectTags.filter(item => item !== tagName));
   };
   const handlePageByCategory = async () => {
@@ -41,6 +41,7 @@ export function SearchPage() {
     const response = await axios.get(url + params);
     setVideos(response.data.videos);
     setMaxPage(response.data.max_page);
+    console.log("hey");
   };
   //태그가 선택되면 호출
   const handlePageByTags = async () => {
@@ -52,8 +53,8 @@ export function SearchPage() {
       if (selectTags.length !== 0) {
         const response = await axios.get(params);
         setVideos(response.data.videos);
-
         setMaxPage(response.data.max_page);
+        console.log(selectTags);
       } else {
         handlePageByCategory();
       }
@@ -80,16 +81,15 @@ export function SearchPage() {
   }, [selectTags]);
 
   useEffect(() => {
+    setSelectTags([]);
     fetchTags(selectCategory);
     handlePageByCategory();
-    setSearchTags([]);
     setCurrentPage(1);
   }, [selectCategory]);
 
   useEffect(() => {
     fetchTags(selectCategory);
     handlePageByCategory();
-    setSearchTags([]);
   }, [currentPage]);
 
   useEffect(() => {
