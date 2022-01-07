@@ -1,5 +1,4 @@
 import { AiOutlineMenu } from "react-icons/ai";
-import { GrLogout } from "react-icons/gr";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../../design/header.css";
@@ -41,9 +40,9 @@ export function MenuBtn() {
   const url =
     "http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/auth/get";
 
-  //로컬에 저장된 토큰으로 유저 데이터 불러오기
+  //세션에 저장된 토큰으로 유저 데이터 불러오기
   const getUserData = async () => {
-    const token = localStorage.getItem("userToken");
+    const token = sessionStorage.getItem("userToken");
     console.log(token);
 
     try {
@@ -63,7 +62,7 @@ export function MenuBtn() {
 
   //로그아웃
   const LogOut = () => {
-    localStorage.removeItem("userToken");
+    sessionStorage.removeItem("userToken");
     setIsLogin(false);
     setUserName("");
   };

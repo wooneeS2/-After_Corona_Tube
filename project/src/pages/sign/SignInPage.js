@@ -26,8 +26,8 @@ export function SignInPage() {
         data: signinFormData,
         headers: { "Content-Type": "multipart/form-data" },
       });
-      // 리턴으로 받은 토큰 값 로컬에 저장
-      localStorage.setItem("userToken", response.data.token);
+      // 리턴으로 받은 토큰 값 세션에 저장
+      sessionStorage.setItem("userToken", response.data.token);
 
       navigate("/");
     } catch (e) {
