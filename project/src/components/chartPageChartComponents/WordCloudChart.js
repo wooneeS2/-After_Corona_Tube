@@ -22,7 +22,9 @@ export function WordCloud({ data }) {
         }}
       >
         {item.word}
-        <div className="tag-item-tooltip">빈도: {item.value}</div>
+        <div className="tag-item-tooltip">
+          '{item.word}': {item.value}
+        </div>
       </div>
     );
   });
