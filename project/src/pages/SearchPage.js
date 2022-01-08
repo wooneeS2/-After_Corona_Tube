@@ -41,7 +41,6 @@ export function SearchPage() {
     const response = await axios.get(url + params);
     setVideos(response.data.videos);
     setMaxPage(response.data.max_page);
-    console.log("hey");
   };
   //태그가 선택되면 호출
   const handlePageByTags = async () => {
@@ -54,7 +53,6 @@ export function SearchPage() {
         const response = await axios.get(params);
         setVideos(response.data.videos);
         setMaxPage(response.data.max_page);
-        console.log(selectTags);
       } else {
         handlePageByCategory();
       }
@@ -101,6 +99,13 @@ export function SearchPage() {
     <div>
       <div>
         <h2 id="hashtag-title">#해시태그로 인기 동영상 보기</h2>
+        <p
+          id="hashtag-subtitle"
+          style={{ fontSize: "0.6rem", textAlign: "center" }}
+        >
+          아래 영상의 조회수와 좋아요수는 인기동영상에 선정된 날짜를 기준으로
+          하고있습니다.
+        </p>
       </div>
 
       <div className="thirdpage-main">
@@ -249,8 +254,8 @@ export function SearchPage() {
                     href="#"
                     onClick={e => {
                       e.preventDefault();
-
                       setCurrentPage(x);
+                      window.scrollTo(0, 0);
                     }}
                   >
                     {x}
