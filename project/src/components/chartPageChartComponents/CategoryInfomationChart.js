@@ -39,12 +39,12 @@ export function CategoryInfomationChart({ datas }) {
     <div>
       <VictoryChart
         theme={VictoryTheme.material}
-        width={350}
+        width={400}
         height={200}
         containerComponent={
           <VictoryVoronoiContainer labels={datum => datum.y} />
         }
-        domainPadding={20}
+        domainPadding={0}
         padding={{ left: 60, top: 20, right: 20, bottom: 60 }}
       >
         {/* 그래프 제목 라벨 */}

@@ -67,17 +67,22 @@ const activeStyle = {
     "rgba(204, 185, 185, 0.15) 0px 50px 100px -20px, rgba(204, 185, 185, 0.3) 0px 30px 60px -30px, rgba(204, 185, 185, 0.35) 0px -2px 6px 0px inset",
 };
 
+const rowBtnType = [
+  { id: "row-btn", type: "1단계" },
+  { id: "row-btn", type: "2단계" },
+  { id: "row-btn", type: "3단계" },
+  { id: "row-btn", type: "4단계" },
+];
+
+const columnBtnType = [
+  { id: "column-btn", type: "기본정보" },
+  { id: "column-btn", type: "시간" },
+  { id: "column-btn", type: "카테고리" },
+  { id: "column-btn", type: "단어빈도" },
+];
 export function ChartPage() {
   const [tap, setTap] = useState(DEFAULT_TAP);
   const [step, setStep] = useState(DEFAULT_STEP);
-
-  const selectTabType = btnId => {
-    setTap(btnId);
-  };
-
-  const selectStep = btnId => {
-    setStep(btnId);
-  };
 
   const selectStepData = data => {
     let dataset =
@@ -88,19 +93,13 @@ export function ChartPage() {
     return dataset;
   };
 
-  const rowBtnType = [
-    { id: "row-btn", type: "1단계" },
-    { id: "row-btn", type: "2단계" },
-    { id: "row-btn", type: "3단계" },
-    { id: "row-btn", type: "4단계" },
-  ];
+  const selectTabType = btnId => {
+    setTap(btnId);
+  };
 
-  const columnBtnType = [
-    { id: "column-btn", type: "기본정보" },
-    { id: "column-btn", type: "시간" },
-    { id: "column-btn", type: "카테고리" },
-    { id: "column-btn", type: "단어빈도" },
-  ];
+  const selectStep = btnId => {
+    setStep(btnId);
+  };
 
   return (
     <div className="second-chart">

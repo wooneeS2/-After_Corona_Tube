@@ -97,8 +97,8 @@ export function Page5() {
       <Animator animation={batch(Fade(), Sticky(50, 52), MoveOut(0, -200))}>
         <span id="page5" className="chart1">
           <h2 id="chart-title">
-            유튜브 인기동영상 조회수 · TV 시청률 · 영화 관람객 수 <br />
-            추이 비교 및 분석
+            유튜브 인기동영상 조회수 · TV 시청률 · 영화 관람객 수 추이 비교 및
+            분석
           </h2>
 
           <div id="chart">

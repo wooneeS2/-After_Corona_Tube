@@ -18,7 +18,7 @@ export const returnBorderStyle = data => {
 };
 //GET요청 url
 const url =
-  "http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/auth/register";
+  "http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/api/auth/register";
 
 export function SignUpPage() {
   //input에 입력되는 유저 정보

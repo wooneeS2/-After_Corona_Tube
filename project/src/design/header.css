@@ -23,12 +23,16 @@ header {
   font-family: "Vitro_core";
 }
 
+#service-name:hover {
+  color: black;
+}
+
 #service-name a {
   text-decoration: none;
-  color: black;
 }
 #service-name a :hover {
   text-decoration: underline;
+  color: black;
 }
 #service-name a :link {
   text-decoration: none;
@@ -79,6 +83,7 @@ a:-webkit-any-link {
   z-index: 100;
   right: 45px;
   top: 50px;
+  background-color: white;
 }
 
 #drop-menu {

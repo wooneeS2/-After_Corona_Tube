@@ -38,7 +38,7 @@ export function MenuBtn() {
   const [isLogin, setIsLogin] = useState(false);
   const [userName, setUserName] = useState("");
   const url =
-    "http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/auth/get";
+    "http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/api/auth/get";
 
   //세션에 저장된 토큰으로 유저 데이터 불러오기
   const getUserData = async () => {

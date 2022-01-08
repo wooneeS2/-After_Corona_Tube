@@ -42,7 +42,7 @@ export function TimeInfomationChart({ datas }) {
           return (
             // y축 라벨
             <VictoryLabel
-              x={-10}
+              x={0}
               y={x.y}
               text={x.label}
               backgroundStyle={[
@@ -56,7 +56,7 @@ export function TimeInfomationChart({ datas }) {
         })}
         <VictoryLabel
           text={"단위(개)\nM: 백만\nK: 천"}
-          x={-10}
+          x={0}
           y={65}
           textAnchor={"start"}
           backgroundPadding={{ left: 5, right: 15, top: 3, bottom: 1 }}
