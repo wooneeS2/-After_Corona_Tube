@@ -24,12 +24,12 @@ export function FooterComponents() {
   detectUserAgency();
 
   return (
-    <div className="footer-div">
-      <footer>
+    <footer>
+      <div className="footer-div">
         <p id="footer-contact">©Elice AI Track 3기 16팀 식스틴</p>
         <p id="footer-contact">contact : hello_world_@kakao.com</p>
-      </footer>
-    </div>
+      </div>
+    </footer>
   );
 }
 

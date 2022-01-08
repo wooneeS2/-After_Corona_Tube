@@ -17,6 +17,19 @@
     "column-btn4 second-main-chart second-main-chart second-main-chart second-main-chart";
 }
 
+@media screen and (max-width: 400px) {
+  .second-chart {
+    grid-template-columns: 40px auto;
+    grid-template-rows: 40px auto;
+    font-size: 0.8rem;
+    margin-bottom: 100px;
+  }
+
+  #second-subtitle-1 {
+    font-size: 0.8rem !important;
+  }
+}
+
 #row-btn1 {
   grid-area: row-btn1;
 }

@@ -39,8 +39,8 @@ input[type="text"] {
 
 #user-log-in-btn:hover {
   background-color: #e9d4d4;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  border: 0.3rem solid #e06666;
+  box-shadow: hsla(0, 0%, 0%, 0.16) 0px 1px 4px;
+  border: 0.3rem solid #746868;
 }
 
 #user-input {
@@ -53,7 +53,7 @@ input[type="text"] {
 
 #user-input:focus {
   outline: none;
-  border: 0.3rem solid #e06666;
+  border: 0.3rem solid #746868;
 }
 
 #log-in-subtitle {

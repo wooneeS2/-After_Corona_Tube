@@ -11,7 +11,7 @@ export const isEmail = email => {
   return emailRegex.test(email);
 };
 
-export const borderStyle = { border: "0.3rem solid #e06666" };
+export const borderStyle = { border: "0.3rem solid #746868" };
 export const errorStyle = { color: "red", fontSize: "1rem" };
 export const returnBorderStyle = data => {
   return data !== "" ? borderStyle : {};

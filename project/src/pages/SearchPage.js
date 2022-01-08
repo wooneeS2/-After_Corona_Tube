@@ -61,11 +61,12 @@ export function SearchPage() {
     }
   };
 
+  //페이지네이션
   const handlePagination = () => {
     const temp =
-      maxPage < 10
+      maxPage < 5
         ? Array.from({ length: maxPage }, (v, i) => i + 1)
-        : Array.from({ length: 10 }, (v, i) => i + 1);
+        : Array.from({ length: 5 }, (v, i) => i + 1);
     setPageArray(temp);
   };
 
@@ -98,13 +99,12 @@ export function SearchPage() {
   return (
     <div>
       <div>
-        <h2 id="hashtag-title">#해시태그로 인기 동영상 보기</h2>
+        <h2 id="hashtag-title">해시태그로 보는 인기 동영상</h2>
         <p
           id="hashtag-subtitle"
           style={{ fontSize: "0.6rem", textAlign: "center" }}
         >
-          아래 영상의 조회수와 좋아요수는 인기동영상에 선정된 날짜를 기준으로
-          하고있습니다.
+          조회수와 좋아요수는 인기동영상에 선정된 날짜 기준입니다.
         </p>
       </div>
 
@@ -148,7 +148,7 @@ export function SearchPage() {
                     handleTags(x);
                   }}
                 >
-                  {x}
+                  #{x}
                 </button>
               );
             })
@@ -220,9 +220,9 @@ export function SearchPage() {
         )}
       </div>
       <div className="bootstrap-pagination-bar">
-        <nav aria-label="Page navigation">
+        <nav aria-label="Page navigation" className="page-navigation">
           <ul className="pagination">
-            <li class="page-item">
+            <li class="page-item-previous">
               <a
                 class="page-link"
                 href="#"
@@ -233,7 +233,7 @@ export function SearchPage() {
                   const temp =
                     pageArray[0] === 1
                       ? pageArray.map(v => v)
-                      : pageArray.map(v => v - 10);
+                      : pageArray.map(v => v - 5);
                   setPageArray(temp);
                 }}
               >
@@ -248,6 +248,7 @@ export function SearchPage() {
                   class={`${
                     currentPage === x ? "page-item active" : "page-item"
                   }`}
+                  id="pagination-number-link"
                 >
                   <a
                     class="page-link"
@@ -264,7 +265,7 @@ export function SearchPage() {
               );
             })}
 
-            <li class="page-item">
+            <li class="page-item-next">
               <a
                 class="page-link"
                 href="#"
@@ -275,7 +276,7 @@ export function SearchPage() {
                   const temp =
                     pageArray[pageArray.length - 1] === maxPage
                       ? pageArray.map(v => v)
-                      : pageArray.map(v => v + 10);
+                      : pageArray.map(v => v + 5);
                   setPageArray(temp);
                 }}
               >

@@ -47,7 +47,7 @@ export function BasicInformationChart({ datas }) {
       />
       <VictoryLabel
         text={"단위(개)\nM: 백만,K: 천"}
-        x={-50}
+        x={10}
         y={70}
         textAnchor={"start"}
         backgroundPadding={{ left: 5, right: 15, top: 3, bottom: 1 }}

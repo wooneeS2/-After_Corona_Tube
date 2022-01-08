@@ -3,23 +3,37 @@ import TagCloud from "react-tag-cloud";
 import randomColor from "randomcolor";
 import { useState, useEffect } from "react";
 
-{
-  /* <div className="tag-item-wrapper">
-              <div>Hover Me Please!</div>
-              <div className="tag-item-tooltip">HOVERED!</div>
-            </div> */
+function useWindowSize() {
+  const [size, setSize] = React.useState([0, 0]);
+  React.useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener("resize", updateSize);
+    updateSize();
+
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+  return size;
 }
 
 export function WordCloud({ data }) {
+  const [width, height] = useWindowSize();
   //워드클라우드 요소 생성
   //가중치로 폰트 사이즈 조절
   const datas = data.map(item => {
     return (
       <div
         className="tag-item-wrapper"
-        style={{
-          fontSize: item.value > 200 ? item.value / 5 : item.value / 2.5,
-        }}
+        style={
+          width > 400
+            ? {
+                fontSize: item.value > 200 ? item.value / 5 : item.value / 2.5,
+              }
+            : {
+                fontSize: item.value > 200 ? item.value / 8 : item.value / 4,
+              }
+        }
       >
         {item.word}
         <div className="tag-item-tooltip">

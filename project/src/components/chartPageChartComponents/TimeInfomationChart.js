@@ -10,7 +10,22 @@ import {
 } from "victory";
 import { lineChartColorPalette } from "../../design/colorPalette";
 
+function useWindowSize() {
+  const [size, setSize] = React.useState([0, 0]);
+  React.useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener("resize", updateSize);
+    updateSize();
+
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+  return size;
+}
+
 export function TimeInfomationChart({ datas }) {
+  const [width, height] = useWindowSize();
   const times = [];
 
   const viewAvg = [];
@@ -37,12 +52,21 @@ export function TimeInfomationChart({ datas }) {
 
   return (
     <>
-      <VictoryChart width={400} padding={{ top: 40, bottom: 90 }}>
+      <VictoryChart
+        width={width > 400 ? 400 : 280}
+        height={width > 400 ? 250 : 400}
+        padding={
+          width > 400
+            ? { top: 40, bottom: 90 }
+            : { top: 60, left: 20, right: 20, bottom: 140 }
+        }
+        domainPadding={20}
+      >
         {labels.map((x, index) => {
           return (
             // y축 라벨
             <VictoryLabel
-              x={-10}
+              x={0}
               y={x.y}
               text={x.label}
               backgroundStyle={[
@@ -56,7 +80,7 @@ export function TimeInfomationChart({ datas }) {
         })}
         <VictoryLabel
           text={"단위(개)\nM: 백만\nK: 천"}
-          x={-10}
+          x={0}
           y={65}
           textAnchor={"start"}
           backgroundPadding={{ left: 5, right: 15, top: 3, bottom: 1 }}
@@ -71,7 +95,7 @@ export function TimeInfomationChart({ datas }) {
             ticks: { stroke: "#0f0b0b" },
             axis: { stroke: "#0f0b0b" },
             tickLabels: {
-              fontSize: 9,
+              fontSize: 8,
               fontFamily: "paybooc-Medium",
             },
           }}
