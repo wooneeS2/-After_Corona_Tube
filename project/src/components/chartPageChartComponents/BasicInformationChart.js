@@ -2,6 +2,19 @@ import React from "react";
 
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryLabel } from "victory";
 
+function useWindowSize() {
+  const [size, setSize] = React.useState([0, 0]);
+  React.useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener("resize", updateSize);
+    updateSize();
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+  return size;
+}
+
 export function BasicInformationChart({ datas }) {
   // 차트에 넣어줄 새로운 차트용 데이터 제작
   const videos = [];
@@ -9,7 +22,7 @@ export function BasicInformationChart({ datas }) {
   const views = [];
   const comments = [];
 
-  datas.map(m => {
+  datas.map((m) => {
     videos.push({ x: "numb_videos", y: m.numb_videos, fill: "#623030" });
     views.push({ x: "veiw_cnt", y: m.view_cnt / 100000, fill: "#9c4c4c" });
     likes.push({ x: "likes_cnt", y: m.likes_cnt / 10000, fill: "#c46060" });
@@ -21,12 +34,20 @@ export function BasicInformationChart({ datas }) {
   });
   // 그래프 수치를 표시하기 위해 리스트로 만듦
   const labelData = [];
-  datas.map(x => {
+  datas.map((x) => {
     labelData.push(x.numb_videos);
     labelData.push(x.view_cnt);
     labelData.push(x.likes_cnt);
     labelData.push(x.comment_cnt);
   });
+
+  // const [ innerWidth, setWidth ] = React.useState(window.innerWidth)
+
+  // React.useEffect(() => {
+
+  // }, [])
+
+  const [width, height] = useWindowSize();
 
   // 만든 데이터를 하나의 배열로 합침
   const data = [...videos, ...views, ...likes, ...comments];
@@ -34,8 +55,8 @@ export function BasicInformationChart({ datas }) {
   return (
     <VictoryChart
       domainPadding={80}
-      width={350}
-      height={400}
+      width={width < 500 ? 300 : 600}
+      height={width < 500 ? 180 : 450}
       padding={{ top: 10, bottom: 110 }}
       animate={{ duration: 500, onLoad: { duration: 100 } }}
     >
@@ -56,9 +77,9 @@ export function BasicInformationChart({ datas }) {
       {/* 막대 그래프  */}
       <VictoryBar
         data={data}
-        x={datum => datum.x}
-        y={datum => datum.y}
-        labels={labelData.map(x =>
+        x={(datum) => datum.x}
+        y={(datum) => datum.y}
+        labels={labelData.map((x) =>
           x > 1000000
             ? `${Math.floor(x / 1000000).toLocaleString("en-US")}M`
             : `${(x / 1000).toFixed(2)}K`

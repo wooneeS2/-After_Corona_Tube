@@ -7,11 +7,12 @@ import axios from "axios";
 
 const url =
   "http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/api/auth/login";
-export function SignInPage() {
+export function SignInPage({ loadUser }) {
   const [userInfo, setUserInfo] = useState({ email: "", pw: "" });
   const [emailError, setEmailError] = useState(false);
   const [loginError, setLoginError] = useState(false);
   const navigate = useNavigate();
+
   const postUserData = async () => {
     const { email, pw } = userInfo;
     const signinFormData = new FormData();
@@ -28,9 +29,9 @@ export function SignInPage() {
       });
       // 리턴으로 받은 토큰 값 세션에 저장
       sessionStorage.setItem("userToken", response.data.token);
-
+      loadUser();
       navigate("/");
-      window.location.reload();
+      // window.location.reload();
     } catch (e) {
       console.log(e);
       setLoginError(true);
@@ -51,7 +52,7 @@ export function SignInPage() {
               name="user-id"
               id="user-input"
               placeholder="가입한 이메일을 입력해주세요."
-              onChange={e => {
+              onChange={(e) => {
                 setUserInfo({
                   ...userInfo,
                   email: e.target.value,
@@ -70,7 +71,7 @@ export function SignInPage() {
               name="user-pw"
               id="user-input"
               placeholder="비밀번호를 입력해주세요."
-              onChange={e => {
+              onChange={(e) => {
                 setUserInfo({ ...userInfo, pw: e.target.value });
               }}
               style={returnBorderStyle(userInfo.pw)}
@@ -83,7 +84,7 @@ export function SignInPage() {
           <button
             type="submit"
             id="user-log-in-btn"
-            onClick={e => {
+            onClick={(e) => {
               e.preventDefault();
               const isValidation = isEmail(userInfo.email);
               if (!isValidation) {
