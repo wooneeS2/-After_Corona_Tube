@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const url =
-  "http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/auth/login";
+  "http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/api/auth/login";
 export function SignInPage() {
   const [userInfo, setUserInfo] = useState({ email: "", pw: "" });
   const [emailError, setEmailError] = useState(false);

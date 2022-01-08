@@ -11,7 +11,7 @@ import { divisionNumbers } from "../components/etc/divisionLargeNumbers";
 // 전체
 
 const DEFAULT_CATEGORY = 0;
-const url = `http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/`;
+const url = `http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/api`;
 
 export function SearchPage() {
   const [selectTags, setSelectTags] = useState([]);
@@ -26,7 +26,7 @@ export function SearchPage() {
     setSelectCategory(categoryId);
   };
   const fetchTags = async categoryId => {
-    const params = `search/?category=${categoryId}`;
+    const params = `/search/?category=${categoryId}`;
     const response = await axios.get(url + params);
     setSearchTags(response.data);
   };
@@ -44,7 +44,7 @@ export function SearchPage() {
   };
   //태그가 선택되면 호출
   const handlePageByTags = async () => {
-    const params = `http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/search/tags?data={'tags':'${selectTags.join(
+    const params = `http://elice-kdt-3rd-team-16.koreacentral.cloudapp.azure.com/api/search/tags?data={'tags':'${selectTags.join(
       ","
     )}','categoryId':${selectCategory},'page':${currentPage}}`;
 
