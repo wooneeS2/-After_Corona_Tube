@@ -11,18 +11,20 @@ import { useState, useEffect } from "react";
 }
 
 export function WordCloud({ data }) {
-  //TODO hover시 가중치 툴팁 만들기
-
   //워드클라우드 요소 생성
   //가중치로 폰트 사이즈 조절
   const datas = data.map(item => {
     return (
       <div
+        className="tag-item-wrapper"
         style={{
           fontSize: item.value > 200 ? item.value / 5 : item.value / 2.5,
         }}
       >
         {item.word}
+        <div className="tag-item-tooltip">
+          '{item.word}': {item.value}
+        </div>
       </div>
     );
   });

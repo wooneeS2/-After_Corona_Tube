@@ -33,7 +33,7 @@ export function SearchPage() {
   const handleTags = tagName => {
     const tagIndex = selectTags.indexOf(tagName);
     tagIndex === -1
-      ? setSelectTags([tagName, ...selectTags])
+      ? setSelectTags([...selectTags, tagName])
       : setSelectTags(selectTags.filter(item => item !== tagName));
   };
   const handlePageByCategory = async () => {
@@ -52,7 +52,6 @@ export function SearchPage() {
       if (selectTags.length !== 0) {
         const response = await axios.get(params);
         setVideos(response.data.videos);
-
         setMaxPage(response.data.max_page);
       } else {
         handlePageByCategory();
@@ -80,16 +79,15 @@ export function SearchPage() {
   }, [selectTags]);
 
   useEffect(() => {
+    setSelectTags([]);
     fetchTags(selectCategory);
     handlePageByCategory();
-    setSearchTags([]);
     setCurrentPage(1);
   }, [selectCategory]);
 
   useEffect(() => {
     fetchTags(selectCategory);
     handlePageByCategory();
-    setSearchTags([]);
   }, [currentPage]);
 
   useEffect(() => {
@@ -101,6 +99,13 @@ export function SearchPage() {
     <div>
       <div>
         <h2 id="hashtag-title">#해시태그로 인기 동영상 보기</h2>
+        <p
+          id="hashtag-subtitle"
+          style={{ fontSize: "0.6rem", textAlign: "center" }}
+        >
+          아래 영상의 조회수와 좋아요수는 인기동영상에 선정된 날짜를 기준으로
+          하고있습니다.
+        </p>
       </div>
 
       <div className="thirdpage-main">
@@ -249,8 +254,8 @@ export function SearchPage() {
                     href="#"
                     onClick={e => {
                       e.preventDefault();
-
                       setCurrentPage(x);
+                      window.scrollTo(0, 0);
                     }}
                   >
                     {x}

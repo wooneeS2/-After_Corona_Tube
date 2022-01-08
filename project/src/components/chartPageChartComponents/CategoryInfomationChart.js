@@ -103,8 +103,6 @@ export function CategoryInfomationChart({ datas }) {
           }}
         />
         {/* 그래프 */}
-        {/* TODO 처음 카테고리 버튼을 눌렀을 때 scatter만 먼저 다 떠있는 문제 고치기 */}
-        {/* -> line 그래프와 scatter 그래프가 한번에 그려지도록 하고싶음 */}
         {data.map((x, index) => {
           return (
             <VictoryGroup
