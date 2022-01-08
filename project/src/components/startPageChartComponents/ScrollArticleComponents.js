@@ -79,7 +79,7 @@ export function Page4() {
     <ScrollPage page={3}>
       <Animator animation={batch(Fade(), Sticky(), MoveOut(0, -200))}>
         <span id="page4">
-          <p>
+          <p id="intro-description">
             실제로 우리는 코로나19 이후 많은 변화를 경험하고 있는데요. 그
             중에서도 가장 눈에 띄는 것은 언택트, 즉 비대면 사회로의 전환입니다.
             우리는 이 속에서 얼마나 많은 일상의 변화를 경험하게 될까요?
@@ -132,11 +132,11 @@ export function Page7() {
     <>
       <ScrollPage page={5}>
         <Animator animation={batch(Sticky(), FadeIn())}>
-          <div>
+          <div className="last-box">
             <p id="last-description">
               코로나19 이후 유튜브 트렌드가 궁금하다면?
             </p>
-            <div id="last-btn">
+            <div>
               <NextBtn
                 title={"코로나 이후 기간별 데이터 보러가기 "}
                 path={"/chart"}

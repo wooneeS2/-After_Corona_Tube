@@ -21,12 +21,10 @@ function App() {
     sessionStorage.removeItem("userToken");
     setIsLogin(false);
     setUserName("");
-    console.log("logout");
   };
 
   const loadUser = async () => {
     const token = sessionStorage.getItem("userToken");
-    console.log(token);
 
     try {
       const response = await axios.get(url, {
@@ -36,7 +34,6 @@ function App() {
       });
       setIsLogin(true);
       setUserName(response.data.name);
-      console.log("isLogin", isLogin, "userName", userName);
     } catch (e) {
       console.log(e);
       setIsLogin(false);

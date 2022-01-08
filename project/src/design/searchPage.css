@@ -122,8 +122,6 @@
 #video-title {
   text-align: center;
   width: 100%;
-
-  word-break: keep-all;
   margin-bottom: -1rem;
   font-weight: bold;
   font-size: 1.1rem;

@@ -52,7 +52,7 @@ export function SignInPage({ loadUser }) {
               name="user-id"
               id="user-input"
               placeholder="가입한 이메일을 입력해주세요."
-              onChange={(e) => {
+              onChange={e => {
                 setUserInfo({
                   ...userInfo,
                   email: e.target.value,
@@ -71,7 +71,7 @@ export function SignInPage({ loadUser }) {
               name="user-pw"
               id="user-input"
               placeholder="비밀번호를 입력해주세요."
-              onChange={(e) => {
+              onChange={e => {
                 setUserInfo({ ...userInfo, pw: e.target.value });
               }}
               style={returnBorderStyle(userInfo.pw)}
@@ -84,12 +84,11 @@ export function SignInPage({ loadUser }) {
           <button
             type="submit"
             id="user-log-in-btn"
-            onClick={(e) => {
+            onClick={e => {
               e.preventDefault();
               const isValidation = isEmail(userInfo.email);
               if (!isValidation) {
                 setEmailError(true);
-                console.log("error", emailError);
               } else {
                 setEmailError(false);
                 postUserData();

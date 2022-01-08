@@ -13,7 +13,23 @@ import {
 
 import { lineChartColorPalette } from "../../design/colorPalette";
 
+function useWindowSize() {
+  const [size, setSize] = React.useState([0, 0]);
+  React.useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener("resize", updateSize);
+    updateSize();
+
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+  return size;
+}
+
 export function CategoryInfomationChart({ datas }) {
+  const [width, height] = useWindowSize();
+
   //차트에 사용할 새로운 데이터 양식
   const likes = [];
   const views = [];
@@ -39,13 +55,17 @@ export function CategoryInfomationChart({ datas }) {
     <div>
       <VictoryChart
         theme={VictoryTheme.material}
-        width={400}
-        height={200}
+        width={width > 400 ? 400 : 280}
+        height={width > 400 ? 200 : 350}
         containerComponent={
           <VictoryVoronoiContainer labels={datum => datum.y} />
         }
         domainPadding={0}
-        padding={{ left: 60, top: 20, right: 20, bottom: 60 }}
+        padding={
+          width > 400
+            ? { left: 60, top: 20, right: 20, bottom: 60 }
+            : { left: 60, top: 60, right: 20, bottom: 60 }
+        }
       >
         {/* 그래프 제목 라벨 */}
         {labels.map((x, index) => {

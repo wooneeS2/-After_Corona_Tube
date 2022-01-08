@@ -99,7 +99,7 @@ export function SearchPage() {
   return (
     <div>
       <div>
-        <h2 id="hashtag-title">#해시태그로 인기 동영상 보기</h2>
+        <h2 id="hashtag-title">해시태그로 보는 인기 동영상</h2>
         <p
           id="hashtag-subtitle"
           style={{ fontSize: "0.6rem", textAlign: "center" }}
@@ -148,7 +148,7 @@ export function SearchPage() {
                     handleTags(x);
                   }}
                 >
-                  {x}
+                  #{x}
                 </button>
               );
             })
