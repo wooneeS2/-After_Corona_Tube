@@ -11,14 +11,23 @@
 }
 
 #chart-description {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   font-family: "paybooc-Medium";
   margin: 0 auto;
   text-align: center;
-  line-height: 170%;
+  line-height: 160%;
   /* 반응형으로 제작시 break-all로 바꿔야함 */
   word-break: keep-all;
   width: 105%;
+}
+
+.home-main-title {
+  word-break: keep-all;
+  text-align: center;
+}
+
+#page5 {
+  margin: 1rem;
 }
 
 #next-btn {
@@ -36,14 +45,11 @@
   margin-top: 1.5rem;
 }
 
-/* TODO 가운데정렬 마진 없이 맞추기 */
-
 .next {
   margin: 0 auto;
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-left: 2rem;
 }
 
 .next :hover {

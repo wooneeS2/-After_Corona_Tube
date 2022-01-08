@@ -18,7 +18,6 @@ export function FooterComponents() {
       isIEedge === false
     ) {
     } else {
-      // FIXME 한번만 눌러도 꺼지게하기
       window.alert("현재 페이지는 Chrome에 최적화 되어있습니다.");
     }
   };
@@ -28,7 +27,7 @@ export function FooterComponents() {
     <div className="footer-div">
       <footer>
         <p id="footer-contact">©Elice AI Track 3기 16팀 식스틴</p>
-        <p id="footer-contact">contact : @sixteen</p>
+        <p id="footer-contact">contact : hello_world_@kakao.com</p>
       </footer>
     </div>
   );
