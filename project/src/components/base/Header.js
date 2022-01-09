@@ -10,7 +10,7 @@ export function MenuBtn({ isLogin, userName, LogOut }) {
   const menuList = [
     {
       label: "Home",
-      path: "home",
+      path: "",
     },
     {
       label: "Chart",
@@ -26,7 +26,7 @@ export function MenuBtn({ isLogin, userName, LogOut }) {
     },
     {
       label: "LogOut",
-      path: "home",
+      path: "",
     },
   ];
 
@@ -89,7 +89,7 @@ export function HeaderComponents({ isLogin, userName, LogOut }) {
   return (
     <header>
       <div id="headers" fixed="top">
-        <Link to="/home" id="service-name">
+        <Link to="/" id="service-name">
           애코튜브
         </Link>
 

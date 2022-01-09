@@ -50,7 +50,6 @@ function App() {
         />
         <Routes>
           <Route exact path="/" element={<StartPage />} />
-          <Route path="/home" element={<StartPage />} />
           <Route path="/chart" element={<ChartPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/sign-in" element={<SignInPage loadUser={loadUser} />} />

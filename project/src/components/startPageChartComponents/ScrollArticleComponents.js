@@ -11,7 +11,7 @@ import {
 import { ScrollGuideBtn, NextBtn } from "../etc/buttonComponents";
 import FooterComponents from "../base/Footer";
 
-//Page1~7순서대로 /home에서 스크롤됨
+//Page1~7순서대로 / 에서 스크롤됨
 export function Page1() {
   return (
     <>
