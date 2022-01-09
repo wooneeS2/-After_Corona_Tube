@@ -17,7 +17,7 @@
     "column-btn4 second-main-chart second-main-chart second-main-chart second-main-chart";
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
   .second-chart {
     grid-template-columns: 40px auto;
     grid-template-rows: 40px auto;
