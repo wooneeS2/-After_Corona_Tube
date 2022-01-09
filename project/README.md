@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# 🙌애코튜브 프로젝트 프론트엔드입니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## ❓ 애코튜브란?
 
-## Available Scripts
+- 코로나 19이후, 유튜브 인기동영상의 데이터를 분석한 뒤 분석결과를 보고, 인기 해시태그가 포함되어있는 인기동영상을 검색 할 수 있는 프로젝트입니다.
 
-In the project directory, you can run:
+## 🙋‍♀️ 프로젝트 구성 안내
 
-### `npm start`
+1. react를 이용해서 만든 프로젝트입니다.
+2. 각 디자인 및 기능별로 적절한 라이브러리를 사용했습니다.
+   - 스크롤 애니메이션 : React-Scroll-motion
+   - 차트 : VictoryChart
+   - 워드 클라우드 :React-tag-cloud
+   - 페이지네이션 : Bootstrap
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🛠 실행방법
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+git clone https://kdt-gitlab.elice.io/003-part3-ottservice/team16/front-end-project.git
 
-### `npm test`
+npm install
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+npm start
+```
 
-### `npm run build`
+## 프로젝트 구현 내용
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**1. home**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 프로젝트 인트로 및 배경 설명
+- 스크롤 애니메이션을 이용하여 구성
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**2. chart**
 
-### `npm run eject`
+- 기간별로 기본정보/시간/카테고리/워드클라우드 주제별 차트
+- 각 차트별로 마우스 오버시 각 가중치 툴팁 표시
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**3. search**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- 유튜브 인기 동영상 카테고리 및 해시태그 선택시 해당 동영상 표시
+- 결과 영상 클릭시 유튜브 페이지로 이동
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**4. sign-in/ sign-up**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- 회원 가입 및 로그인 기능
+- 이메일 벨리데이션 기능
+- 로그인시 메뉴버튼 옆에 사용자 이름 표시
+- 로그아웃 기능
 
-## Learn More
+## 프로젝트 구조 설명
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+`front-end-project - project - src `
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. components
 
-### Code Splitting
+- `base` : 프로젝트 기본구조인 header & footer 컴포넌트
+- `chartPageChartComponents` : 차트페이지에 쓰인 기본정보/카테고리/시간/워드클라우드 차트
+- `etc` : 버튼, 로딩바 컴포넌트
+- `startPageChartComponents` : 미디어 트렌드 차트, 환자수 차트, 스크롤 페이지 별 컴포넌트
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+2. data
 
-### Analyzing the Bundle Size
+- 프로젝트에 쓰인 데이터입니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+3. design
 
-### Making a Progressive Web App
+- 프로젝트에 사용된 디자인 파일
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+4. pages
 
-### Advanced Configuration
+- 라우터로 이동하는 페이지 컴포넌트 홈/차트/검색 컴포넌트
+- `sign` : 회원가입, 회원가입 완료, 로그인 페이지 컴포넌트
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 버전
 
-### Deployment
+1.0 : 2022-01-09 배포
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 데모
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 추후 업로드 예정입니다.
