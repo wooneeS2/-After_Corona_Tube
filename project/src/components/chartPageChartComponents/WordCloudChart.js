@@ -26,7 +26,7 @@ export function WordCloud({ data }) {
       <div
         className="tag-item-wrapper"
         style={
-          width > 400
+          width > 500
             ? {
                 fontSize: item.value > 200 ? item.value / 5 : item.value / 2.5,
               }

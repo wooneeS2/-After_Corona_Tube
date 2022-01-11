@@ -78,7 +78,7 @@
   grid-row-gap: 2rem;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
   .video-div {
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(9, 1fr);

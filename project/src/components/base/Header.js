@@ -10,7 +10,7 @@ export function MenuBtn({ isLogin, userName, LogOut }) {
   const menuList = [
     {
       label: "Home",
-      path: "home",
+      path: "",
     },
     {
       label: "Chart",
@@ -26,7 +26,7 @@ export function MenuBtn({ isLogin, userName, LogOut }) {
     },
     {
       label: "LogOut",
-      path: "home",
+      path: "",
     },
   ];
 
@@ -35,16 +35,6 @@ export function MenuBtn({ isLogin, userName, LogOut }) {
     setVisible(!visible);
   };
 
-  // //FIXME 로그인 했을 때 바로 로그인이 안됨. 새로고침해야지 로그인이됨.
-  // //로그인 상태가 변경되면 유저 데이터를 불러옴
-  // useEffect(() => {
-  //   getUserData();
-  // }, [isLogin]);
-
-  // //헤더 컴포넌트가 실행될 때 유저 데이터를 불러옴
-  // useEffect(() => {
-  //   getUserData();
-  // }, []);
   return (
     <>
       <div className="navigator">
@@ -65,9 +55,9 @@ export function MenuBtn({ isLogin, userName, LogOut }) {
         {visible && (
           <div className="menu">
             {(isLogin === true
-              ? menuList.filter((x) => x.label !== "LogIn")
-              : menuList.filter((x) => x.label !== "LogOut")
-            ).map((x) => {
+              ? menuList.filter(x => x.label !== "LogIn")
+              : menuList.filter(x => x.label !== "LogOut")
+            ).map(x => {
               return (
                 <div key={x.id} id="drop-menu">
                   <Link
@@ -99,7 +89,7 @@ export function HeaderComponents({ isLogin, userName, LogOut }) {
   return (
     <header>
       <div id="headers" fixed="top">
-        <Link to="/home" id="service-name">
+        <Link to="/" id="service-name">
           애코튜브
         </Link>
 

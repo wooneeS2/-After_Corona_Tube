@@ -53,10 +53,10 @@ export function TimeInfomationChart({ datas }) {
   return (
     <>
       <VictoryChart
-        width={width > 400 ? 400 : 280}
-        height={width > 400 ? 250 : 400}
+        width={width > 500 ? 400 : 280}
+        height={width > 500 ? 250 : 400}
         padding={
-          width > 400
+          width > 500
             ? { top: 40, bottom: 90 }
             : { top: 60, left: 20, right: 20, bottom: 140 }
         }

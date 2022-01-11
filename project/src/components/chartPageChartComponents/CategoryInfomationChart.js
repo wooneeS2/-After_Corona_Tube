@@ -55,14 +55,14 @@ export function CategoryInfomationChart({ datas }) {
     <div>
       <VictoryChart
         theme={VictoryTheme.material}
-        width={width > 400 ? 400 : 280}
-        height={width > 400 ? 200 : 350}
+        width={width > 500 ? 400 : 280}
+        height={width > 500 ? 200 : 350}
         containerComponent={
           <VictoryVoronoiContainer labels={datum => datum.y} />
         }
         domainPadding={0}
         padding={
-          width > 400
+          width > 500
             ? { left: 60, top: 20, right: 20, bottom: 60 }
             : { left: 60, top: 60, right: 20, bottom: 60 }
         }
