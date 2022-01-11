@@ -75,6 +75,10 @@ npm start
 - 라우터로 이동하는 페이지 컴포넌트 홈/차트/검색 컴포넌트
 - `sign` : 회원가입, 회원가입 완료, 로그인 페이지 컴포넌트
 
+## 📆 진행 기간
+- 2021년 12월 21일 ~ 2021년 1월 9일
+- 3주동안 진행하였으며 기획 1주, 개발 2주 소요됨.
+
 ## 🏅 버전
 
 1.0 : 2022-01-09 배포
@@ -86,10 +90,14 @@ npm start
 ![demo2](https://user-images.githubusercontent.com/49189226/148891547-50c2642d-2b09-4ee3-b510-5cde148f7c55.gif)
 ![demo3](https://user-images.githubusercontent.com/49189226/148891553-79db2bac-faff-4d6a-9f4d-bebea331e24d.gif)
 
-**Mobile버전**
-![m-demo1](https://user-images.githubusercontent.com/49189226/148892384-4ea22e88-4403-426e-9d01-8d8b6c3f2a87.gif)
-![m-demo2](https://user-images.githubusercontent.com/49189226/148892396-1a44db19-369b-4b69-991c-366ef3c5857f.gif)
-![m-demo3](https://user-images.githubusercontent.com/49189226/148892405-fb341f0e-629f-4287-ae79-1b2ce685c475.gif)
+  
+  **Mobile버전**  
+  ![m-demo1](https://user-images.githubusercontent.com/49189226/148892384-4ea22e88-4403-426e-9d01-8d8b6c3f2a87.gif)  
+
+![m-demo2](https://user-images.githubusercontent.com/49189226/148892396-1a44db19-369b-4b69-991c-366ef3c5857f.gif)  
+
+![m-demo3](https://user-images.githubusercontent.com/49189226/148892405-fb341f0e-629f-4287-ae79-1b2ce685c475.gif)  
+
 
 
 ## ✅ 수정해야 하는 부분
@@ -98,4 +106,4 @@ npm start
 
 ## ☺️ 도움을 주신 분
 
-@shawn(엘리스 AI 트랙 3기 데이터분석 웹 프로젝트 코치님)
+@shawn (엘리스 AI 트랙 3기 데이터분석 웹 프로젝트 코치님)
