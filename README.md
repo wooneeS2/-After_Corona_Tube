@@ -17,7 +17,7 @@
 ## 🛠 실행방법
 
 ```bash
-git clone https://kdt-gitlab.elice.io/003-part3-ottservice/team16/front-end-project.git
+git clone https://github.com/wooneeS2/Elice_team_project.git
 
 npm install
 
@@ -81,7 +81,16 @@ npm start
 
 ## 🥁 데모
 
-- 추후 업로드 예정입니다.
+**PC버전**
+![Jan-11-2022 15-23-04](https://user-images.githubusercontent.com/49189226/148891913-8cd5b570-4bf0-4e5c-adeb-28d5333dec45.gif)
+![demo2](https://user-images.githubusercontent.com/49189226/148891547-50c2642d-2b09-4ee3-b510-5cde148f7c55.gif)
+![demo3](https://user-images.githubusercontent.com/49189226/148891553-79db2bac-faff-4d6a-9f4d-bebea331e24d.gif)
+
+**Mobile버전**
+![m-demo1](https://user-images.githubusercontent.com/49189226/148892384-4ea22e88-4403-426e-9d01-8d8b6c3f2a87.gif)
+![m-demo2](https://user-images.githubusercontent.com/49189226/148892396-1a44db19-369b-4b69-991c-366ef3c5857f.gif)
+![m-demo3](https://user-images.githubusercontent.com/49189226/148892405-fb341f0e-629f-4287-ae79-1b2ce685c475.gif)
+
 
 ## ✅ 수정해야 하는 부분
 
