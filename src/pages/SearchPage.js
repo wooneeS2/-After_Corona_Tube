@@ -1,13 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import "../design/searchPage.css";
-import { GrLike, GrView } from "react-icons/gr";
 import axios from "axios";
-import { GrNext, GrPrevious, GrRefresh } from "react-icons/gr";
 import { categoryType } from "../data/categoryType";
-import { LoadingCircle } from "../components/etc/loadingCircle";
 import { activeSearchBtnStyle } from "../design/innerStyle";
-import { divisionNumbers } from "../components/etc/divisionLargeNumbers";
+import { LoadingCircle } from "../components/etc/loadingCircle";
+import { GrNext, GrPrevious, GrRefresh } from "react-icons/gr";
+import "../design/searchPage.css";
+import VideoList from "../components/searchPageComponents/VideoList";
+import HashtagList from "../components/searchPageComponents/HashtagList";
+
 // 전체
 
 const DEFAULT_CATEGORY = 0;
@@ -138,21 +139,20 @@ export function SearchPage() {
           ) : (
             searchTags.map(x => {
               return (
-                <button
-                  id="hashtag-btn"
-                  style={
-                    selectTags.indexOf(x) !== -1 ? activeSearchBtnStyle : {}
-                  }
+                <HashtagList
+                  tags={x}
                   onClick={e => {
                     e.preventDefault();
                     handleTags(x);
                   }}
-                >
-                  #{x}
-                </button>
+                  onStyle={
+                    selectTags.indexOf(x) !== -1 ? activeSearchBtnStyle : {}
+                  }
+                />
               );
             })
           )}
+
           <span id="hastag-refresh-btn">
             <GrRefresh
               onClick={e => {
@@ -165,59 +165,7 @@ export function SearchPage() {
       </div>
 
       <div className="video-div">
-        {videos === null ? (
-          <LoadingCircle />
-        ) : (
-          videos.map(v => {
-            return (
-              <a
-                href={`https://www.youtube.com/watch?v=${v.videoAddress}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="video-wrapped-btn"
-              >
-                <div id="video-div-div">
-                  <div id="video-thumbnail">
-                    <img src={v.thumbnail} alt={v.videoAddress} />
-                  </div>
-                  <div id="video-title">
-                    <p>{v.title}</p>
-                  </div>
-
-                  <div id="video-channel">
-                    <p>{v.channel}</p>
-                  </div>
-
-                  <div id="video-category">
-                    <p>
-                      {
-                        categoryType[
-                          Object.keys(categoryType).findIndex(
-                            key =>
-                              categoryType[key].category_id === v.categoryId
-                          )
-                        ].category_name
-                      }
-                    </p>
-                  </div>
-
-                  <div className="video-views-likes">
-                    <div className="video-likes-div">
-                      <p id="video-views-p">
-                        <GrLike />
-                        {divisionNumbers(v.likes, 1)}
-                      </p>
-                    </div>
-                    <div className="video-views-div">
-                      <GrView />
-                      <p id="video-likes-p">{divisionNumbers(v.views, 1)}</p>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            );
-          })
-        )}
+        <VideoList item={videos} />
       </div>
       <div className="bootstrap-pagination-bar">
         <nav aria-label="Page navigation" className="page-navigation">
