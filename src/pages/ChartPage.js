@@ -1,19 +1,16 @@
 import React from "react";
-
 import { useState } from "react";
 import FooterComponents from "../components/base/Footer";
 import { BasicInformationChart } from "../components/chartPageChartComponents/BasicInformationChart";
 import { TimeInfomationChart } from "../components/chartPageChartComponents/TimeInfomationChart";
 import { CategoryInfomationChart } from "../components/chartPageChartComponents/CategoryInfomationChart";
 import { WordCloud } from "../components/chartPageChartComponents/WordCloudChart";
-
 import {
   categoryStep1,
   categoryStep2,
   categoryStep3,
   categoryStep4,
 } from "../data/data2-3";
-
 import {
   basicInfoData1,
   basicInfoData2,
@@ -26,9 +23,7 @@ import {
   wordCloudData3,
   wordCloudData4,
 } from "../data/data2-4";
-
 import { timeStep1, timeStep2, timeStep3, timeStep4 } from "../data/data2-2";
-
 import { periodStep, subtitleStep } from "../data/periodStep";
 import "../design/chartPage.css";
 import "../design/wordcloud.css";
@@ -85,12 +80,12 @@ export function ChartPage() {
   const [step, setStep] = useState(DEFAULT_STEP);
 
   const selectStepData = data => {
-    let dataset =
+    return (
       (step === "row-btn1" && data[0]) ||
       (step === "row-btn2" && data[1]) ||
       (step === "row-btn3" && data[2]) ||
-      (step === "row-btn4" && data[3]);
-    return dataset;
+      (step === "row-btn4" && data[3])
+    );
   };
 
   const selectTabType = btnId => {

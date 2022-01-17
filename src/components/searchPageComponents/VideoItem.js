@@ -3,7 +3,7 @@ import { divisionNumbers } from "../etc/divisionLargeNumbers";
 import { categoryType } from "../../data/categoryType";
 import { GrLike, GrView } from "react-icons/gr";
 
-export const VideoItem = ({ video }) => {
+ const VideoItem = ({ video }) => {
   return (
     <a
       href={`https://www.youtube.com/watch?v=${video.videoAddress}`}

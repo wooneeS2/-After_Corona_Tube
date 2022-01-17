@@ -37,6 +37,7 @@ export function SearchPage() {
       ? setSelectTags([...selectTags, tagName])
       : setSelectTags(selectTags.filter(item => item !== tagName));
   };
+
   const handlePageByCategory = async () => {
     const params = `/search/category?data= {'categoryId':${selectCategory},'page':${currentPage}}`;
     const response = await axios.get(url + params);
